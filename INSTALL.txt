@@ -1,0 +1,89 @@
+################################################################################
+##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 #
+## --------------------------------------------------------------------------- #
+##  uHotelBooking  version 2.8.9                                               #
+##  Developed by:  ApPHP <info@apphp.com>                                      #
+##  License:       ApPHP uHotelBooking license v.1                             #
+##  Site:          @site https://www.hotel-booking-script.com                  #
+##  Copyright:     uHotelBooking (c) 2014 - 2019. All rights reserved.         #
+##                                                                             #
+##  Additional modules (embedded):                                             #
+##  -- ApPHP EasyInstaller v2.0.5 (installation module)       http://apphp.com #
+##  -- ApPHP Tabs v2.0.3 (tabs menu control)                  http://apphp.com #
+##  -- TinyMCE (WYSIWYG editor)                   http://tinymce.moxiecode.com #
+##  -- Crystal Project Icons (icons set)               http://www.everaldo.com #
+##  -- Securimage v3.6.4 (captcha script)            http://www.phpcaptcha.org #
+##  -- jQuery 1.4.2 (New Wave Javascript)                    http://jquery.com #
+##  -- Google AJAX Libraries API                  http://code.google.com/apis/ #
+##  -- Lytebox v3.22                                       http://lytebox.com/ #
+##  -- JsCalendar v1.0 (DHTML/JavaScript Calendar)      http://www.dynarch.com #
+##  -- CrossSlide jQuery plugin v0.6.2 	                     by Tobia Conforto #
+##  -- PHPMailer v5.2 https://code.google.com/a/apache-extras.org/p/phpmailer/ #
+##  -- tFPDF v1.24 (PDF files generator (FPDF http://fpdf.org))    by Ian Back #
+##  -- Ajax-PHP Rating Stars Script                     http://coursesweb.net/ #
+##  -- TitanicThemes (template)      http://themeforest.net/user/TitanicThemes #
+##  -- toastr v2.1.3                     https://cdnjs.com/libraries/toastr.js #
+##  -- DataTables 1.10.12                            http://www.datatables.net #
+##  -- BxSlider v4.1.2                                    http://bxslider.com/ #
+##                                                                             #
+################################################################################
+
+
+Software requirements: PHP 5.4.0 or later version.
+
+A new installation of uHotelBooking is a very straight forward process:
+
+Step 1. Uncompressing downloaded file.
+-------------------------------------
+   Uncompress the uHotelBooking version 2.x.x script archive. The archive will create
+   a directory called "uHotelBooking_2xx"
+
+
+Step 2. Uploading files.
+-------------------------------------
+   Upload content of this folder (all files and directories it includes) to your 
+   document root (public_html, www, httpdocs etc.) or your hotel script directory using FTP.
+   Pay attention to DON'T use the capital letters in the name of the folder (for Linux users).
+
+   public_html/
+   or
+   public_html/{hotel-site directory}/
+   
+   Uncomment in .htaccess following line of code, if you need to add PHP5 handler.
+   # AddHandler application/x-httpd-php5 .php
+
+
+Step 3. Creating database.
+-------------------------------------
+   Using your hosting Control Panel, phpMyAdmin or another tool, create your database
+   and user, and assign that user to the database. Write down the name of the
+   database, username, and password for the site installation procedure.
+
+
+Step 4. Running install.php file.
+-------------------------------------
+   Now you can run install.php file. To do this, open Internet browser and type in Address Bar
+
+   http://{www.example.com}/install.php
+   or
+   http://{www.example.com}/{hotel-site directory}/install.php
+
+   Follow instructions on the screen. You will be asked to enter: database host,
+   database name, username and password. Also you need to enter admin username and
+   admin password, that will be used to get access to administration area of the
+   site.
+
+
+Step 5. Setting up access permissions.
+-------------------------------------
+   Check access permissions to images/ and tmp/. You need to have 755 permissions 
+   to these directories.
+
+
+Step 6. Deleting installation files.
+-------------------------------------
+   After successful installation you will get an appropriate message and warning to
+   remove installation files. For security reasons, please delete them immediately.
+
+
+Congratulations, you now have uHotelBooking Installed!

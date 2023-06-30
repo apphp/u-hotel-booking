@@ -1,0 +1,103 @@
+########## Add PHP5 handler
+# AddHandler application/x-httpd-php5 .php
+
+########## Deny directory browsing
+IndexIgnore */*
+
+Options All -Indexes
+
+########## Disabling Magic Quotes
+## When PHP run as CGI you have to use php.ini instead of .htaccess for the php_flag
+# php_flag magic_quotes_gpc Off
+# php_flag magic_quotes_runtime 0
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+	########## Begin - Rewrite rules to block out some common exploits
+	## If you experience problems on your site block out the operations listed below
+	## This attempts to block the most common type of exploit `attempts` to the script
+	#
+	RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+	# Block out any script trying to base64_encode crap to send via URL
+	RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+	# Block out any script that includes a <script> tag in URL
+	RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+	# Block out any script trying to set a PHP GLOBALS variable via URL
+	RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+	# Block out any script trying to modify a _REQUEST variable via URL
+	RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+	# Send all blocked request to homepage with 403 Forbidden error!
+	RewriteRule ^(.*)$ index.php [F,L]
+	#
+	########## End - Rewrite rules to block out some common exploits
+	
+	########## Begin - SEO Links Section
+	## If you works with SEO links option uncomment the operations listed below
+	## redirection on pages
+	#
+		## login page
+		#RewriteCond %{QUERY_STRING} =case=........
+		#RewriteRule ^index.php$ index.php?admin=........ [L]
+		#RewriteCond %{QUERY_STRING} =case=........
+		#RewriteRule ^index.php$ index.php?customer=........ [L]
+	
+		RewriteRule ^pages/([0-9]+)/(.*).html$ index.php?page=pages&pid=$1 [L]
+		RewriteRule ^pages/(.*).html$ index.php?page=pages&system_page=$1 [L]
+		RewriteRule ^news/([0-9]+)/(.*).html$ index.php?page=news&nid=$1 [L]
+		RewriteRule ^news/(.*).html$ index.php?page=news [L]
+		RewriteRule ^hotels/([0-9]+)/(.*).html$ index.php?page=hotels&hid=$1 [L]
+		RewriteRule ^rooms/([0-9]+)/(.*).html$ index.php?page=rooms&room_id=$1 [L]
+		RewriteRule ^flats/([0-9]+)/(.*).html$ index.php?page=flats&flat_id=$1 [L]
+		RewriteRule ^cars/([0-9]+)/(.*).html$ index.php?page=cars&car_id=$1 [L]
+		RewriteRule ^tours/([0-9]+)/(.*).html$ index.php?page=tours&tour_id=$1 [L]
+
+		## redirect for language
+        RewriteCond %{QUERY_STRING} (.*)
+		RewriteRule ^([a-zA-Z][a-zA-Z])/index.php$ index.php?lang=$1&%1 [L]
+        RewriteCond %{QUERY_STRING} (.*)
+		RewriteRule ^([a-zA-Z][a-zA-Z])/?$ index.php?lang=$1&%1 [L]
+		#RewriteRule ^([a-zA-Z][a-zA-Z])/index.php$ index.php?lang=$1 [L]
+        #RewriteRule ^([a-zA-Z][a-zA-Z])/?$ index.php?lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/pages/([0-9]+)/(.*).html$ index.php?page=pages&pid=$2&lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/pages/(.*).html$ index.php?page=pages&system_page=$2&lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/news/([0-9]+)/(.*).html$ index.php?page=news&nid=$2&lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/hotels/([0-9]+)/(.*).html$ index.php?page=hotels&hid=$2&lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/rooms/([0-9]+)/(.*).html$ index.php?page=rooms&room_id=$2&lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/cars/([0-9]+)/(.*).html$ index.php?page=cars&car_id=$2&lang=$1 [L]
+        RewriteRule ^([a-zA-Z][a-zA-Z])/tours/([0-9]+)/(.*).html$ index.php?page=tours&tour_id=$2&lang=$1 [L]
+
+		## redirect for currency
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/index.php$ index.php?currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/?$ index.php?currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/pages/([0-9]+)/(.*).html$ index.php?page=pages&pid=$2&currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/pages/(.*).html$ index.php?page=pages&system_page=$2&currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/news/([0-9]+)/(.*).html$ index.php?page=news&nid=$2&currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/hotels/([0-9]+)/(.*).html$ index.php?page=hotels&hid=$2&currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/rooms/([0-9]+)/(.*).html$ index.php?page=rooms&room_id=$2&currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/cars/([0-9]+)/(.*).html$ index.php?page=cars&car_id=$2&currency=$1 [L]
+		RewriteRule ^([a-zA-Z][a-zA-Z][a-zA-Z])/tours/([0-9]+)/(.*).html$ index.php?page=tours&tour_id=$2&currency=$1 [L]
+
+	#
+	########## End - SEO Links Section
+	
+	########## Begin - Block direct viewing of images
+	## This attempts to block the direct access to images
+	#
+	# RewriteCond %{HTTP_REFERER} !^http://(.*)$ [NC] 
+	# RewriteRule \.(jpe?g|gif|bmp|png)$ - [F,NC]
+	#
+	########## End - Block direct viewing of images
+
+</IfModule>
+
+########## Begin - Cron jobs Section
+## Block remote access to cron.php
+#
+    <Files "cron.php">
+       Order Deny,Allow
+       Deny from all
+    </Files>
+#
+########## End - Cron jobs Section
+
