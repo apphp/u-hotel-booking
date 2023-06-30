@@ -1,0 +1,229 @@
+
+#mod_calendar{
+	font-family: arial, verdana, sans-serif;	
+	font-size: 12px;
+	/*background-color:#ffffff;*/
+}
+
+/* --- FORM ELEMENTS & :HOVER, :FOCUS ---------------------- */
+[disabled], [disabled]:hover { 
+	color:#939393; 
+	background-color:#f1f2f3;
+	border:1px solid #d7d7d7;
+}
+
+INPUT[type=checkbox],
+INPUT[type=checkbox]:hover 	{ border:0px; }
+INPUT[type=radio],
+INPUT[type=radio]:focus,
+INPUT[type=radio]:hover 	{ border:0px; }
+
+INPUT 					{ border:1px solid #d7d7d7; background-color: #ffffff; }
+INPUT:hover             { border:1px solid #98bcdf; background-color: #fefefe; }
+INPUT:focus             { border:1px solid #c7c7e7; background-color: #ffffe7; }
+INPUT:focus:hover       { border:1px solid #98bcdf; background-color: #ffffe7; }
+INPUT.btn_radio			{ border:0px; }
+
+TEXTAREA                { border:1px solid #d7d7d7; background-color: #ffffff; }
+TEXTAREA:hover          { border:1px solid #98bcdf; background-color: #fefefe;}
+TEXTAREA:focus          { border:1px solid #c7c7e7; background-color: #ffffe7; }
+TEXTAREA:focus:hover    { border:1px solid #98bcdf; background-color: #ffffe7;}
+
+SELECT                	{ border:1px solid #d7d7d7; background-color: #ffffff; }
+SELECT:hover          	{ border:1px solid #98bcdf; background-color: #fefefe; }
+SELECT:focus          	{ border:1px solid #c7c7e7; background-color: #fffff9; }
+SELECT:focus:hover      { border:1px solid #98bcdf; background-color: #fffff9; }
+
+/* --- LINKS ----------------- 
+a                 				{ color:#0160b0; text-decoration:none; }
+a:link            				{ color:#0160b0; text-decoration:none; }
+a:hover           				{ color:#336699; text-decoration:underline; }
+a:visited         				{ color:#0160b0; text-decoration:none; }
+a:visited:hover   				{ color:#336699; text-decoration:underline; }
+a.tab_active                 	{ font-weight:bold; font-size:13px; text-decoration:underline; }
+*/
+
+a.print	IMG 					{ margin-right:5px; margin-bottom:-2px; }
+
+.move 							{ cursor:move; }
+.msg_error                      { color:#a60000; font-weight:bold; }
+.msg_success                    { color:#00a200; font-weight:bold; }
+
+.message_box_success    		{ background-image:url(../../images/sign_sussess.gif);   background-repeat:no-repeat; background-position:7px; text-align:left; vertical-align:middle; display:block; font-size:12px; width:99%; margin:6px 0px 0px 0px; padding:12px 0px 12px 5px; color: #000000; background-color:#f1fff1; border:1px solid #3ac13a; }
+.message_box_error  			{ background-image:url(../../images/sign_error.gif);     background-repeat:no-repeat; background-position:7px; text-align:left; vertical-align:middle; display:block; font-size:12px; width:99%; margin:6px 0px 0px 0px; padding:12px 0px 12px 0px; color: #000000; background-color:#fff1f1; border:1px solid #c13a3a; }
+.message_box_important       	{ background-image:url(../../images/sign_important.gif); background-repeat:no-repeat; background-position:7px; text-align:left; vertical-align:middle; display:block; font-size:12px; width:99%; margin:6px 0px 0px 0px; padding:12px 0px 12px 5px; color: #000000; background-color:#fffff1; border:1px solid #c1c13a; }
+.message_content                { margin:0 30px; }
+
+.bold							{ font-weight:bold; }
+
+.cal_fieldset					{ width:97%; padding:3px; margin:10px 0px 0px 0px; }
+.cal_legend						{ padding:0px 2px 0px 2px; text-align:left; font-size:12px; }
+.fieldset_content				{ width:99%; margin:15px 3px 10px 3px; }
+
+#calendar_header  				{ width:98%; margin-left:5px; margin-right:10px; }
+#calendar_header .caption_left 	{ text-align:left; font-weight:bold; padding-left:3px; }
+#calendar_header .caption_right { text-align:right; font-weight:bold; }
+#calendar_header .caption_center{ text-align:center; }
+#calendar_header .caption 		{ font-size: 16px; font-weight:bold; text-align:center; }
+#calendar_header .types_changer { font-size: 12px; font-weight:normal; text-align:right; }
+#calendar_header .mgrid_select	{ margin-left:3px;}
+
+/* MONTHLY LIST VIEW CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#mod_calendar .lv_lcolumn 			{ padding-left:7px; vertical-align:top; text-align:left; }
+#mod_calendar .lv_rcolumn 			{ text-align:left; }
+#mod_calendar .lv_separator 		{ text-align:left; margin-left:3px; width:100px; height:3px; border-bottom:1px dotted #cccccc; }
+
+/* MONTHLY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#mod_calendar .td,
+#mod_calendar .td_empty,
+#mod_calendar .td_actday,
+#mod_calendar .td_selday,
+#mod_calendar .td_sunday{
+	width:14%;
+	text-align: left;
+	vertical-align: top;
+	padding:3px; 
+	padding-left:5px;
+	padding-top:5px;
+}
+
+#mod_calendar .month  			{ width:98%; align:left; border:1px solid #ccc; margin:8px; border-collapse:collapse; }
+#mod_calendar .tr_days   		{ height:32px; background-color:#f1f1f1; background-image: url(images/header_bg.gif); background-repeat: repeat-x; }
+#mod_calendar .tr				{ }
+#mod_calendar .td 				{ border:1px solid #ddd; color:#555; background-color:#ffffff; }
+#mod_calendar .td_wn		    { border:1px solid #ddd; color:#555; background-color:#d8e8f2; width:4%; text-align:center; vertical-align:top; padding-top:5px; font-weight:bold; }
+#mod_calendar .td_empty 		{ border:1px solid #ddd; color:#555; background-color:#f1f2f3; }
+#mod_calendar .td_actday 		{ background-color:#ffffcc; border:1px solid #ddd; color:#0357a5; font-weight:bold; }
+#mod_calendar .td_selday 		{ background-color:#ffffef; border:1px solid #ddd; color:#555; font-weight:bold; }
+#mod_calendar .td_sunday 		{ background-color:#f1fafa; border:1px solid #ddd; color:#555; font-weight:bold; }
+#mod_calendar .th 				{ height:24px; text-align:center; align:left; font-weight:bold; padding-top:3px; padding-bottom:3px; padding:5px; color:#fff; }
+#mod_calendar .th_wn		    { height:24px; text-align:center; align:left; font-weight:bold; padding-top:3px; padding-bottom:3px; padding:5px; color:#fff; }
+#mod_calendar .events_list_tooltip { font-size:11px; font-weight:normal; cursor:help; }
+#mod_calendar .events_list_inline  { font-size:11px; font-weight:normal; text-align:left; } 
+#mod_calendar .event_descr       { cursor:help; } 
+
+/* SMALL MONTHLY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#mod_calendar .td_small,
+#mod_calendar .td_small_green,
+#mod_calendar .td_small_red,
+#mod_calendar .td_small_darkgray,
+#mod_calendar .td_small_partially,
+#mod_calendar .td_small_fully,
+#mod_calendar .td_small_empty,
+#mod_calendar .td_small_grey,
+#mod_calendar .td_small_full,
+#mod_calendar .td_small_actday,
+#mod_calendar .td_small_selday{
+	width:13%;
+	text-align: right;
+	vertical-align: top;
+	padding:1px; 
+	padding-right:3px;
+}
+
+#mod_calendar .triple_months_container  { width:99%; align:center; margin:2px 0; }
+#mod_calendar .year_container   { width:98%; align:center; margin:8px; border:1px solid #ccc; border-collapse:collapse; }
+#mod_calendar .month_small	    { width:96%; align:center; border:1px solid #cccccc; margin-top:5px; border-collapse:collapse; }
+#mod_calendar .tr_small_days    { background-color:#f1f1f1; background-image: url(images/header_bg.gif); background-repeat: repeat-x; }
+#mod_calendar .tr_small         { }
+#mod_calendar .td_small         { border:1px solid #ddd; color:#555; background-color:#ffffff; }
+#mod_calendar .td_small_green   { border:1px solid #ddd; color:#555; background-color:#ccffcc; }
+#mod_calendar .td_small_red     { border:1px solid #ddd; color:#444; background-color:#ff7700; }
+#mod_calendar .td_small_darkgray { border:1px solid #ddd; color:#555; background-color:#b2b2b2; }
+#mod_calendar .td_small_partially { border:1px solid #ddd; color:#886c00; background-color:#fedc67; }
+#mod_calendar .td_small_fully     { border:1px solid #ddd; color:#db4c0d; background-color:#ffcdb7; }
+#mod_calendar .td_small_empty 	{ border:1px solid #ddd; color:#555; background-color:#f1f2f3; }
+#mod_calendar .td_small_grey    { border:1px solid #ddd; color:#555; background-color:#d2d2d2; }
+#mod_calendar .td_small_full 	{ border:1px solid #ddd; color:#555; background-color:#ff5e5e; }
+#mod_calendar .legend_block     { display:block; width:16px; height:16px; float:left; margin:1px 1px 1px 1px; }
+#mod_calendar .legend_text      { display:block; height:16px; float:left; margin:1px 3px 1px 4px; }
+#mod_calendar .legend_f_block   { display:block; height:16px; float:left; margin:1px 3px 1px 3px; }
+#mod_calendar .legend_l_block   { display:block; width:16px; height:16px; float:left; margin:1px 3px 1px 3px; }
+#mod_calendar .e0 				{ background-color:#ffdca9; }
+#mod_calendar .e1 				{ background-color:#ffcc99; }
+#mod_calendar .e2 				{ background-color:#efbc89; }
+#mod_calendar .e3 			    { background-color:#dfac79; }
+#mod_calendar .e4 			    { background-color:#cf9c69; }
+#mod_calendar .e5 			    { background-color:#bf8c59; }
+#mod_calendar .e6 			    { background-color:#b38251; }
+#mod_calendar .e7 			    { background-color:#ad7a47; }
+#mod_calendar .e8 			    { background-color:#9f6c39; }
+#mod_calendar .e9 			    { background-color:#936231; }
+#mod_calendar .e10 			    { background-color:#885522; }
+#mod_calendar .td_small_wn 	    { border:1px solid #ddd; color:#555; background-color:#d9e8f2; width:9%; text-align:center;}
+#mod_calendar .td_small_actday  { border:1px solid #ddd; color:#0357a5; background-color:#ffffcc; font-weight:bold; }
+#mod_calendar .td_small_selday  { background-color:#ffffef; border:1px; color:#555; font-weight:bold; }
+#mod_calendar .th_small         { text-align:center; align:center; font-weight:bold; padding-top:1px; padding-bottom:1px; padding:2px; color:#fff; }
+#mod_calendar .th_small_wn      { text-align:center; align:center; font-weight:bold; padding-top:1px; padding-bottom:1px; padding:2px; color:#fff; }
+
+/* WEEKLY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#mod_calendar .td_w,
+#mod_calendar .td_sunday_w,
+#mod_calendar .td_actday_w{
+	width:14%;
+	text-align: right;
+	vertical-align: top;
+	padding:1px; 
+	padding-left:3px;
+	padding-top:3px;
+}
+#mod_calendar .td_actday_w 		{ background-color:#ffffee; border:1px solid #ddd; color:#555; font-weight:bold; }
+#mod_calendar .td_header        { background-color:#a9cbdc; padding-left:3px; text-align:left; }
+#mod_calendar .td_w 			{ border:1px solid #ddd; color:#555; background-color:#ffffff; }
+#mod_calendar .td_sunday_w 		{ background-color:#d9e8f2; border:1px solid #ddd; color:#333; font-weight:bold; }
+#mod_calendar .td_w_d     		{ font-size:11px; }
+
+/* DAILY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#mod_calendar .day  			{ width:98%; border:1px solid #ccc; padding:0px; border-collapse:collapse; margin:8px; }
+#mod_calendar .day_navigation  	{ width:98%; border:1px solid #ccc; padding:0px; margin-top:3px;  margin-bottom:8px; border-collapse:collapse; }
+#mod_calendar .td_acthour_d_h   { background-color:#ffffcc; border:1px solid #ccc; padding:1px; padding-right:3px; text-align:right; }
+#mod_calendar .td_acthour_d     { background-color:#ffffcc; border:1px solid #ccc; padding:1px; padding-left:5px; text-align:left; }
+#mod_calendar .td_d_h           { background-color:#f1f2f3; border:1px solid #ccc; padding:1px; padding-right:3px; text-align:right; width:54px; }
+#mod_calendar .td_d             { background-color:#ffffff; border:1px solid #ccc; padding:1px; padding-left:5px; text-align:left; }
+
+/* NAVIGATION BAR */
+#mod_calendar .table_navbar   	{ border:0px; width:100%; height: 40px; }
+#mod_calendar .tr_navbar   		{ background-color:#ffffff; height:30px; text-align:center; }
+#mod_calendar .tr_navbar_left 	{ width:40%; background-color:#ffffff; height:30px; padding-left:7px; text-align:left; }
+#mod_calendar .tr_navbar_right 	{ width:40%; background-color:#ffffff; height:30px; padding-right:7px; text-align:right; }
+
+#mod_calendar .class_form       { padding:0px; margin:0px; }
+#mod_calendar .form_select      { font-size:12px; padding:2px 1px; margin-left:2px;}
+#mod_calendar .form_button      { font-size:12px; padding:auto; padding-left:4px; padding-right:4px; border:1px solid #0160b0; border-left:1px solid #55aaff; border-top:1px solid #55aaff; background-color:#336699; color:#ffffff; }
+#mod_calendar .form_button  { font-size:12px; font-weight:bold; color:#444444; padding:2px 5px 2px 5px; background-color:#e1e2e3;	border-style:solid; border-color:#9b9b9b; border-top-color:#cdcecf; border-left-color:#cdcecf; border-width:1px; cursor:pointer; background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#d7d7d7)); background: -moz-linear-gradient(top, #f7f7f7, #d7d7d7); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7f7f7", endColorstr="#d7d7d7"); }
+#mod_calendar .form_button:hover { background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#d2d2d2)); background: -moz-linear-gradient(top, #efefef, #d2d2d2); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#efefef", endColorstr="#d2d2d2"); }
+
+#mod_calendar .form_cancel_link { color: #a60000; font-weight:bold; text-decoration:underline; }
+#mod_calendar .form_cancel_link:hover { text-decoration:none; }   
+
+/* EVENT FORM CONTAINER */
+/** ------------------------------------------------------------------------ **/
+#divAddEvent				{ border:1px solid #bcbcbc; background-color:#ffffff; position:absolute; left:200px; top:100px; width:370px; height:247px; display:none; }
+#divAddEvent table 			{ width:368px; border:0px; align:center; }
+#divAddEvent .header    	{ width:100%; background-color:#0160b0; color:#ffffff; }
+#divAddEvent .header a  	{ color:#ffffff; }
+
+.debug_sql					{ font-family: arial, verdana, sans-serif; font-size: 12px; color:#000086; }
+.debug_error				{ font-family: arial, verdana, sans-serif; font-size: 12px; color:#860000; }
+.debug_post					{ font-family: arial, verdana, sans-serif; font-size: 12px; color:#008600; }
+.debug_get					{ font-family: arial, verdana, sans-serif; font-size: 12px; color:#008600; }
+.debug_info					{ font-family: arial, verdana, sans-serif; font-size: 12px; color:#222222; margin:10px auto; text-align:left; padding-left:20px; }
+
+/* EVENT WRAPPER */
+/** ------------------------------------------------------------------------ **/
+.event_wrapper				{ display:block;height:14px; }
+.event_wrapper IMG			{ visibility:hidden; position:relative;left:83px;cursor:pointer; }
+.event_wrapper:hover		{ }
+.event_wrapper:hover IMG	{ visibility: visible; }
+.event_wrapper LABEL		{ margin-left:-7px; }
+
+/* OVERLIB TOOLTIP */
+/** ------------------------------------------------------------------------ **/
+DIV#overDiv                 { border: 1px solid #ccc; }
+DIV#overDiv TABLE TABLE     { padding:2px 5px; }
+

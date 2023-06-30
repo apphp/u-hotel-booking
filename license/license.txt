@@ -1,0 +1,85 @@
+                APPHP UHOTELBOOKING LICENSE
+                 Version 1.1, 20 March 2015
+
+Copyright (C) 2006 ApPHP, Inc. <http://apphp.com>
+
+uHotelBooking ("the Software") is a copyrighted work of authorship and is also
+protected under applicable database laws. ApPHP Company retains ownership of
+the Software and any copies of it, regardless of the form in which the copies
+may exist (this license doesn't cover any 3rd party components used in the
+Software).
+
+By installing and using the Software on your server, you agree to the following
+terms and conditions.
+
+Such agreement is either on your own behalf or on behalf of any corporate entity
+which employs you or which you represent ("Corporate Licensee"). In this Agreement,
+"you" includes both the reader and any Corporate Licensee the Software license
+grants you the right to run one instance (a single installation) of the Software
+on one (five or unlimited) web servers / domains and one (five or unlimited) web
+sites according to the license purchased.
+
+Transfer Policy: ApPHP Company may, in its discretion, allow you to transfer your
+license to another domain, providing the license:
+- has not already been transferred; and
+- was purchased less than 3 months in the past.
+
+If you have a valid license, you may set up an additional test installation on test
+host, providing it never will be accessed by the general public;
+
+The license is effective until terminated. You may terminate it at any time by
+uninstalling the Software and destroying any copies in any form.
+
+You undertake to;
+- ensure that, prior to use of the Software by your employees or agents, all such
+  parties are notified of the terms of this Agreement; and
+- hold all data (including object and source codes), software listings and all other
+  information relating to the Software confidential and not at any time, during the
+  period of the license or after its expiry, disclose the same whether directly or
+  indirectly to any third party without ApPHP Company's consent.
+
+The Software source code may be altered for your own purposes (at your risk).
+
+You may not sell or resell any version of the Software.
+
+The Software may not be used for anything that would represent or is associated with
+an Intellectual Property violation, including, but not limited to, engaging in any
+activity that infringes or misappropriates the intellectual property rights of others,
+including copyrights, trademarks, service marks, trade secrets, software piracy, and
+patents held by individuals, corporations, or other entities.
+
+If any of the terms of this Agreement are violated, ApPHP Company reserves the right
+to revoke the license at any time. Disclaimer of Warranty The software and the
+accompanying files are sold "As Is" and without warranties as to performance of
+merchantability or any other warrantied whether expressed or implied. ApPHP Company
+is not liable for the content of any site powered by the Software. You must assume
+the entire risk of using the program.
+
+ANY LIABILITY OF ApPHP Company WILL BE LIMITED EXCLUSIVELY TO PRODUCT REPLACEMENT
+OR REFUND OF PURCHASE PRICE.
+
+Except in respect of personal injury or death caused directly by the negligence of
+ApPHP Company, in no event will ApPHP Company be liable to you for any damages,
+including any lost profits, lost savings, loss of data or any indirect, special,
+incidental or consequential damages arising out of the use of or inability to use
+such Software, even if ApPHP Company has been advised of the possibility of such
+damages. Nothing in this Agreement limits liability for fraudulent misrepresentation.
+
+This license gives you specific legal rights and the you may have other rights that
+vary from country to country. Some jurisdictions do not allow the exclusion of implied
+warranties, or certain kinds of limitations or exclusions of liability, so the above
+limitations and exclusions may not apply to you. Other jurisdictions allow limitations
+and exclusions subject to certain conditions. In such a case the above limitations and
+exclusions shall apply to the fullest extent permitted by the laws of such applicable
+jurisdictions. If any part of the above limitations or exclusions is held to be void
+of unenforceable, such part shall be deemed to be deleted from this agreement and the
+remainder of the limitation or exclusion shall continue in full force and effect.
+Any rights that you may have as a consumer (i.e. a purchaser for private as opposed to
+business, academic or government use) are not affected.
+
+General
+This Agreement constitutes the complete statement of the agreement between you and
+ApPHP Company, and supercedes all representations, understandings or prior agreements
+between you and ApPHP Company.
+
+ApPHP Company reserves the right to modify these terms at any time.

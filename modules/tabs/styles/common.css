@@ -1,0 +1,77 @@
+/*selected link*/
+.hrefsel
+{
+    xp_style: #0000DD;
+    font-weight: bold; 
+    text-decoration: none;
+    }
+/*link*/
+.href 
+{
+    xp_style: #0000AA;
+    font-weight: normal; 
+    text-decoration: none;
+    }
+/*unordered list which contains tabs as elements*/ 
+.menu
+{    
+    vertical-align: middle;
+    font-family: Verdana;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 2;
+    position: relative;
+   margin: 5px 0 0 0;
+   padding: 0;
+
+}
+/*unordered list element*/
+.menu .element
+{   
+    display: inline;
+    }   
+/*tab*/ 
+.tab, .tabsel, .tabdis, .tabover	
+{
+    display: inline-block;
+    vertical-align: top;
+    background-position: 0 0;
+    }
+.inner, .innersel, .innerdis, .innerover
+{
+    float: left;
+    height: 22px;
+	margin-left: 10px;
+	padding-right: 10px;
+	line-height: 20px;
+	background-position: 100% 0;
+	}
+/*enabled tab*/
+.tab, .tabover
+{
+    cursor: pointer;
+    }
+/*disabled tab*/
+.tabdis, .tabsel
+{
+    cursor: default;
+    }
+/*div element where content is displayed*/
+#container
+{
+    overflow: hidden;
+    padding: 10px 0px 10px 0px;
+    border-style: solid; 
+    overflow: auto;
+    margin: -1px 0 0 0;
+    position: relative;
+    z-index: 1;
+    }
+/*tab's caption*/
+#caption
+{
+   font-family: Georgia, sans-serif;
+   font-size: 2em;
+   letter-spacing: -1px;
+}

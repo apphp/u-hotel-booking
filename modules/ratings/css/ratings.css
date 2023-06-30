@@ -1,0 +1,10 @@
+.ratings_stars {  position:relative; margin:5px 0 0 0; width:91px; font-family:"Calibri", Arial, sans-serif; text-align:center; padding:1px 1px 2px 2px; }
+.ratings_stars .stars,
+.ratings_stars .d_rtg,
+.ratings_stars  { width:92px; }
+.ratings_stars .stars { position:relative; height:16px; margin:0; background:transparent url('../images/star0.png') repeat-x top left; padding:0; }
+.ratings_stars .d_rtg { position:absolute; top:0; left:0; margin:0; padding:1px; }
+.ratings_stars .d_rtg span { display:block; width:18px; float:left; cursor:pointer; }
+.ratings_stars .star_n { position:relative; height:16px; margin:0; background:transparent url('../images/star1.png') repeat-x top left; }
+.ratings_stars em { position:absolute; bottom:1px; left:125px; font-size:13px; text-align:center; }
+#thankyou { width:100px }

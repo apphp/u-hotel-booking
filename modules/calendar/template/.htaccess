@@ -1,0 +1,4 @@
+<FILES ~ "\.tpl$">  
+    Order allow,deny  
+    Deny from all  
+</FILES>

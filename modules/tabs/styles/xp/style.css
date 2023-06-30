@@ -1,0 +1,25 @@
+/*tab*/
+.tab, .inner
+{
+    background-image: url(images/button.jpg);
+}
+/*selected tab*/
+.tabsel, .innersel
+{
+    background-image: url(images/buttos.jpg);
+}
+/*disabled tab*/
+.tabdis, .innerdis
+{
+    background-image: url(images/buttod.jpg);
+}
+/*highlighted tab*/
+.tabover, .innerover
+{
+    background-image: url(images/buttov.jpg);
+}
+#container
+{
+    border-width: 1px;
+    border-color: #A0A09E;
+}

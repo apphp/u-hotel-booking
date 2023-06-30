@@ -1,0 +1,6 @@
+.ratings_stars .star_n { background:transparent url('../images/star1.png') repeat-x top right; }
+.ratings_stars .stars { background:transparent url('../images/star0.png') repeat-x top right; }
+.ratings_stars .d_rtg { right:0; }
+.ratings_stars .d_rtg span { float:right; }
+
+

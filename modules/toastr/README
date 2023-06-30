@@ -1,0 +1,39 @@
+toastr (jQuery Plugin)
+
+Demo - http://codeseven.github.io/toastr/demo.html
+
+Usage:
+-----
+
+<!-- Register FancyBox files -->
+<link rel="stylesheet" href="modules/toastr/toastr.min.css" type="text/css" media="screen" />
+<script type="text/javascript" src="modules/toastr/toastr.min.js"></script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		// Init
+		toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": false,
+		  "positionClass": "toast-top-right",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut",
+		  "rtl": false
+		 }
+		
+		// Command:
+		toastr["success"]("Are you the six fingered man?");
+		// Or
+		toastr.success("Are you the six fingered man?");
+	});
+</script>
