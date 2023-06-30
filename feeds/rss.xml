@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<atom:link href="http://localhost/hotelbook5/feeds/rss.xml" rel="self" type="application/rss+xml" />
+<title>uHotelBooking</title>
+<link>http://localhost/hotelbook/feeds/rss.xml</link>
+<description>uHotelBooking</description>
+<language>en-us</language>
+<copyright>(c) copyright</copyright>
+<pubDate>Fri, 24 Aug 2018 14:27:41 UTC</pubDate>
+<image>
+<url>http://localhost/hotelbook/images/icons/logo.png</url>
+<title>uHotelBooking</title>
+<link>http://localhost/hotelbook/feeds/rss.xml</link>
+</image>
+</channel>
+</rss>

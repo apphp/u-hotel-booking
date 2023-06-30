@@ -1,0 +1,283 @@
+======================================================================================
+- Version 2.8.9	 [25.02.2019]
+======================================================================================
+1. Feature: [added] possibility to manage min/max adults and children in discount campaigns
+2. Feature: [added] possibility to create group discounts using Apply Per property in campaigns
+3. Feature: [added] possibility to debug with profiler
+4. Feature: [added] possibility to contact directly with hotel via Contact Form
+5. Feature: [added] possibility for hotel owners to register
+6. Feature: [added] possibility to send copy to admin or/and hotel owner
+7. Feature: [added] possibilities to use module shortcodes on homepage also
+8. Feature: [added] possibility to add video links in hotels (properties).
+9. Feature: [added] new module - Accounts.
+10. Feature: [added] standard registration type for hotel owner.
+11. Feature: [added] social login for customers.
+12. Feature: [added] new account type hotel manager.
+13. Feature: [added] New search feature: Allow relocation to other room and allow relocation to other hotel.
+
+1. Feature: [improved] added new settings COUNT_MEAL_FOR_CHILDREN
+2. Feature: [improved] added new settings ALLOW_ADULTS_SELECTING and ALLOW_CHILDREN_SELECTING that allows to change number of guests
+3. Feature: [improved] added new settings ADMIN_CAN_SEE_INACTIVE_PROPERTIES that allows admin to see inactive hotels
+4. Feature: [improved] rooms management in Admin Panel with hotel selection
+5. Feature: [improved] minor changes in installation wizard
+6. Feature: [improved] changed payment type description in reservation PDF
+7. Feature: [improved] default template changes for mobile devices
+8. Feature: [improved] PHP code styling and added global exceptions handling
+9. Feature: [improved] CSS styling for reservation emails
+10. Feature: [improved] multi-language on script installation
+11. Feature: [improved] added alert on dates changing on bookings and checkout pages
+12. Feature: [improved] added demi properties for test purposes on fresh installation
+13. Feature: [improved] if logged as Hotel Owner hide fields in the Hotels: Group, Stars, Order, Is default, Hotel Owner/ Agent commission
+14. Feature: [improved] if logged as Hotel Owner hide fields in the Hotel Rooms: Order, Max. children.
+15. Feature: [improved] added field "Register Number" in Hotel Info
+16. Feature: [improved] added fields in Room Info: Register Number, Suitable for kids, Floor, Number of single beds, Number of double beds
+17. Feature: [improved] added new data type "separated" for the checkboxes.
+18. Feature: [improved] in backend, companies for administrators have the data type "separated".
+
+1. Bug: [fixed] decimals on Room Prices page in Admin Panel
+2. Bug: [fixed] in calculation of maximum allowed room for reservation
+3. Bug: [fixed] showing facility icons on reservation widget
+4. Bug: [fixed] on assigning more than 20 hotels to hotel owner
+5. Bug: [fixed] update of default max adults/children for room prices
+6. Bug: [fixed] in check of existing reviews for customer
+7. Bug: [fixed] dates overlapping in campaigns definition
+8. Bug: [fixed] wrong assignment of hotel owners to their properties
+9. Bug: [fixed] in changing available rooms when change maximum number of rooms if hotel
+10. Bug: [fixed] security issues in access of customer info
+
+
+======================================================================================
+- Version 2.7.9	 [01.01.2018]
+======================================================================================
+1. Feature: [added] the location is automatically set when searching availability if it is the only one
+2. Feature: [added] support for email templates
+3. Feature: [added] the site can be converted to the mode of apartments (requires a special template)
+4. Feature: [added] the ability to display payments as a checkbox
+5. Feature: [added] link "Delete all" for mail log page
+6. Feature: [added] new setting constant TYPE_FILTER_TO_NUMBER_ROOMS for filtering by min/max number of rooms
+7. Feature: [added] new setting constant SHOW_CREATION_DATE_FROM_TO for filtering by date created form/to of booking
+8. Feature: [added] self-automatic currency rates update
+
+1. Feature: [improved] added a default value for the "adults" field
+2. Feature: [improved] work with the flags (changing languages) in the ipanel-center widget
+3. Feature: [improved] now mass mail log allows you to save every message sent
+4. Feature: [improved] now when booking in the backend email is also sent to the administrator and the hotelowner
+5. Feature: [improved] added additional room information on Room Prices page
+6. Feature: [improved] possibility to turn on/off CSRF validation by CSRF_VALIDATION
+7. Feature: [improved] in reviews added possibility to admin to answer on customer reviews
+8. Feature: [improved] installation module - added possibility to update by separate versions
+
+1. Bug: [fixed] When working with one hotel, the field "Destination / Hotel Name:" was still displayed
+2. Bug: [fixed] The Registration Form was not displayed if there was only one news of the type "events"
+3. Bug: [fixed] Problem with simultaneous counting of discounts per night and rooms
+4. Bug: [fixed] Problem with the format on the check_cars_availability page
+5. Bug: [fixed] Language constants were not loaded when using cron in non-batch mode
+6. Bug: [fixed] If only one hotel was used, the MOST POPULAR HOTELS block was still displayed
+7. Bug: [fixed] Did not show all hotels for hotelowner (page index.php?admin=mod_booking_bookings)
+8. Bug: [fixed] Validation worked incorrectly on the page index.php?page=booking_details
+9. Bug: [fixed] work with meal plans (when changing languages, the name meal plan did not change)
+10.Bug: [fixed] minor bugs in js
+11.Bug: [fixed] in adding and deleting mail log
+
+
+======================================================================================
+- Version 2.6.9  [16.07.2017]
+======================================================================================
+1. Feature: [added] the search for a best price when searching for rooms
+2. Feature: [added] added new types of discounts TYPE_DISCOUNT_GUEST: by number of rooms or guests
+3. Feature: [added] display of the best price in the tooltip on the check_availability page
+4. Feature: [added] automatic search for available rooms
+5. Feature: [added] setting 'customer_booking_in_past' for the possibility of reservation of the previous day
+6. Feature: [added] tooltip for discount nights (the total of nights reserved)
+7. Feature: [added] selection for the best rooms (if the option SHOW_BEST_PRICE_ROOMS is set)
+8. Feature: [added] new constant SHOW_QUANTITY_MONTHS_CALENDAR
+9. Feature: [added] new constant MAX_PRICE_FILTER
+10. Feature: [added] new constant MIN_BEDS_USE_FOR_ADULTS
+11. Feature: [added] styles to display the print page
+12. Feature: [added] new module - tcpdf
+
+1. Feature: [improved] Securimage (captcha script) upgraded to v3.6.4 
+2. Feature: [improved] For horizontal search form new name for field "min. beds"
+3. Feature: [improved] PHPMailer upgraded to 5.2.22
+4. Feature: [improved] Improved display pages check_hotels removed empty blocks
+5. Feature: [improved] Search for the minimum number of beds if is not found the room with the required number of adults
+6. Feature: [improved] In hotel in reviews customer name is First Name + 1st letter o last name
+7. Feature: [improved] The Adults field is now a drop-down list when displaying one hotel in a page check availability
+8. Feature: [improved] Now the error message when changing the reservation date on the booking page is more informative
+9. Feature: [improved] Redesigned list with sorting fields when searching for available rooms
+10. Feature: [improved] Remember the last date of the sample to create a form on the page for detailed viewing of hotels
+11. Feature: [improved] Redesigned discount display (booking)
+12. Feature: [improved] Added total price when sending a email message
+13. Feature: [improved] Now on the dashboard for the administrator displays only orders with the status pending, reserved, and completed
+14. Feature: [improved] Redesigned work "cancellation fee"
+15. Feature: [improved] SEO support for pages whose name is passed through GET parameters
+16. Feature: [improved] A return is made to the booking_result page if there was an login to the customer from this page
+17. Feature: [improved] Incorrectly counted checkout on the pages of the description of the room and the hotel when changing the setting "min rooms"
+
+1. Bug: [fixed] No settings in backend for "account balance" (payment type)
+2. Bug: [fixed] Wrong displayed a list of reserved rooms (there was a transparent band)
+3. Bug: [fixed] Incorrectly calculated a discount when using the currency is not the default
+4. Bug: [fixed] Not working through the balance of payments with the use of currency different from the currency by default
+5. Bug: [fixed] not show the desired banner for page check_hotels
+6. Bug: [fixed] widget: invalid display of side basket
+7. Bug: [fixed] VAT calculation on the payment page
+8. Bug: [fixed] Incorrect discount calculation by number of rooms (guests) when ordering more than one night
+9. Bug: [fixed] The calendar was always set up (for datepicker)
+10. Bug: [fixed] Meal plan was not recalculated when recalculating the date on the booking page
+11. Bug: [fixed] The rating for reviews on the check_availability page was incorrectly calculated
+12. Bug: [fixed] The explanatory message incorrectly displayed discounts for the night
+13. Bug: [fixed] When changing the date on the reservation page of vacant rooms, you need twice as much
+14. Bug: [fixed] Incorrect count of discounts on rooms (guests) if the price for a room with a discount is 0
+15. Bug: [fixed] On the index.php?admin=mod_booking_settings page, the default date was not correctly set
+16. Bug: [fixed] The list of locations on the check_availability page was incorrectly displayed
+17. Bug: [fixed] Change work with changing the date on the booking page
+18. Bug: [fixed] The default language was not set for ajax-requests, if the language was not explicitly selected
+19. Bug: [fixed] Could not change the date on the page index.php?page=booking_checkout&m=3 if the date format was 'dd/mm/yyyy'
+20. Bug: [fixed] Broken link for page admin/home
+21. Bug: [fixed] The calendar does not work when using Greek
+22. Bug: [fixed] Not correct discount for page - payment, description, invoice
+23. Bug: [fixed] The European format was not supported for quick reservations
+24. Bug: [fixed] Because of using Group By in bookings, paginations did not work correctly
+25. Bug: [fixed] Incorrect work of sending a mass message.
+
+
+======================================================================================
+- Version 2.5.9 [02.01.2017]
+======================================================================================
+1. Feature: [added] quick reservation in admin panel
+2. Feature: [added] new module DataTables (sorting tables for dashboard)
+3. Feature: [added] new filter on Date Created in Bookings page
+4. Feature: [added] on room description page, added new field beds, bathrooms and room area
+5. Feature: [added] new button "Apply The Filters" for page check_availability
+6. Feature: [added] display information about the current reservation of rooms on page check_availability
+7. Feature: [added] added to page the invoice new field the "additional info"
+8. Feature: [added] added a new type of gallery carousel
+9. Feature: [added] comments to the regional manager in bookings
+10.Feature: [added] new predefined constant {MESSAGE FOOTER}
+11.Feature: [added] widget center-panel
+12.Feature: [added] on the page check availability information on cancellation policy
+
+1. Feature: [improved] implement the setting "Allow Booking in the Past"
+2. Feature: [improved] convert prices at the currency switch
+3. Feature: [improved] all filters in admin panel the type select made from module chosen
+4. Feature: [improved] calendar is translated to different languages
+5. Feature: [improved] displays a message to the number of discounts for guests
+6. Feature: [improved] in the Date Created field now displays the date and time (page Bookings)
+7. Feature: [improved] improved with field additional payment in backend
+8. Feature: [improved] added the current language in the tag <html> (example: <html lang="en">)
+
+1. Bug: [fixed] when sorting the maximum price for the hotel was always equal to 1000, regardless of the type of currency
+2. Bug: [fixed] not correctly chosen the minimum price
+3. Bug: [fixed] don't show correctly the rooms and the prices for "check_availability" page if the used filter by price
+4. Bug: [fixed] Improperly work script if admnistrator changed status to "refunded"
+5. Bug: [fixed] Fixed a display issue module the chosen for rtl
+6. Bug: [fixed] Remove filter affiliates in the frontend (page My Bookings)
+7. Bug: [fixed] it was possible to see inactive room for a direct link
+8. Bug: [fixed] no the default image in the detailed view of the room
+9. Bug: [fixed] an error in the css for rtl (the buttons grey color for page check_availability)
+
+
+======================================================================================
+- Version 2.4.3 [22.09.2016]
+======================================================================================
+1. Feature: [added] added possibility to define default contact email and phone and hide hotels contact info
+2. Feature: [added] added RTL support to Invoice PDF
+3. Feature: [added] integration widget for Car Rental module
+4. Feature: [added] Rooms visitors counter
+5. Feature: [added] block last bookings on homepage and in Customer Account Panel
+6. Feature: [added] possibility to define price according to amount of guests
+7. Feature: [added] new module Affiliates Management
+8. Feature: [added] new module REST API
+9. Feature: [added] new responsive template for Admin Panel (LTR/RTL)
+10. Feature: [added] a new type of users regional manager
+11. Feature: [added] the ability to add customers for the hotel owner
+12. Feature: [added] new menu display style in the admin panel - horizontal or vertical
+13. Feature: [added] new tab to set Google Maps Key
+13. Feature: [added] edit Hotel Payment Gateways for site administrators
+
+1. Feature: [improved] added customer/admin information on bookings edit/description page
+2. Feature: [improved] allowed sending mass mails by customer preferred language (if template selected)
+3. Feature: [improved] fields validation for empty on Rooms Search forms
+4. Feature: [improved] cancellation feature - from allowed cancellation of pending orders
+5. Feature: [improved] added translation for FAQ module
+6. Feature: [improved] expanded opportunities to work with inactive hotels in the admin panel
+
+1. Bug: [fixed] pages: languages, mass_mail, mass_mail_log and email_templates were available to any registered user in the backend
+2. Bug: [fixed] others hotels editing
+3. Bug: [fixed] the ability to view inactive hotels
+4. Bug: [fixed] incorrect calculation discount nights
+
+
+======================================================================================
+- Version 2.3.6 [10.05.2016]
+======================================================================================
+1. Feature: [added] added possibility to work with travel agencies
+2. Feature: [added] added possibility to pay with balance and fill balance (for travel agencies)
+3. Feature: [added] added possibility to define and use separate gateways for each hotel
+4. Feature: [added] added possibility to manage separately admins, hotel owners and car agency owners
+5. Feature: [added] added possibility to define number of months that will be shown on room occupancy tab
+6. Feature: [added] added possibility to define different types of properties
+7. Feature: [added] possibility to define price according to period of stay: 3, 4 5 or more nights 
+8. Feature: [added] added new module Reviews
+9. Feature: [added] log for Mass Mail
+
+1. Feature: [improved] added possibility to complete payment for partially paid booking
+2. Feature: [improved] added RTL availability to current template (according to selected language)
+3. Feature: [improved] MySQL db drivers replaced with MySQLi
+4. Feature: [improved] drawing hotel information on side blocks
+5. Feature: [improved] Admin Panel > Bookings Management page
+6. Feature: [improved] in site search added search by hotel name and description
+7. Feature: [improved] changed color for not available rooms on availability calendar
+8. Feature: [improved] logout procedure for customers
+9. Feature: [improved] possibility for hotel owners to add new hotels
+
+1. Bug: [fixed] pages from footer menu not displayed at footer
+2. Bug: [fixed] home page content was not properly showen on Frontend
+3. Bug: [fixed] PayPal form multiple items format issues
+4. Bug: [fixed] wrong total sum calculation for bookings with different currencies
+5. Bug: [fixed] loading of hotels according to selected location was shown in English only
+6. Bug: [fixed] wrong data on Bookings � Information and Statistics � Reports page
+
+
+======================================================================================
+- Version 2.2.6 [22.01.2016]
+======================================================================================
+1. Feature: [added] added MySQLi database driver
+2. Feature: [added] checkin/checkout info on dashboard
+
+1. Feature: [improved] removed option All Rooms from ocupancy calendar for multiple hotels
+2. Feature: [improved] security fixes in room prices and availability pages
+3. Feature: [improved] banners management from Admin Panel - now allowed placement in different pages
+
+1. Bug: [fixed] missing vocabulary constants
+2. Bug: [fixed] security issues in ratings module
+3. Bug: [fixed] security issues in languages changer
+4. Bug: [fixed] syntax error in js/cart.js 
+5. Bug: [fixed] CSS style issues on some pages
+6. Bug: [fixed] drawinf empty form for left-side widgets (without hotels)
+
+
+======================================================================================
+- Version 2.1.9 [03.04.2015]
+======================================================================================
+
+1. Feature: [added] possibility to define packages for specific hotels
+1. Feature: [improved] translation for some texts
+1. Bug: [fixed] error on viewing room description page with wrong ID
+2. Bug: [fixed] wrong images count showing on carusel slider on home page
+3. Bug: [fixed] wrong redirection when click Book Now button on hotel description page
+4. Bug: [fixed] wrong location name of hotel in Admin Panel > Rooms Managament page
+5. Bug: [fixed] wrong redirection on changing language when stay on check results page
+6. Bug: [fixed] wrong hotel search on rooms.html page
+7. Bug: [fixed] wrong room search on rooms/xx/room-name.html page
+8. Bug: [fixed] can not save Testimonails and Campaigns for specific hotel in Backend
+9. Bug: [fixed] Javascript error on changing prices in cart when VAT is not defined
+10. Bug: [fixed] issue with wrong search when packages minimum nights defined as "1"
+11. Bug: [fixed] cannot rate 5 stars in hotel ratings
+12. Bug: [fixed] in Packages problems when maximum nights is greater than 360
+
+
+======================================================================================
+- Version 2.0.1 - Initial Release
+======================================================================================
+

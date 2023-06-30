@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{HEADER_TEXT}</title>
+    <style type="text/css">        
+        #wrapper {
+           background-color:#f1f2f3; margin:100px auto; text-align:center; width:500px; border:1px solid #ccc; border-radius:5px; padding-top:0px;
+            -moz-box-shadow: 4px 5px 5px 1px #777;
+            -webkit-box-shadow: 4px 5px 5px 1px #777;
+            box-shadow: 4px 5px 5px 1px #777;                           
+
+            background: -webkit-gradient(linear, left top, left bottom, from(#f1f2f3), to(#ffffff));
+            background: -moz-linear-gradient(top,  #f1f2f3,  #ffffff);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f1f2f3", endColorstr="#ffffff");
+        }
+        #header { height:100px; margin-top:0px; }
+        #content {height:200px; padding:30px 0;color:#3F4C6B; }
+        #footer { margin:10px; color:#36393D; }
+        h1 { color:#3F4C6B; }
+        h3 { color:#555; }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+    <div id="header">
+        <h1>{HEADER_TEXT}</h1>
+        <h3>{SLOGAN_TEXT}</h3>
+    </div>    
+    <div id="content">
+        {OFFLINE_MESSAGE}
+    </div>
+    <div id="footer">
+        {FOOTER}
+    </div>
+    </div>
+</body>
+</html>
