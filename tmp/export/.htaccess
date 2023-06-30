@@ -1,0 +1,4 @@
+<FILES ~ "\.(csv|pdf)$">  
+    Order allow,deny
+    Deny from all  
+</FILES>

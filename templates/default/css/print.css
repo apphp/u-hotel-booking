@@ -1,0 +1,9 @@
+@media print {
+    .navbar-fixed-top,.breadcrub,.container .filters,.footerbgblack,.footerbg3black {display:none;}
+
+    /* My Booking */
+    #frmMicroGrid_uhb_bookings table.mgrid_table > tbody > tr > td:nth-last-child(-n+3){display:none;}
+    #frmMicroGrid_uhb_bookings table.mgrid_table > tbody > tr:last-child > td:last-child{display:inline;}
+    #frmMicroGrid_uhb_bookings table.mgrid_table.mgrid_table_filter > tbody > tr > td{display:inline;}
+    #frmMicroGrid_uhb_bookings table.mgrid_table.mgrid_table_filter > tbody > tr > td .mgrid_button{display:none;}
+}
