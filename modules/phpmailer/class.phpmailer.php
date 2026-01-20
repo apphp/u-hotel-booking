@@ -2770,7 +2770,7 @@ class PHPMailer
         switch (strtolower($position)) {
             case 'phrase':
                 if (!preg_match('/[\200-\377]/', $str)) {
-                    // Can't use addslashes as we don't know the value of
+                    // Can't use addslashes as we don't know the value of magic quotes sybase
                     $encoded = addcslashes($str, "\0..\37\177\\\"");
                     if (($str == $encoded) && !preg_match('/[^A-Za-z0-9!#$%&\'*+\/=?^_`{|}~ -]/', $str)) {
                         return ($encoded);
@@ -3696,7 +3696,7 @@ class PHPMailer
      * @param string $name The property name to set
      * @param mixed $value The value to set the property to
      * @return boolean
-     * @TODO Should this not be using the __set()  function?
+     * @TODO Should this not be using the __set() magic function?
      */
     public function set($name, $value = '')
     {

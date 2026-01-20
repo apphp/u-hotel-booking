@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.0" type="module">
+    <name>Tours and Attractions</name>
+	<shortName>Tours</shortName>
+    <description>Tours and Attractions Module for uHotelBooking script allows you to manage sightseeing tours, attractions and other activities, book tickets for them via website.</description>
+    <version>1.0.0</version>
+    <creationDate>26.05.2020</creationDate>
+    <lastChangedDate>19.06.2020</lastChangedDate>
+    <author>ApPHP</author>
+    <authorEmail>info@apphp.com</authorEmail>
+    <authorUrl>http://www.apphp.com</authorUrl>
+    <copyright>ApPHP</copyright>
+    <license>Commercial</license>
+    <manual></manual>
+    <icon>images/tours_and_attractions.png</icon>
+    <moduleType>additional</moduleType>
+    <code>tours_and_attractions</code>
+    <files>
+        <filename>info.xml</filename>
+        <data>
+            <install>install.sql</install>
+            <uninstall>uninstall.sql</uninstall>
+        </data>
+        <images>
+            <filename installationPath="images/modules_icons/">tours_and_attractions.png</filename>
+            <tours_agencies createDirectory="images/tours_agencies/">
+                <filename installationPath="images/tours_agencies/">company_logo_1.png</filename>
+                <filename installationPath="images/tours_agencies/">company_logo_2.png</filename>
+                <filename installationPath="images/tours_agencies/">no_image.png</filename>
+            </tours_agencies>
+            <tours_reviews createDirectory="images/tours_reviews/">
+                <filename installationPath="images/tours_reviews/">no_image.png</filename>
+            </tours_reviews>
+            <tours createDirectory="images/tours/">
+                <filename installationPath="images/tours/">tour_11.jpg</filename>
+                <filename installationPath="images/tours/">tour_11_thumb.jpg</filename>
+                <filename installationPath="images/tours/">tour_12.jpg</filename>
+                <filename installationPath="images/tours/">tour_12_thumb.jpg</filename>
+                <filename installationPath="images/tours/">tour_13.jpg</filename>
+                <filename installationPath="images/tours/">tour_13_thumb.jpg</filename>
+                <filename installationPath="images/tours/">tour_14.jpg</filename>
+                <filename installationPath="images/tours/">tour_14_thumb.jpg</filename>
+                <filename installationPath="images/tours/">tour_21.jpg</filename>
+                <filename installationPath="images/tours/">tour_21_thumb.jpg</filename>
+                <filename installationPath="images/tours/">tour_31.jpg</filename>
+                <filename installationPath="images/tours/">tour_31_thumb.jpg</filename>
+                <filename installationPath="images/tours/">no_image.png</filename>
+                <filename installationPath="images/tours/">default.png</filename>
+            </tours>
+        </images>
+        <lib>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_settings.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_management.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_agencies_management.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_types_management.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_locations_management.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_upload_images.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_orders_management.php</filename>
+            <filename installationPath="admin/modules/">mod_tours_and_attractions_reviews_management.php</filename>
+            <filename installationPath="include/classes/">Tours.class.php</filename>
+            <filename installationPath="include/classes/">ToursAgencies.class.php</filename>
+            <filename installationPath="include/classes/">ToursTypes.class.php</filename>
+            <filename installationPath="include/classes/">ToursLocations.class.php</filename>
+            <filename installationPath="include/classes/">ToursImages.class.php</filename>
+            <filename installationPath="include/classes/">ToursReviews.class.php</filename>
+            <filename installationPath="include/classes/">ToursOrders.class.php</filename>
+            <filename installationPath="include/classes/">ToursReservations.class.php</filename>
+            <filename installationPath="page/">check_tours_availability.php</filename>
+            <filename installationPath="page/">book_now_tour.php</filename>
+            <filename installationPath="page/">booking_tour_cancel.php</filename>
+            <filename installationPath="page/">booking_tour_checkout.php</filename>
+            <filename installationPath="page/">booking_tour_details.php</filename>
+            <filename installationPath="page/">booking_tour_payment.php</filename>
+            <filename installationPath="page/">booking_tour_return.php</filename>
+            <filename installationPath="page/">tours_prepayment.php</filename>
+            <filename installationPath="page/handlers/">handler_booking_tour_details.php</filename>
+            <filename installationPath="page/handlers/">handler_booking_tour_checkout.php</filename>
+            <filename installationPath="page/handlers/">handler_booking_tour_payment.php</filename>
+            <filename installationPath="page/handlers/">handler_booking_tour_notify_2co.php</filename>
+            <filename installationPath="page/handlers/">handler_booking_tour_notify_paypal.php</filename>
+            <filename installationPath="page/handlers/">handler_booking_tour_notify_authorize_net.php</filename>
+            <filename installationPath="customer/">my_tour_reviews.php</filename>
+            <filename installationPath="customer/">my_tour_reservations.php</filename>
+            <filename installationPath="templates/default/">content_tours.php</filename>
+            <filename installationPath="templates/default/">tour_description.content.php</filename>
+            <filename installationPath="html/templates/">invoice_tour.tpl</filename>
+        </lib>
+		<filename>.htaccess</filename>
+		<filename>CHANGELOG</filename>
+		<filename>INSTALL</filename>
+		<filename>README</filename>
+		<filename>info.xml</filename>
+	</files>
+</install>

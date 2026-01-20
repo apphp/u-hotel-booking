@@ -1,0 +1,14 @@
+Version 1.1.3 - [16.10.2017]
+---------------------------
+New: added save prices
+New: link "Delete all" for channel manage log page
+Enh: logs are added records about the type of the server's return value 
+Enh: The log stores data transferred to the server
+Bug: fixed - not correct sql for view-mode
+Bug: fixed error in sql with a detailed log view
+Bug: fixed error on updating prices and availabilities on website and sending to CM
+
+
+Version 1.0.0 - [12.01.2016]
+----------------------------
+Initial release

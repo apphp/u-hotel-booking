@@ -129,7 +129,7 @@ class TCPDF_STATIC {
 	}
 
 	/**
-	 * Sets the current active configuration setting
+	 * Sets the current active configuration setting of magic quotes runtime (if the set magic quotes runtime function exist)
 	 * @param $mqr (boolean) FALSE for off, TRUE for on.
 	 * @since 4.6.025 (2009-08-17)
 	 * @public static
@@ -142,8 +142,8 @@ class TCPDF_STATIC {
 	}
 
 	/**
-	 * Gets the current active configuration setting of
-	 * @return Returns 0 if
+	 * Gets the current active configuration setting of magic quotes_runtime (if the get magic quotes runtime function exist)
+	 * @return Returns 0 if magic quotes runtime is off or get magic quotes runtime doesn't exist, 1 otherwise.
 	 * @since 4.6.025 (2009-08-17)
 	 * @public static
 	 */

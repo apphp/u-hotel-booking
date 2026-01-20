@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -54,7 +54,8 @@ if(Modules::IsModuleInstalled('booking')){
 		$birth_date_month = !empty($_POST['birth_date__nc_month']) ? prepare_input($_POST['birth_date__nc_month']) : '';
 		$birth_date_day = !empty($_POST['birth_date__nc_day']) ? prepare_input($_POST['birth_date__nc_day']) : '';
 		$birth_date = $birth_date_year.'-'.$birth_date_month.'-'.$birth_date_day;
-		$birth_date_in_sql = ($birth_date == '--') ? 'NULL' : "'".$birth_date."'";
+        $birth_date = $birth_date != '--' ? $birth_date : '';
+		$birth_date_in_sql = ($birth_date == '') ? 'NULL' : "'".$birth_date."'";
 		
 		$company     = isset($_POST['company']) ? prepare_input($_POST['company']) : '';
 		$b_address   = isset($_POST['b_address']) ? prepare_input($_POST['b_address']) : '';
@@ -86,7 +87,7 @@ if(Modules::IsModuleInstalled('booking')){
 			}elseif($last_name == ''){
 				$msg = draw_important_message(_LAST_NAME_EMPTY_ALERT, false);
 				$focus_field = 'last_name';
-			}elseif($birth_date != '--' && !check_date($birth_date)){
+			}elseif($birth_date != '' && !check_date($birth_date)){
 				$msg = draw_important_message(_BIRTH_DATE_VALID_ALERT, false);
 				$focus_field = 'birth_date';
 			}elseif($b_address == ''){
@@ -313,6 +314,7 @@ if(Modules::IsModuleInstalled('booking')){
 				$sql = 'UPDATE '.TABLE_CUSTOMERS.' SET
 							first_name = \''.$first_name.'\',
 							last_name = \''.$last_name.'\',
+							birth_date = '.$birth_date_in_sql.',
 							company = \''.$company.'\',
 							b_address = \''.$b_address.'\',
 							b_address_2 = \''.$b_address_2.'\',

@@ -1,0 +1,30 @@
+///////////////////////////////////////////////////////////////////////////////////
+// 
+// uHotelBooking
+// ---------------------
+// http://hotel-booking-script.com
+// 
+// Module Channel Manager for uHotelBooking
+// Version: 1.0.0
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+Thank you for using our software!
+-----------------------------------------------------------------------------------
+
+It's very easy to get started with Channel Manager for uHotelBooking!
+
+1. Installation:
+   INSTALL.txt
+
+2. General Info:
+   http://hotel-booking-script.com/channel-manager
+   http://hotel-booking-script.com/module-channel-manager
+
+3. Live Demo:
+	@site https://www.hotel-booking-script.com/live-demo
+
+4. To Remove CSRF validation for some pages in Channel Manager module,
+	define at the top of index.php exclusion rules fro CSRF validation,
+	Ex.: 
+	$CSRF_VALIDATION_EXCLUDE = array('admin' => array('mod_channel_manager_settings'));

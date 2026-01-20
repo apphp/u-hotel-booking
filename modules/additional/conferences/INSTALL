@@ -1,0 +1,51 @@
+///////////////////////////////////////////////////////////////////////////////////
+// 
+// uHotelBooking
+// ---------------------
+// http://hotel-booking-script.com
+// 
+// Conference Registration and Management Module for uHotelBooking
+// Version: 1.0.0
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+Thank you for using our software!
+-----------------------------------------------------------------------------------
+
+A new installation of Conference Registration module is a very straight forward process:
+
+INSTALLATION
+------------
+
+Step 1. Uncompressing downloaded file.
+-------------------------------------
+   Make sure you have uHotelBooking script already installe don your website.
+   Uncompress the Conference Registration module version 1.x.x script archive.
+   The archive will create a directory called "EXT_PHPUHB_MOD_CONFERENCE".
+
+
+Step 2. Uploading files.
+-------------------------------------
+   Upload content of this folder (all files and directories it includes) to following
+   directory on your site:
+
+   {your-website}/modules/additional/conferences
+   
+
+Step 3. Running installation wizard.
+-------------------------------------
+   Log into admin panel of your sire as site owner or main admin and go to
+   Modules > Modules Management page. Find on this page Conference Registration module icon
+   in Additional modules section. Click on [Install] link to perform installation.   
+   After successful installation you will see an appropriate message on the screen.
+   Congratulations, you now have Conference Registration module installed!
+
+
+UNINSTALLATION
+-------------------------------------
+   To uninstall module go to Modules > Modules Management page.
+   Find there there Conference Registration icon and click on [Edit] link.
+   In Edit mode find setting "Installed" and select "No" in dropdown box,
+   then click Update button.   
+   After successful uninstallation you will see an appropriate message on the screen.
+   

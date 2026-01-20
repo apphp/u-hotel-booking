@@ -1,0 +1,69 @@
+///////////////////////////////////////////////////////////////////////////////////
+// 
+// uHotelBooking
+// ---------------------
+// http://hotel-booking-script.com
+// 
+// Module RESP API for uHotelBooking
+// Version: 1.0.1
+//
+// ---------------------
+// Vendors:  
+// PHP-CRID-API	https://github.com/mevdschee/php-crud-ui
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+Thank you for using our software!
+-----------------------------------------------------------------------------------
+
+A new installation of REST API module is a very straight forward process:
+
+INSTALLATION
+------------
+
+Step 1. Uncompressing downloaded file.
+-------------------------------------
+   Make sure you have uHotelBooking script already installe don your website.
+   Uncompress the REST API module version 1.x.x script archive.
+   The archive will create a directory called "EXT_PHPUHB_MOD_RESTAPI".
+
+
+Step 2. Uploading files.
+-------------------------------------
+   Upload content of this folder (all files and directories it includes) to following
+   directory on your site:
+
+   {your-website}/modules/additional/rest_api
+   
+
+Step 3. Running installation wizard.
+-------------------------------------
+   Log into admin panel of your sire as site owner or main admin and go to
+   Modules > Modules Management page. Find on this page REST API module icon
+   in Additional modules section. Click on [Install] link to perform installation.
+   After successful installation you will see an appropriate message on the screen.
+   Congratulations, you now have REST API module installed!
+
+
+Step 4. Running tests.
+-------------------------------------
+	To start testing of these exampels do following:
+	a. Generate API Key and API Secret in your account (you must be logged as admin or hotel owner)
+	   on index.php?admin=my_account page
+	b. Copy generated API Key and API Secret codes
+	c. Open /modules/additional/rest_api/examples/include/config.inc.php file
+	d. Enter copied on step #2 API Key and API Secret values in appropriate variables in your configuration file
+	e. Enter your website base URL into $site_url in configuration file
+	f. Run tests from following URL:
+	{your-website}/modules/additional/rest_api/examples/examples-index.php
+
+
+UNINSTALLATION
+-------------------------------------
+   To uninstall module go to Modules > Modules Management page.
+   Find there there REST API icon and click on [Edit] link.
+   In Edit mode find setting "Installed" and select "No" in dropdown box,
+   then click Update button.
+   After successful uninstalling you will see an appropriate message on the screen.
+   
+

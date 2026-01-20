@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.0" type="module">
+    <name>Channel Manager</name>
+	<shortName>Channel Manager</shortName>
+    <description>Channel Manager module for uHotelBooking script allows owners to efficiently manage the different online distribution channels that their property sells through.</description>
+    <version>1.1.0</version>
+    <creationDate>01/12/2016</creationDate>
+    <lastChangedDate>04/10/2017</lastChangedDate>
+    <author>ApPHP</author>
+    <authorEmail>info@apphp.com</authorEmail>
+    <authorUrl>http://www.apphp.com</authorUrl>
+    <copyright>ApPHP</copyright>
+    <license>Commercial</license>
+    <manual></manual>
+    <icon>images/channel_manager.png</icon>
+    <moduleType>additional</moduleType>
+    <code>channel_manager</code>
+    <files>
+        <filename>info.xml</filename>
+        <data>
+            <install>install.sql</install>
+            <uninstall>uninstall.sql</uninstall>
+        </data>
+        <images>
+            <filename installationPath="images/modules_icons/">channel_manager.png</filename>
+        </images>
+		<lib>
+			<filename installationPath="include/classes/">ChannelHotels.class.php</filename>
+			<filename installationPath="include/classes/">ChannelHotelRooms.class.php</filename>
+			<filename installationPath="include/classes/">ChannelManager.class.php</filename>
+			<filename installationPath="include/classes/">ChannelManagerLog.class.php</filename>
+			<filename installationPath="admin/modules/">mod_channel_manager_hotels.php</filename>
+			<filename installationPath="admin/modules/">mod_channel_manager_management.php</filename>
+			<filename installationPath="admin/modules/">mod_channel_manager_log.php</filename>
+			<filename installationPath="admin/modules/">mod_channel_manager_rooms.php</filename>
+			<filename installationPath="admin/modules/">mod_channel_manager_settings.php</filename>
+		</lib>
+		<filename>.htaccess</filename>
+		<filename>listener.php</filename>
+		<filename>sender.php</filename>
+		<filename>cm_mod_room_availability.php</filename>
+		<filename>cm_mod_room_prices.php</filename>
+		<filename>cm_reservation_notification.php</filename>
+		<filename>CHANGELOG</filename>
+		<filename>INSTALL</filename>
+		<filename>README</filename>
+		<filename>info.xml</filename>
+	</files>
+</install>

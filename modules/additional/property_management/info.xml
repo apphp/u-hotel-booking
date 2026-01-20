@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.0" type="module">
+    <name>Property Management</name>
+	<shortName>PMS</shortName>
+    <description>Property Management Module for uHotelBooking script allows you to manage property inventory, expenses and property managers.</description>
+    <version>1.0.0</version>
+    <creationDate>26.01.2019</creationDate>
+    <lastChangedDate>26.01.2019</lastChangedDate>
+    <author>ApPHP</author>
+    <authorEmail>info@apphp.com</authorEmail>
+    <authorUrl>http://www.apphp.com</authorUrl>
+    <copyright>ApPHP</copyright>
+    <license>Commercial</license>
+    <manual></manual>
+    <icon>images/property_management.png</icon>
+    <moduleType>additional</moduleType>
+    <code>property_management</code>
+    <files>
+        <filename>info.xml</filename>
+        <data>
+            <install>install.sql</install>
+            <uninstall>uninstall.sql</uninstall>
+        </data>
+        <images>
+            <filename installationPath="images/modules_icons/">property_management.png</filename>
+        </images>
+		<lib>
+            <filename installationPath="admin/modules/">mod_property_management_expenses.php</filename>
+            <filename installationPath="admin/modules/">mod_property_management_inventory.php</filename>
+            <filename installationPath="admin/modules/">mod_property_management_managers.php</filename>
+            <filename installationPath="admin/modules/">mod_property_management_settings.php</filename>
+            <filename installationPath="ajax/">pms_change_room_and_inventory.ajax.php</filename>
+            <filename installationPath="include/classes/">PropertyExpenses.class.php</filename>
+            <filename installationPath="include/classes/">PropertyInventory.class.php</filename>
+            <filename installationPath="templates/admin/js/">propertymanagement.js</filename>
+		</lib>
+		<filename>.htaccess</filename>
+		<filename>CHANGELOG</filename>
+		<filename>INSTALL</filename>
+		<filename>README</filename>
+		<filename>info.xml</filename>
+	</files>
+</install>

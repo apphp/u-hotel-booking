@@ -245,7 +245,7 @@ class LinkedIn {
 	 * Used to check whether a response LinkedIn object has the required http_code or not and
 	 * returns an appropriate LinkedIn object.
 	 *
-	 * @param $http_code_required
+	 * @param var $http_code_required
 	 * 		The required http response from LinkedIn, passed in either as an integer,
 	 * 		or an array of integers representing the expected values.
 	 * @param arr $response

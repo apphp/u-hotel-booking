@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.0" type="module">
+    <name>Car Rental</name>
+	<shortName>Car Rental</shortName>
+    <description>Car Rental Module for uHotelBooking script allows customers to search for cars and vehicles in required location, rent them and pay online.</description>
+    <version>1.0.0</version> 
+    <creationDate>14/09/2017</creationDate>
+    <lastChangedDate>15/09/2017</lastChangedDate>
+    <author>ApPHP</author>
+    <authorEmail>info@apphp.com</authorEmail>
+    <authorUrl>http://www.apphp.com</authorUrl>
+    <copyright>ApPHP</copyright>
+    <license>Commercial</license>
+    <manual></manual>
+    <icon>images/car_rental.png</icon>
+    <moduleType>additional</moduleType>
+    <code>car_rental</code>
+    <files>
+        <filename>info.xml</filename>
+        <data>
+            <install>install.sql</install>
+            <uninstall>uninstall.sql</uninstall>
+        </data>
+        <images>
+            <filename installationPath="images/modules_icons/">car_rental.png</filename>
+			<car_agencies createDirectory="images/car_agencies/">
+				<filename installationPath="images/car_agencies/">company_logo_1.png</filename>
+				<filename installationPath="images/car_agencies/">company_logo_2.png</filename>
+				<filename installationPath="images/car_agencies/">no_image.png</filename>
+			</car_agencies>
+			<vehicles createDirectory="images/vehicles/">
+				<filename installationPath="images/vehicles/">vehicle_1.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_1_thumb.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_2.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_2_thumb.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_3.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_3_thumb.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_4.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_4_thumb.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_5.jpg</filename>
+				<filename installationPath="images/vehicles/">vehicle_5_thumb.jpg</filename>
+				<filename installationPath="images/vehicles/">no_image.png</filename>
+			</vehicles>
+			<vehicle_types createDirectory="images/vehicle_types/">
+				<filename installationPath="images/vehicle_types/">vehicle_type_1.jpg</filename>
+				<filename installationPath="images/vehicle_types/">vehicle_type_1_thumb.jpg</filename>
+				<filename installationPath="images/vehicle_types/">vehicle_type_2.jpg</filename>
+				<filename installationPath="images/vehicle_types/">vehicle_type_2_thumb.jpg</filename>
+				<filename installationPath="images/vehicle_types/">vehicle_type_3.jpg</filename>
+				<filename installationPath="images/vehicle_types/">vehicle_type_3_thumb.jpg</filename>
+				<filename installationPath="images/vehicle_types/">no_image.png</filename>
+			</vehicle_types>
+        </images>
+		<lib>
+			<filename installationPath="admin/modules/">mod_car_rental_vehicles.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_vehicle_types.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_vehicle_categories.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_settings.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_reservations.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_reports.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_payment_gateways.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_owners_management.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_makes.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_locations.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_integration.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_agency_locations.php</filename>
+			<filename installationPath="admin/modules/">mod_car_rental_agencies.php</filename>
+			<filename installationPath="ajax/">car_location.ajax.php</filename>
+			<filename installationPath="ajax/">car_agencies.ajax.php</filename>
+			<filename installationPath="include/classes/">CarAgencies.class.php</filename>
+			<filename installationPath="include/classes/">CarAgenciesLocations.class.php</filename>
+			<filename installationPath="include/classes/">CarAgenciesVehicleTypes.class.php</filename>
+			<filename installationPath="include/classes/">CarAgencyLocations.class.php</filename>
+			<filename installationPath="include/classes/">CarAgencyPaymentGateways.class.php</filename>
+			<filename installationPath="include/classes/">CarRental.class.php</filename>
+			<filename installationPath="include/classes/">CarReservations.class.php</filename>
+			<filename installationPath="include/classes/">Vehicles.class.php</filename>
+			<filename installationPath="include/classes/">VehicleCategories.class.php</filename>
+			<filename installationPath="page/">check_cars_availability.php</filename>
+			<filename installationPath="page/">cars_checkout.php</filename>
+			<filename installationPath="page/">cars_payment.php</filename>
+			<filename installationPath="page/">cars_prepayment.php</filename>
+			<filename installationPath="page/">cars_return.php</filename>
+			<filename installationPath="page/">booking_car_return.php</filename>
+			<filename installationPath="page/">booking_car_cancel.php</filename>
+			<filename installationPath="page/">booking_car_checkout.php</filename>
+			<filename installationPath="page/">booking_car_details.php</filename>
+			<filename installationPath="page/">booking_car_payment.php</filename>
+			<filename installationPath="page/">book_now_car.php</filename>
+			<filename installationPath="page/handlers/">handler_cars_payment.php</filename>
+			<filename installationPath="page/handlers/">handler_cars_notify_paypal.php</filename>
+			<filename installationPath="page/handlers/">handler_booking_car_payment.php</filename>
+			<filename installationPath="page/handlers/">handler_booking_car_notify_paypal.php</filename>
+			<filename installationPath="page/handlers/">handler_booking_car_notify_authorize_net.php</filename>
+			<filename installationPath="page/handlers/">handler_booking_car_notify_2co.php</filename>
+			<filename installationPath="page/handlers/">handler_booking_car_details.php</filename>
+			<filename installationPath="page/handlers/">handler_booking_car_checkout.php</filename>
+			<filename installationPath="customer/">my_car_rentals.php</filename>
+			<filename installationPath="templates/default/">content_cars.php</filename>
+			<filename installationPath="templates/default/">car_description.content.php</filename>
+			<filename installationPath="html/templates/">invoice_car.tpl</filename>
+			<filename installationPath="widgets/cars/ipanel-side/">index.php</filename>
+			<filename installationPath="widgets/cars/ipanel-side/">main.js</filename>
+		</lib>
+		<filename>.htaccess</filename>
+		<filename>index.php</filename>
+		<filename>CHANGELOG</filename>
+		<filename>INSTALL</filename>
+		<filename>README</filename>
+		<filename>info.xml</filename>
+	</files>
+</install>

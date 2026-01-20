@@ -1,0 +1,51 @@
+///////////////////////////////////////////////////////////////////////////////////
+// 
+// uHotelBooking
+// ---------------------
+// http://hotel-booking-script.com
+// 
+// Module Channel Manager for uHotelBooking
+// Version: 1.0.0
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+Thank you for using our software!
+-----------------------------------------------------------------------------------
+
+A new installation of Channel Manager module is a very straight forward process:
+
+INSTALLATION
+------------
+
+Step 1. Uncompressing downloaded file.
+-------------------------------------
+   Make sure you have uHotelBooking script already installe don your website.
+   Uncompress the Channel Manager module version 1.x.x script archive.
+   The archive will create a directory called "EXT_PHPUHB_MOD_CHANNEL_MANAGER".
+
+
+Step 2. Uploading files.
+-------------------------------------
+   Upload content of this folder (all files and directories it includes) to following
+   directory on your site:
+
+   {your-website}/modules/additional/channel_manager
+   
+
+Step 3. Running installation wizard.
+-------------------------------------
+   Log into admin panel of your sire as site owner or main admin and go to
+   Modules > Modules Management page. Find on this page Channel Manager module icon
+   in Additional modules section. Click on [Install] link to perform installation.
+   After successful installation you will see an appropriate message on the screen.
+   Congratulations, you now have Channel Manager module installed!
+
+
+UNINSTALLATION
+-------------------------------------
+   To uninstall module go to Modules > Modules Management page.
+   Find there there Channel Manager icon and click on [Edit] link.
+   In Edit mode find setting "Installed" and select "No" in dropdown box,
+   then click Update button.
+   After successful uninstallation you will see an appropriate message on the screen.
+   

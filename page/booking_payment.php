@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -32,7 +32,7 @@ if(Modules::IsModuleInstalled('booking')){
 		}else{			
 			$title_desc = _ONLINE_ORDER;
 		}
-				
+
 		draw_title_bar(prepare_breadcrumbs(array(_BOOKINGS=>'',$title_desc=>'')));
 		
 		draw_content_start();

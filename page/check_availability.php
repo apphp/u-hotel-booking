@@ -3,7 +3,7 @@
  * @project uHotelBooking
  * @copyright (c) 2019 ApPHP
  * @author ApPHP <info@apphp.com>
- * @site https://www.hotel-booking-script.com
+ * @site http://www.hotel-booking-script.com
  * @license http://hotel-booking-script.com/license.php
  */
 
@@ -131,11 +131,10 @@ if (!empty($arr_filter_distance) && count($arr_filter_distance) == 2) {
     $filter_end_distance = 1000;
 }
 
-// Prepare property ID
+// Validate property ID
 $property_types = Application::Get('property_types');
 if (!in_sub_array('id', $property_type_id, $property_types)) {
-    //$property_type_id = isset($property_types[0]['id']) ? $property_types[0]['id'] : 0;
-	$property_type_id = '';
+    $property_type_id = '';//isset($property_types[0]['id']) ? $property_types[0]['id'] : 0;
 }
 
 $nights = nights_diff($checkin_year . '-' . $checkin_month . '-' . $checkin_day, $checkout_year . '-' . $checkout_month . '-' . $checkout_day);

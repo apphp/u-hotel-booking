@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.0" type="module">
+    <name>Rest API</name>
+	<shortName>Rest API</shortName>
+    <description>This module provides a customizable, extensible RESTful API of data managed by uHotelBooking.</description>
+    <version>1.0.1</version>
+    <creationDate>01/12/2015</creationDate>
+    <lastChangedDate>04/02/2019</lastChangedDate>
+    <author>ApPHP</author>
+    <authorEmail>info@apphp.com</authorEmail>
+    <authorUrl>http://www.apphp.com</authorUrl>
+    <copyright>ApPHP</copyright>
+    <license>Commercial</license>
+    <manual></manual>
+    <icon>images/rest_api.png</icon>
+    <moduleType>additional</moduleType>
+    <code>rest_api</code>
+    <files>
+        <filename>info.xml</filename>
+        <data>
+            <install>install.sql</install>
+            <uninstall>uninstall.sql</uninstall>
+        </data>
+		<examples>			
+		</examples>
+        <images>
+            <filename installationPath="images/modules_icons/">rest_api.png</filename>
+        </images>
+		<lib>
+			<api createDirectory="include/classes/api/">
+				<filename installationPath="include/classes/api/">BookingsApi.class.php</filename>
+				<filename installationPath="include/classes/api/">BookingsRoomsApi.class.php</filename>
+				<filename installationPath="include/classes/api/">CustomersApi.class.php</filename>
+				<filename installationPath="include/classes/api/">ExampleApi.class.php</filename>
+				<filename installationPath="include/classes/api/">HotelsApi.class.php</filename>
+				<filename installationPath="include/classes/api/">HotelsDescriptionApi.class.php</filename>
+				<filename installationPath="include/classes/api/">RoomsApi.class.php</filename>
+				<filename installationPath="include/classes/api/">RoomsDescriptionApi.class.php</filename>
+			</api>
+			<filename installationPath="">api.php</filename>
+		</lib>
+	</files>
+	<filename>.htaccess</filename>
+	<filename>CHANGELOG</filename>
+	<filename>INSTALL</filename>
+	<filename>README</filename>
+	<filename>info.xml</filename>	
+</install>

@@ -1,0 +1,14 @@
+Version 1.1.x
+----------------------------
+- Bug: fixed bug in drawing customers if credentials are wrong
+
+
+Version 1.0.1
+----------------------------
+- New: added examples
+- Bug: fixed bug in using wrong table names
+
+
+Version 1.0.0
+----------------------------
+Initial release

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.0" type="module">
+    <name>Conferences</name>
+	<shortName>Conferences</shortName>
+    <description>Conference Registration and Management Module for uHotelBooking script provides a web based solution for managing delegate registration, online payments, event planning and creation of the detailed agenda.</description>
+    <version>1.0.0</version>
+    <creationDate>14/03/2017</creationDate>
+    <lastChangedDate>15/03/2017</lastChangedDate>
+    <author>ApPHP</author>
+    <authorEmail>info@apphp.com</authorEmail>
+    <authorUrl>http://www.apphp.com</authorUrl>
+    <copyright>ApPHP</copyright>
+    <license>Commercial</license>
+    <manual></manual>
+    <icon>images/conferences.png</icon>
+    <moduleType>additional</moduleType>
+    <code>conferences</code>
+    <files>
+        <filename>info.xml</filename>
+        <data>
+            <install>install.sql</install>
+            <uninstall>uninstall.sql</uninstall>
+        </data>
+        <images>
+            <filename installationPath="images/modules_icons/">conferences.png</filename>
+        </images>
+		<lib>
+			<filename installationPath="include/classes/">Conferences.class.php</filename>
+			<filename installationPath="include/classes/">ConferenceParticipants.class.php</filename>
+			<filename installationPath="include/classes/">ConferenceTuitions.class.php</filename>
+			<filename installationPath="include/classes/">ConferenceTypes.class.php</filename>
+			<filename installationPath="include/classes/">Specialities.class.php</filename>
+			<filename installationPath="admin/modules/">mod_conferences_settings.php</filename>
+			<filename installationPath="admin/modules/">mod_conference_types.php</filename>
+			<filename installationPath="admin/modules/">mod_conference_participants.php</filename>
+			<filename installationPath="admin/modules/">mod_conference_tuitions.php</filename>
+			<filename installationPath="admin/modules/">mod_conferences_management.php</filename>
+			<filename installationPath="admin/modules/">mod_specialities_management.php</filename>
+			<filename installationPath="page/">conference_general.php</filename>
+			<filename installationPath="page/">conference.php</filename>
+			<filename installationPath="page/">conference_registration.php</filename>
+			<filename installationPath="templates/default/">conferences.content.php</filename>
+			<filename installationPath="page/handlers/">handler_conference_registration.php</filename>
+		</lib>
+		<filename>.htaccess</filename>
+		<filename>index.php</filename>
+		<filename>CHANGELOG</filename>
+		<filename>INSTALL</filename>
+		<filename>README</filename>
+		<filename>info.xml</filename>
+	</files>
+</install>

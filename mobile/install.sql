@@ -1,0 +1,1 @@
+INSERT INTO `<DB_PREFIX>vocabulary` (`id`, `language_id`, `key_value`, `key_text`) (SELECT NULL, abbreviation,  '_ABOUT_APP', 'About Application' FROM `<DB_PREFIX>languages`);
