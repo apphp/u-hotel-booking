@@ -145,7 +145,7 @@ class Reservation {
 		$this->paypal_form_fields = '';
 		$this->currencyFormat = get_currency_format();		  
 
-		if(count($this->arrReservation) > 0){
+		if(is_array($this->arrReservation) && count($this->arrReservation) > 0){
 			$this->paypal_form_fields_count = 0;
 			foreach($this->arrReservation as $key => $val){
 				$room_price_w_meal_extrabeds = ($val['price'] + $val['meal_plan_price'] + $val['extra_beds_charge']);
@@ -512,7 +512,7 @@ class Reservation {
 			}
 		}
 	
-		if(count($this->arrReservation) > 0){
+		if(is_array($this->arrReservation) && count($this->arrReservation) > 0){
 	
 			$output .= '<div class="table-responsive div-room-prices offset-1">';
 			$output .= '<form id="update-room-form" action="index.php?page=booking" method="post">
@@ -2540,70 +2540,70 @@ class Reservation {
 				'module'			 => 'booking',
 			);
 			
-			$fisrt_part = '<table border="0" width="97%" align="center">
+			$first_part = '<table border="0" width="97%" align="center">
 				<tr><td width="30%">'._BOOKING_DATE.' </td><td width="2%"> : </td><td> '.format_date(date('Y-m-d H:i:s'), $this->fieldDateFormat, '', true).'</td></tr>						
 				'.(FLATS_INSTEAD_OF_HOTELS ? '' : '<tr><td>'._ROOMS.' </td><td> : </td><td> '.(int)$this->roomsCount.'</td></tr>').'
 				<tr><td>'._BOOKING_PRICE.' </td><td width="2%"> : </td><td> '.Currencies::PriceFormat($order_price, '', '', $this->currencyFormat).'</td></tr>';
 			if($nights_discount > 0){
-				$fisrt_part .= '<tr><td><span style="color:#a60000">'._LONG_TERM_STAY_DISCOUNT.'</span> </td><td> <span style="color:#a60000">:</span> </td><td> <b><span style="color:#a60000">- '.Currencies::PriceFormat($nights_discount, '', '', $this->currencyFormat).'</span></b></td></tr>';
+				$first_part .= '<tr><td><span style="color:#a60000">'._LONG_TERM_STAY_DISCOUNT.'</span> </td><td> <span style="color:#a60000">:</span> </td><td> <b><span style="color:#a60000">- '.Currencies::PriceFormat($nights_discount, '', '', $this->currencyFormat).'</span></b></td></tr>';
 			}
 			if($guests_discount > 0){
-				$fisrt_part .= '<tr><td><span style="color:#a60000">'.(TYPE_DISCOUNT_GUEST == 'guests' ? _GUESTS_DISCOUNT : _ROOMS_DISCOUNT).'</span> </td><td> <span style="color:#a60000">:</span> </td><td> <b><span style="color:#a60000">- '.Currencies::PriceFormat($guests_discount, '', '', $this->currencyFormat).'</span></b></td></tr>';
+				$first_part .= '<tr><td><span style="color:#a60000">'.(TYPE_DISCOUNT_GUEST == 'guests' ? _GUESTS_DISCOUNT : _ROOMS_DISCOUNT).'</span> </td><td> <span style="color:#a60000">:</span> </td><td> <b><span style="color:#a60000">- '.Currencies::PriceFormat($guests_discount, '', '', $this->currencyFormat).'</span></b></td></tr>';
 			}
             if($nights_discount > 0 || $guests_discount > 0){
-				$fisrt_part .= 	'<tr><td>'._BOOKING_SUBTOTAL.' </td><td> : </td><td> <b>'.Currencies::PriceFormat($order_price_after_discount_g_n, '', '', $this->currencyFormat).'</b></td></tr>';
+				$first_part .= 	'<tr><td>'._BOOKING_SUBTOTAL.' </td><td> : </td><td> <b>'.Currencies::PriceFormat($order_price_after_discount_g_n, '', '', $this->currencyFormat).'</b></td></tr>';
             }
 
-			$fisrt_part .= ((count($extras) > 0) ? $extras_text : '').'
+			$first_part .= ((count($extras) > 0) ? $extras_text : '').'
 				<tr><td colspan="3" nowrap height="10px"></td></tr>
 				<tr><td colspan="3"><h4>'._TOTAL.'</h4></td></tr>';
 			if($discount_value != ''){
 				if(empty($this->discountTitle)){
 					$this->discountTitle = $this->discountCoupon ? _COUPON_DISCOUNT : _DISCOUNT;
 				}
-				$fisrt_part .= '<tr><td><span style="color:#a60000">'.$this->discountTitle.'</span> </td><td> <span style="color:#a60000">:</span> </td><td> <b><span style="color:#a60000">- '.Currencies::PriceFormat($discount_value, '', '', $this->currencyFormat).' (';
+				$first_part .= '<tr><td><span style="color:#a60000">'.$this->discountTitle.'</span> </td><td> <span style="color:#a60000">:</span> </td><td> <b><span style="color:#a60000">- '.Currencies::PriceFormat($discount_value, '', '', $this->currencyFormat).' (';
 				// 0 - Fixed price, 1 - Percentage
 				if($this->discountType == 1){
-					$fisrt_part .= Currencies::PriceFormat($this->discountValue, '%', 'after', $this->currencyFormat);
+					$first_part .= Currencies::PriceFormat($this->discountValue, '%', 'after', $this->currencyFormat);
 				}else{
-					$fisrt_part .= Currencies::PriceFormat($this->discountValue, Application::Get('currency_symbol'), 'before', $this->currencyFormat);
+					$first_part .= Currencies::PriceFormat($this->discountValue, Application::Get('currency_symbol'), 'before', $this->currencyFormat);
 				}
-				$fisrt_part .= ')</span></b></td></tr>';
+				$first_part .= ')</span></b></td></tr>';
 			}			
-			$fisrt_part .= '<tr><td>'._SUBTOTAL.' </td><td> : </td><td> '.Currencies::PriceFormat($cart_total_wo_vat, '', '', $this->currencyFormat).'</td></tr>';
+			$first_part .= '<tr><td>'._SUBTOTAL.' </td><td> : </td><td> '.Currencies::PriceFormat($cart_total_wo_vat, '', '', $this->currencyFormat).'</td></tr>';
 
 			if(!empty($this->bookingInitialFee)){
-				$fisrt_part .= '<tr><td>'._INITIAL_FEE.' </td><td> : </td><td> '.Currencies::PriceFormat($this->bookingInitialFee, '', '', $this->currencyFormat).'</td></tr>';
+				$first_part .= '<tr><td>'._INITIAL_FEE.' </td><td> : </td><td> '.Currencies::PriceFormat($this->bookingInitialFee, '', '', $this->currencyFormat).'</td></tr>';
 			}
 			if(!empty($this->guestTax)){
-				$fisrt_part .= '<tr><td>'._GUEST_TAX.' </td><td> : </td><td> '.Currencies::PriceFormat(($this->guestTax * ($total_adults + $total_children)), '', '', $this->currencyFormat).'</td></tr>';
+				$first_part .= '<tr><td>'._GUEST_TAX.' </td><td> : </td><td> '.Currencies::PriceFormat(($this->guestTax * ($total_adults + $total_children)), '', '', $this->currencyFormat).'</td></tr>';
 			}
 			if($this->vatIncludedInPrice == 'no'){
-				$fisrt_part .= '<tr><td>'._VAT.' ('.Currencies::PriceFormat($this->vatPercent, '%', 'after', $this->currencyFormat, $this->GetVatPercentDecimalPoints($this->vatPercent)).') </td><td> : </td><td> '.Currencies::PriceFormat($vat_cost, '', '', $this->currencyFormat).'</td></tr>';
+				$first_part .= '<tr><td>'._VAT.' ('.Currencies::PriceFormat($this->vatPercent, '%', 'after', $this->currencyFormat, $this->GetVatPercentDecimalPoints($this->vatPercent)).') </td><td> : </td><td> '.Currencies::PriceFormat($vat_cost, '', '', $this->currencyFormat).'</td></tr>';
 			}
 			if($is_prepayment){
-				$fisrt_part .= '<tr><td>'._PAYMENT_SUM.' </td><td> : </td><td> <b>'.Currencies::PriceFormat($order_price_after_discount + $extras_sub_total + $this->bookingInitialFee + ($this->guestTax * ($total_adults + $total_children)) + $vat_cost, '', '', $this->currencyFormat).'</b></td></tr>';
-				$fisrt_part .= '<tr><td>'._PRE_PAYMENT.'</td><td> : </td> <td>'.Currencies::PriceFormat($cart_total, '', '', $this->currencyFormat).' ('.$prepayment_text.')</td></tr>';
+				$first_part .= '<tr><td>'._PAYMENT_SUM.' </td><td> : </td><td> <b>'.Currencies::PriceFormat($order_price_after_discount + $extras_sub_total + $this->bookingInitialFee + ($this->guestTax * ($total_adults + $total_children)) + $vat_cost, '', '', $this->currencyFormat).'</b></td></tr>';
+				$first_part .= '<tr><td>'._PRE_PAYMENT.'</td><td> : </td> <td>'.Currencies::PriceFormat($cart_total, '', '', $this->currencyFormat).' ('.$prepayment_text.')</td></tr>';
 			}else{
-				$fisrt_part .= '<tr><td>'._PAYMENT_SUM.' </td><td> : </td><td> <b>'.Currencies::PriceFormat($order_price_after_discount + $extras_sub_total + $this->bookingInitialFee + ($this->guestTax * ($total_adults + $total_children)) + $vat_cost, '', '', $this->currencyFormat).'</b></td></tr>';
+				$first_part .= '<tr><td>'._PAYMENT_SUM.' </td><td> : </td><td> <b>'.Currencies::PriceFormat($order_price_after_discount + $extras_sub_total + $this->bookingInitialFee + ($this->guestTax * ($total_adults + $total_children)) + $vat_cost, '', '', $this->currencyFormat).'</b></td></tr>';
 				///echo '<tr><td>'._PRE_PAYMENT.'</td><td> : </td> <td>'._FULL_PRICE.'</td></tr>';
 			}
 			if($additional_info != ''){
-				$fisrt_part .= '<tr><td colspan="3" nowrap height="10px"></td></tr>';
-				$fisrt_part .= '<tr><td colspan="3"><h4>'._ADDITIONAL_INFO.'</h4>'.$additional_info.'</td></tr>';							
+				$first_part .= '<tr><td colspan="3" nowrap height="10px"></td></tr>';
+				$first_part .= '<tr><td colspan="3"><h4>'._ADDITIONAL_INFO.'</h4>'.$additional_info.'</td></tr>';
 			}
 			
 			$second_part = '</table><br />';
 	
 			if($payment_type == 'poa'){	
 				
-				$output .= $fisrt_part;
+				$output .= $first_part;
 				$output .= PaymentIPN::DrawPaymentForm('poa', $pp_params, (($mode == 'TEST MODE') ? 'test' : 'real'), false);
 				$output .= $second_part;
 				
 			}elseif($payment_type == 'online'){
 	
-				$output .= $fisrt_part;
+				$output .= $first_part;
 					$pp_params['credit_card_required'] = $credit_card_required;
 					$pp_params['cc_type']             = $cc_type;
 					$pp_params['cc_holder_name']      = $cc_holder_name;
@@ -2616,7 +2616,7 @@ class Reservation {
 		
 			}elseif($payment_type == 'paypal'){							
 			
-				$output .= $fisrt_part;
+				$output .= $first_part;
 					$pp_params['api_login']                = $paypal_email;
 					$pp_params['notify']        		   = 'index.php?page=booking_notify_paypal';
 					$pp_params['paypal_form_type']   	   = $this->paypal_form_type;
@@ -2627,7 +2627,7 @@ class Reservation {
 			
 			}elseif($payment_type == '2co'){				
 	
-				$output .= $fisrt_part;
+				$output .= $first_part;
 					$pp_params['api_login'] = $two_checkout_vendor;			
 					$pp_params['notify']    = 'index.php?page=booking_notify_2co';
 				$output .= PaymentIPN::DrawPaymentForm('2co', $pp_params, (($mode == 'TEST MODE') ? 'test' : 'real'), false);
@@ -2635,10 +2635,10 @@ class Reservation {
 	
 			}elseif($payment_type == 'authorize.net'){
 	
-				$output .= $fisrt_part;
+				$output .= $first_part;
 					$pp_params['api_login'] 	  = $authorize_login_id;
 					$pp_params['transaction_key'] = $authorize_transaction_key;
-					$pp_params['notify']    	  = 'index.php?page=booking_notify_autorize_net';
+					$pp_params['notify']    	  = 'index.php?page=booking_notify_authorize_net';
 					// authorize.net accepts only USD, so we need to convert the sum into USD
 					$pp_params['cart_total']      = number_format((($pp_params['cart_total'] * Application::Get('currency_rate'))), '2', '.', ',');												
 				$output .= PaymentIPN::DrawPaymentForm('authorize.net', $pp_params, (($mode == 'TEST MODE') ? 'test' : 'real'), false);
@@ -2646,13 +2646,13 @@ class Reservation {
 	
 			}elseif($payment_type == 'bank.transfer'){
 				
-				$output .= $fisrt_part;
+				$output .= $first_part;
 				$output .= PaymentIPN::DrawPaymentForm('bank.transfer', $pp_params, (($mode == 'TEST MODE') ? 'test' : 'real'), false);
 				$output .= $second_part;							
 
 			}elseif($payment_type == 'account.balance'){
 
-				$output .= $fisrt_part;
+				$output .= $first_part;
 				$output .= PaymentIPN::DrawPaymentForm('account.balance', $pp_params, (($mode == 'TEST MODE') ? 'test' : 'real'), false);
 				$output .= $second_part;
 			

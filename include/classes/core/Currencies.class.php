@@ -507,6 +507,13 @@ class Currencies extends MicroGrid {
 	 */
 	public function UpdateCurrencyRates()
 	{
+		//----------------------------------------------------------------------
+		// block if this is a demo mode
+		if(strtolower(SITE_MODE) == 'demo'){
+			$this->error = _OPERATION_BLOCKED;
+			return false;
+		}
+
 		$default_currency = Currencies::GetDefaultCurrencyInfo();
 		
 		$sql = 'SELECT * FROM '.TABLE_CURRENCIES.' WHERE is_default = 0';
@@ -517,7 +524,7 @@ class Currencies extends MicroGrid {
 			$url = 'https://finance.google.com/finance/converter?a=1&from='.$default_currency['code'].'&to='.$result[0][$i]['code'];
 			$data = @file_get_contents($url);
 			$data = explode('<span class=bld>', $data);
-			
+
 			$converted_amount = 0;
 			if(isset($data[0]) && isset($data[1])){
 				$data = explode('</span>', $data[1]);

@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -20,7 +20,7 @@ require_once('functions.html.inc.php');
 // Start profiler
 profiler_start();
 
-require_once('functions.database.'.(DB_TYPE == 'PDO' ? 'pdo.' : 'mysqli.').'inc.php');
+require_once('functions.database.'.(strtolower(DB_TYPE) == 'pdo' ? 'pdo.' : 'mysqli.').'inc.php');
 
 // Set base URL
 define('APPHP_BASE', get_base_url());

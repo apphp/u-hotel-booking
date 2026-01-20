@@ -542,15 +542,15 @@ function appFavoriteItem(el, item_type, item_id, customer_id, token){
 		success: function(html){
 			var obj = jQuery.parseJSON(html);
 			if(obj[0].status == "1"){
-				jQuery(el).attr('title', '');
+				let dataFav = jQuery(el).data('fav');
 				if(action_ == 'add'){
-					jQuery(el).find('span').removeClass('fav-icon-add').addClass('fav-icon-remove');
-					jQuery(el).data('action', 'remove');
+					jQuery("[data-fav-action='" + dataFav + "-remove']").show();
+					jQuery("[data-fav-action='" + dataFav + "-add']").hide();
 				}else{
-					jQuery(el).find('span').removeClass('fav-icon-remove').addClass('fav-icon-add');
-					jQuery(el).data('action', 'add');
+					jQuery("[data-fav-action='" + dataFav + "-remove']").hide();
+					jQuery("[data-fav-action='" + dataFav + "-add']").show();
 				}
-				myAlert(decodeEntities(obj[1].message));				
+				myAlert(decodeEntities(obj[1].message));
 			}else{
 				myAlert(decodeEntities(obj[1].message));
 			}

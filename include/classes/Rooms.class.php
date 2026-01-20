@@ -364,12 +364,16 @@ class Rooms extends MicroGrid {
 		);
 		$this->arrAddModeFields['separator_7'] = array(
 			'separator_info' => array('legend'=>_IMAGES, 'columns'=>'2'),
-			'room_icon'      => array('title'=>_ICON_IMAGE, 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'icon_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_icon_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'500k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
-			'room_picture_1' => array('title'=>_IMAGE.' 1', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view1_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_1_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
-			'room_picture_2' => array('title'=>_IMAGE.' 2', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view2_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_2_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
-			'room_picture_3' => array('title'=>_IMAGE.' 3', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view3_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_3_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
-			'room_picture_4' => array('title'=>_IMAGE.' 4', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view4_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_4_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
-			'room_picture_5' => array('title'=>_IMAGE.' 5', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view5_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_5_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_icon'         => array('title'=>_ICON_IMAGE, 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'icon_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_icon_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'500k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_1'    => array('title'=>_IMAGE.' 1', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view1_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_1_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_2'    => array('title'=>_IMAGE.' 2', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view2_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_2_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_3'    => array('title'=>_IMAGE.' 3', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view3_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_3_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_4'    => array('title'=>_IMAGE.' 4', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view4_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_4_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_5'    => array('title'=>_IMAGE.' 5', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view5_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_5_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_6'    => array('title'=>_IMAGE.' 6', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view6_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_6_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_7'    => array('title'=>_IMAGE.' 7', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view7_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_7_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_8'    => array('title'=>_IMAGE.' 8', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view8_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_8_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_9'    => array('title'=>_IMAGE.' 9', 'type'=>'image', 'header_tooltip'=>$tooltip_image_size, 'width'=>'210px', 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view9_', 'unique'=>true, 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_9_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
 		);
 
 		//----------------------------------------------------------------------
@@ -422,6 +426,14 @@ class Rooms extends MicroGrid {
 								'.$this->tableName.'.room_picture_4_thumb,
 								'.$this->tableName.'.room_picture_5,
 								'.$this->tableName.'.room_picture_5_thumb,
+								'.$this->tableName.'.room_picture_6,
+								'.$this->tableName.'.room_picture_6_thumb,
+								'.$this->tableName.'.room_picture_7,
+								'.$this->tableName.'.room_picture_7_thumb,
+								'.$this->tableName.'.room_picture_8,
+								'.$this->tableName.'.room_picture_8_thumb,
+								'.$this->tableName.'.room_picture_9,
+								'.$this->tableName.'.room_picture_9_thumb,
 								'.$this->tableName.'.priority_order,
 								'.$this->tableName.'.is_active,
 								rd.room_type as m_room_type,
@@ -500,6 +512,10 @@ class Rooms extends MicroGrid {
 			'room_picture_3' => array('title'=>_IMAGE.' 3', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view3_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_3_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
 			'room_picture_4' => array('title'=>_IMAGE.' 4', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view4_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_4_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
 			'room_picture_5' => array('title'=>_IMAGE.' 5', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view5_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_5_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_6' => array('title'=>_IMAGE.' 6', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view6_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_6_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_7' => array('title'=>_IMAGE.' 7', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view7_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_7_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_8' => array('title'=>_IMAGE.' 8', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view8_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_8_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
+			'room_picture_9' => array('title'=>_IMAGE.' 9', 'type'=>'image', 'width'=>'210px', 'header_tooltip'=>$tooltip_image_size, 'required'=>false, 'target'=>'images/rooms/', 'no_image'=>'', 'random_name'=>$random_name, 'image_name_pefix'=>$image_prefix.'view9_', 'thumbnail_create'=>true, 'thumbnail_field'=>'room_picture_9_thumb', 'thumbnail_width'=>'190px', 'thumbnail_height'=>'', 'file_maxsize'=>'900k', 'watermark'=>$watermark, 'watermark_text'=>$watermark_text),
 		);
 
 		//----------------------------------------------------------------------
@@ -573,6 +589,10 @@ class Rooms extends MicroGrid {
 			'room_picture_3' => array('title'=>_IMAGE.' 3', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
 			'room_picture_4' => array('title'=>_IMAGE.' 4', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
 			'room_picture_5' => array('title'=>_IMAGE.' 5', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
+			'room_picture_6' => array('title'=>_IMAGE.' 6', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
+			'room_picture_7' => array('title'=>_IMAGE.' 7', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
+			'room_picture_8' => array('title'=>_IMAGE.' 8', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
+			'room_picture_9' => array('title'=>_IMAGE.' 9', 'type'=>'image', 'target'=>'images/rooms/', 'no_image'=>'no_image.png'),
 		);
 	}
 
@@ -4852,6 +4872,14 @@ class Rooms extends MicroGrid {
 					r.room_picture_3,
 					r.room_picture_4,
 					r.room_picture_5,
+					r.room_picture_6,
+                    r.room_picture_6_thumb,
+                    r.room_picture_7,
+                    r.room_picture_7_thumb,
+                    r.room_picture_8,
+                    r.room_picture_8_thumb,
+                    r.room_picture_9,
+                    r.room_picture_9_thumb,
 					r.is_active,
 					rd.room_type,
 					rd.room_short_description,
@@ -4925,6 +4953,14 @@ class Rooms extends MicroGrid {
                 r.room_picture_4_thumb,
                 r.room_picture_5,
                 r.room_picture_5_thumb,
+                r.room_picture_6,
+                r.room_picture_6_thumb,
+                r.room_picture_7,
+                r.room_picture_7_thumb,
+                r.room_picture_8,
+                r.room_picture_8_thumb,
+                r.room_picture_9,
+                r.room_picture_9_thumb,
                 r.number_of_views,
                 r.is_active,
                 rd.room_type as loc_room_type,
@@ -5544,7 +5580,7 @@ class Rooms extends MicroGrid {
 
 		$total_hotels = Hotels::$hotels_function(
 			(!empty($hotels_list) ? TABLE_HOTELS.'.id IN ('.$hotels_list.')' : ($objLogin->IsLoggedInAs('hotelowner') ? '1=0' : '1=1')).
-			($property_type_id != '' ? ' AND '.TABLE_HOTELS.'.property_type_id = '.(int)$property_type_id : '')
+			(($property_type_id != '' && !GROUP_PROPERTY_DROPDOWNBOX) ? ' AND '.TABLE_HOTELS.'.property_type_id = '.(int)$property_type_id : '')
 		);
 		$hotels_total_number = $total_hotels[1];
 
@@ -6063,7 +6099,9 @@ class Rooms extends MicroGrid {
 				<!-- End of Hotel Preferences -->';
 
             $output .= '<div class="line2"></div>';
-            $output .= '<input class="button-availability" type="submit" value="'._APPLY_FILTERS.'" />';
+            if (!empty($_POST)) {
+                $output .= '<input class="button-availability" type="submit" value="'._APPLY_FILTERS.'" />';
+            }
 		}
 
 		$output .= '</form>';
@@ -6808,7 +6846,7 @@ class Rooms extends MicroGrid {
 		if(!empty($hotel_info)){
 
 			// Get info about wishlist
-			$in_wishlist = Wishlist::GetHotelInfo($hotel_id, 'hotel_id', $customer_id);
+			$in_wishlist = Wishlist::GetWishListItemInfo($hotel_id, 'hotel_id', $customer_id);
             //$hotel_img = ($hotel_info['hotel_image'] != '' && file_exists($root_path.'images/hotels/'.$hotel_info['hotel_image'])) ? 'images/hotels/'.$hotel_info['hotel_image'] : 'images/hotels/no_image.png';
             $hotel_img = ($hotel_info['hotel_image'] != '') ? 'images/hotels/'.$hotel_info['hotel_image'] : 'images/hotels/no_image.png';
             //$hotel_name = prepare_link((FLATS_INSTEAD_OF_HOTELS ? 'flats' : 'hotels'), (FLATS_INSTEAD_OF_HOTELS ? 'fid' : 'hid'), $hotel_info['id'], $hotel_info['name'], $hotel_info['name'], '', _CLICK_TO_SEE_DESCR);
@@ -7605,6 +7643,16 @@ class Rooms extends MicroGrid {
                 }
             }
 
+            $sql = "SELECT * FROM ".TABLE_HOTELS." WHERE ".TABLE_HOTELS.".id = ".$hotel_id;
+            $hotel = database_query($sql, DATA_ONLY, ALL_ROWS);
+            if (!empty($hotel) && is_array($hotel)) {
+                $result['hotel_owner_find'] = true;
+                if ($relocation_type == 'room') {
+                    $result['relocation'] = $hotel[0]['room_relocation'];
+                } elseif ($relocation_type == 'hotel') {
+                    $result['relocation'] = $hotel[0]['hotel_relocation'];
+                }
+            }
         }
 
         return $result;

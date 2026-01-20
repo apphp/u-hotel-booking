@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -1299,7 +1299,7 @@ function redirect_to($page = '', $delay = '', $text = '')
  * @param bool exit
  * @return void
  */
-function dbug($data = array(), $exit = false)
+function dbug($data = [], $exit = false)
 {
 	echo '<pre>';
 	print_r($data);
@@ -1308,6 +1308,17 @@ function dbug($data = array(), $exit = false)
 	if($exit){
 		exit;
 	}
+}
+
+/**
+ * Alias to draw dbug() function
+ * @param mixed $data
+ * @param bool exit
+ * @return void
+ */
+function dd($data = array(), $exit = true)
+{
+    dbug($data, $exit);
 }
 
 /**

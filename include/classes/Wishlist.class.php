@@ -114,7 +114,7 @@ class Wishlist extends MicroGrid {
         if(FLATS_INSTEAD_OF_HOTELS){
     		$arr_item_types = array('1'=>_FLATS, '3'=>_VEHICLES);
         }else{
-    		$arr_item_types = array('1'=>_HOTELS, '2'=>_ROOMS, '3'=>_VEHICLES);
+    		$arr_item_types = array('1'=>_HOTELS, '2'=>_ROOMS, '3'=>_VEHICLES, '4'=>lang(_TOURS) );
         }
 
 		if($objSettings->GetParameter('date_format') == 'mm/dd/yyyy'){
@@ -148,16 +148,35 @@ class Wishlist extends MicroGrid {
 									w.item_id,
 									w.item_type,
 									DATE_FORMAT(w.date_added, '".$sqlFieldDateFormat."') as date_added,
-									IF(hd.name IS NOT NULL, CONCAT('index.php?page=".(FLATS_INSTEAD_OF_HOTELS ? 'flats&fid=' : 'hotels&hid=')."', w.item_id), CONCAT('index.php?page=rooms&room_id=', w.item_id)) as item_link,
-									IF(hd.name IS NOT NULL, hd.name, rd.room_type) as item_name,
-									IF(h.id IS NOT NULL, h.stars, '') as item_stars,
-									IF(h.hotel_image_thumb IS NOT NULL, CONCAT('images/hotels/', h.hotel_image_thumb), CONCAT('images/rooms/', r.room_icon_thumb)) as item_image
+									CASE 
+									    WHEN item_type = 1 THEN CONCAT('index.php?page=".(FLATS_INSTEAD_OF_HOTELS ? 'flats&fid=' : 'hotels&hid=')."', w.item_id)  
+									    WHEN item_type = 2 THEN CONCAT('index.php?page=rooms&room_id=', w.item_id)  
+									    WHEN item_type = 4 THEN CONCAT('index.php?page=tours&tour_id=', w.item_id)
+									    ELSE '--'   
+									END as item_link,
+									CASE 
+									    WHEN item_type = 1 THEN hd.name  
+									    WHEN item_type = 2 THEN rd.room_type  
+									    WHEN item_type = 4 THEN td.name
+									    ELSE '--'   
+									END as item_name,
+									CASE 
+									    WHEN item_type = 1 THEN CONCAT('images/hotels/', h.hotel_image_thumb)  
+									    WHEN item_type = 2 THEN CONCAT('images/rooms/', r.room_icon_thumb)  
+									    WHEN item_type = 4 THEN CONCAT('images/tours/default.png')
+									    ELSE '--'   
+									END as item_image,
+									IF(h.id IS NOT NULL, h.stars, '') as item_stars
 								FROM ".$this->tableName." w
 									LEFT OUTER JOIN ".TABLE_HOTELS." h ON w.item_id = h.id AND w.item_type = 1 
 									LEFT OUTER JOIN ".TABLE_HOTELS_DESCRIPTION." hd ON w.item_id = hd.hotel_id AND w.item_type = 1 AND hd.language_id = '".Application::Get('lang')."'
 									LEFT OUTER JOIN ".TABLE_ROOMS." r ON w.item_id = r.id AND w.item_type = 2
 									LEFT OUTER JOIN ".TABLE_ROOMS_DESCRIPTION." rd ON w.item_id = rd.room_id AND w.item_type = 2 AND rd.language_id = '".Application::Get('lang')."'
 								";
+        if (Modules::IsModuleInstalled('tours_and_attractions')) {
+            $this->VIEW_MODE_SQL .= "LEFT OUTER JOIN ".DB_PREFIX."tours_description td ON w.item_id = td.tour_id AND w.item_type = 4 AND td.language_id = '".Application::Get('lang')."'";
+        }
+
 		// define view mode fields
 		$this->arrViewModeFields = array(
 			'item_image' => array('title'=>_IMAGE, 'type'=>'image', 'align'=>'left', 'width'=>'60px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>true, 'image_width'=>'50px', 'image_height'=>'30px', 'target'=>'', 'no_image'=>'no_image.png'),
@@ -288,11 +307,13 @@ class Wishlist extends MicroGrid {
 	 * @param int $customer_id
 	 * @return array|bool
 	 */
-	public static function GetHotelInfo($item_id = 0, $item_type = '', $customer_id = 0, $return_type = 'bool')
+	public static function GetWishListItemInfo($item_id = 0, $item_type = '', $customer_id = 0, $return_type = 'bool')
 	{
 		$output = array();
-		
-		if($item_type == 'car'){
+
+        if($item_type == 'tour') {
+            $item_type = 4;
+        }elseif($item_type == 'car'){
 			$item_type = 3;
 		}elseif($item_type == 'room'){
 			$item_type = 2;
@@ -333,14 +354,17 @@ class Wishlist extends MicroGrid {
 	{
 		$output = '';
 		
-		$item_type = in_array($item_type, array('hotel', 'room', 'car')) ? $item_type : 'hotel';
+		$item_type = in_array($item_type, array('hotel', 'room', 'car', 'tour')) ? $item_type : 'hotel';
 		$action = in_array($action, array('add', 'remove')) ? $action : 'add';
-		$link_text = !empty($link_text) ? $link_text : '<span class="fav-icon-'.$action.'"></span>';
+		$link_text_add = !empty($link_text) ? $link_text : '<span class="fav-icon-add"></span>';
+        $link_text_remove = !empty($link_text) ? $link_text : '<span class="fav-icon-remove"></span>';
 		
 		if($action == 'remove'){			
-			$output = "<a class=\"".$link_class."\" href=\"javascript:void(0)\" onclick=\"appFavoriteItem(this,'".$item_type."','".(int)$item_id."','".(int)$customer_id."','".$token."');\" data-action=\"".$action."\" title=\"".htmlentities(_REMOVE_FROM_WISHLIST)."\">".$link_text."</a>";
+			$output .= "<a class=\"".$link_class."\" href=\"javascript:void(0)\" onclick=\"appFavoriteItem(this,'".$item_type."','".(int)$item_id."','".(int)$customer_id."','".$token."');\" data-fav-action=\"".$item_type.'-'.$item_id."-remove\" data-fav=\"".$item_type.'-'.$item_id."\" data-action=\"remove\" title=\"".htmlentities(_REMOVE_FROM_WISHLIST)."\">".$link_text_remove."</a>";
+            $output .= "<a style=\"display:none\" class=\"".$link_class."\" href=\"javascript:void(0)\" onclick=\"appFavoriteItem(this,'".$item_type."','".(int)$item_id."','".(int)$customer_id."','".$token."');\" data-fav-action=\"".$item_type.'-'.$item_id."-add\" data-fav=\"".$item_type.'-'.$item_id."\" data-action=\"add\" title=\"".htmlentities(_ADD_TO_WISHLIST)."\">".$link_text_add."</a>";
 		}else{
-			$output = "<a class=\"".$link_class."\" href=\"javascript:void(0)\" onclick=\"appFavoriteItem(this,'".$item_type."','".(int)$item_id."','".(int)$customer_id."','".$token."');\" data-action=\"".$action."\" title=\"".htmlentities(_ADD_TO_WISHLIST)."\">".$link_text."</a>";
+			$output .= "<a class=\"".$link_class."\" href=\"javascript:void(0)\" onclick=\"appFavoriteItem(this,'".$item_type."','".(int)$item_id."','".(int)$customer_id."','".$token."');\" data-fav-action=\"".$item_type.'-'.$item_id."-add\" data-fav=\"".$item_type.'-'.$item_id."\" data-action=\"add\" title=\"".htmlentities(_ADD_TO_WISHLIST)."\">".$link_text_add."</a>";
+            $output .= "<a style=\"display:none\" class=\" ".$link_class."\" href=\"javascript:void(0)\" onclick=\"appFavoriteItem(this,'".$item_type."','".(int)$item_id."','".(int)$customer_id."','".$token."');\" data-fav-action=\"".$item_type.'-'.$item_id."-remove\" data-fav=\"".$item_type.'-'.$item_id."\" data-action=\"remove\" title=\"".htmlentities(_REMOVE_FROM_WISHLIST)."\">".$link_text_remove."</a>";
 		}
 		
 		return $output;
@@ -388,5 +412,44 @@ class Wishlist extends MicroGrid {
 		
 		return database_void_query($sql);
 	}
+
+    /**
+     * Retrieves wishlist for specified hotel
+     * @param int $item_id
+     * @param string $item_type
+     * @param int $customer_id
+     * @return array|bool
+     */
+    public static function GetHotelInfo($item_id = 0, $item_type = '', $customer_id = 0, $return_type = 'bool')
+    {
+        $output = array();
+
+        if($item_type == 'car'){
+            $item_type = 3;
+        }elseif($item_type == 'room'){
+            $item_type = 2;
+        }else{
+            $item_type = 1;
+        }
+
+        $sql = "SELECT *
+			FROM ".TABLE_WISHLIST."
+			WHERE item_id = '".(int)$item_id."' AND item_type = '".$item_type."' AND customer_id = ".(int)$customer_id;
+
+        $result = database_query($sql, DATA_AND_ROWS, FIRST_ROW_ONLY);
+        if($result[1] > 0){
+            $output['id'] = $result[0]['id'];
+            $output['customer_id'] = $result[0]['customer_id'];
+            $output['item_id'] = $result[0]['item_id'];
+            $output['item_type'] = $result[0]['item_type'];
+            $output['date_added'] = $result[0]['date_added'];
+        }
+
+        if($return_type == 'bool'){
+            return !empty($output) ? true : false;
+        }
+
+        return $output;
+    }
 
 }

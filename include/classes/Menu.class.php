@@ -15,7 +15,7 @@
  *  GetParameter            DrawMenuPlacementBox
  *  GetId                   DrawMenuAccessSelectBox 
  *  GetOrder                DrawMenu 
- *  MenuUpdate        		DrawTopMenu
+ *  MenuUpdate
  *  MenuCreate              DrawFooterMenu
  *  MenuDelete              GetTopMenus
  *  MenuMove                GetMenuPages
@@ -487,8 +487,10 @@ class Menu {
 			}
 			if($page == 'check_availability' && ($reservation == 'hotels' && Modules::IsModuleInstalled('booking'))){
 				$output .= self::DrawHotelsSearchForm($search_availability, $menu_counter);
-			}elseif($page == 'check_cars_availability' && ($reservation == 'cars' && Modules::IsModuleInstalled('car_rental'))){
-				$output .= self::DrawCarsSearchForm($menu_counter);
+            }elseif($page == 'check_cars_availability' && ($reservation == 'cars' && Modules::IsModuleInstalled('car_rental'))){
+                $output .= self::DrawCarsSearchForm($menu_counter);
+            }elseif($page == 'check_tours_availability' && ($reservation == 'tours' && Modules::IsModuleInstalled('tours_and_attractions'))){
+                $output .= self::DrawToursSearchForm($menu_counter);
 			}
 			$output .= $objLogin->DrawLoginLinks(false);
 		}
@@ -496,12 +498,16 @@ class Menu {
 		//variant 1. if($menus_count > 0) $output .= '<div id="column-'.$menu_position.'-wrapper">';
 		//variant 2. if($menus_count > 0) $output = '<div id="column-'.$menu_position.'-wrapper" style="'.(($menus_count > 0) ? 'width:205px;' : '').'">';
 
-		if($page != 'check_availability' && ($reservation == 'hotels' && Modules::IsModuleInstalled('booking'))){
-			$output .= self::DrawHotelsSearchForm($search_availability, $menu_counter);
-		}elseif($page != 'check_cars_availability' && ($reservation == 'cars' && Modules::IsModuleInstalled('car_rental'))){
-			$output .= self::DrawCarsSearchForm($menu_counter);
-		}
-		
+        if (!$objLogin->IsLoggedIn()){
+            if($page != 'check_availability' && ($reservation == 'hotels' && Modules::IsModuleInstalled('booking'))){
+                $output .= self::DrawHotelsSearchForm($search_availability, $menu_counter);
+            }elseif($page != 'check_cars_availability' && ($reservation == 'cars' && Modules::IsModuleInstalled('car_rental'))){
+                $output .= self::DrawCarsSearchForm($menu_counter);
+            }elseif($page != 'check_tours_availability' && ($reservation == 'tours' && Modules::IsModuleInstalled('tours_and_attractions'))){
+                $output .= self::DrawToursSearchForm($menu_counter);
+            }
+        }
+
 		$objNews = News::Instance();
 		$show_news_block = ModulesSettings::Get('news', 'show_news_block');
 		$show_subscribe_block = ModulesSettings::Get('news', 'show_newsletter_subscribe_block');
@@ -573,53 +579,6 @@ class Menu {
 		else return $output;		
 		
 		//if($menus_count > 0) $output .= '</div>';		
-	}
-
-	/**
-	 *	Draws top menu
-	 */
-	public static function DrawTopMenu()
-	{		
-		$nl = "\n";
-		echo '<li><a href="'.APPHP_BASE.'index.php">'._HOME.'</a></li>'.$nl;
-
-		if(Modules::IsModuleInstalled('customers')){			
-			echo '<li><a href="index.php?customer=my_account">'._MY_ACCOUNT.'</a></li>';
-		}
-		if(Modules::IsModuleInstalled('booking')){				
-			if(in_array(ModulesSettings::Get('booking', 'is_active'), array('global', 'front-end'))){
-				//echo '<li><a href="index.php?page=booking">'._BOOKING.'</a></li>';
-				echo '<li><a href="index.php?page=checkout">'._CHECKOUT.'</a></li>';
-			}
-		}
-		
-		$menus = self::GetTopMenus($lang);
-		for($i = 0; $i < $menus[1]; $i++) {
-			$menu_pages = self::GetMenuPages($menus[0][$i]['id'], Application::Get('lang'));
-			
-			if($menu_pages[1] == 1){
-				$css_class = (Application::Get('page_id') == $menu_pages[0][0]['id']) ? 'active' : '';
-				if($menu_pages[0][0]['content_type'] == 'link'){
-					$output .= '<li>'.prepare_permanent_link($menu_pages[0][0]['link_url'], $menu_pages[0][0]['menu_link'], $menu_pages[0][0]['link_target']).'</li>'.$nl;
-				}else{					
-					$output .= '<li>'.prepare_link('pages', 'pid', $menu_pages[0][0]['id'], $menu_pages[0][0]['page_key'], $menu_pages[0][0]['menu_link'], $css_class).'</li>'.$nl;
-				}				
-			}elseif($menu_pages[1] > 0){
-				echo '<li><a href="javascript:void(0);">'.$menus[0][$i]['menu_name'].'</a>';
-				echo '<ul class="dropdown_inner" style="width:200px">';
-				// Draw current menu link
-				for($j = 0; $j < $menu_pages[1]; $j++) {
-                    $css_class = (Application::Get('page_id') == $menu_pages[0][$j]['id']) ? 'active' : '';
-					if($menu_pages[0][$j]['content_type'] == 'link'){
-					    echo '<li>'.prepare_permanent_link($menu_pages[0][$j]['link_url'], $menu_pages[0][$j]['menu_link'], $menu_pages[0][$j]['link_target']).'</li>';					
-					}else{					
-						echo '<li>'.prepare_link('pages', 'pid', $menu_pages[0][$j]['id'], $menu_pages[0][$j]['page_key'], $menu_pages[0][$j]['menu_link'], $css_class).'</li>';						
-					}					
-				}
-				echo '</ul>';
-				echo '</li>';
-			}				
-		}
 	}
 
 	/**
@@ -844,7 +803,9 @@ class Menu {
 		// prepare properties array		
 		$property_types = Application::Get('property_types');
 		foreach($property_types as $key => $val){
-			$output .= '<li '.(($page == 'check_'.$val['property_code'] || ($page == 'check_availability' && $property_type_id == $val['id'])) ? 'class="active"' : '').'><a href="'.APPHP_BASE.'index.php?page=check_'.$val['property_code'].'">'.$val['name'].'</a></li>';
+            if ($val['show_on_menu']) {
+                $output .= '<li '.(($page == 'check_'.$val['property_code'] || ($page == 'check_availability' && $property_type_id == $val['id'])) ? 'class="active"' : '').'><a href="'.APPHP_BASE.'index.php?page=check_'.$val['property_code'].'">'.$val['name'].'</a></li>';
+            }
 		}
 		
 		if(Modules::IsModuleInstalled('car_rental')){
@@ -852,6 +813,12 @@ class Menu {
 				$output .= '<li'.($page == 'check_cars_availability' ? ' class="active"' : '').'><a href="'.APPHP_BASE.'index.php?page=check_cars_availability">'._CARS.'</a></li>';
 			}
 		}
+
+        if(Modules::IsModuleInstalled('tours_and_attractions')){
+            if(ModulesSettings::Get('tours_and_attractions', 'is_active') == 'yes'){
+                $output .= '<li'.($page == 'check_tours_availability' ? ' class="active"' : '').'><a href="'.APPHP_BASE.'index.php?page=check_tours_availability">'._TOURS.'</a></li>';
+            }
+        }
 
 		$system_pages = self::GetAllSystemPages();
 		for($ind = 0; $ind < $system_pages[1]; $ind++) {
@@ -978,7 +945,6 @@ class Menu {
 		return $output;
 	}
 
-		
 	/**
 	 * Draws cars search form
 	 * @param &$menu_counter
@@ -997,4 +963,24 @@ class Menu {
 		
 		return $output;
 	}
+
+    /**
+     * Draws tours search form
+     * @param &$menu_counter
+     * @return HTML
+     */
+    private static function DrawToursSearchForm(&$menu_counter)
+    {
+        global $objLogin;
+        $output = '';
+
+        if(ModulesSettings::Get('tours_and_attractions', 'is_active') == 'yes'){
+            $output .= draw_block_top(_TOURS_AND_ATTRACTIONS, $menu_counter++, 'maximazed', '', false);
+            $output .= Tours::DrawSearchAvailabilityBlock('menu');
+            $output .= draw_block_bottom(false);
+        }
+
+        return $output;
+    }
+
 }

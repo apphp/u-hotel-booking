@@ -502,11 +502,11 @@ INSERT INTO `<DB_PREFIX>countries` (`id`, `abbrv`, `is_active`, `is_default`, `v
 
 DROP TABLE IF EXISTS `<DB_PREFIX>countries_description`;
 CREATE TABLE IF NOT EXISTS `<DB_PREFIX>countries_description` (
-    `id` smallint(6) NOT NULL AUTO_INCREMENT,
-    `country_id` int(10) unsigned NOT NULL DEFAULT '0',
-    `language_id` varchar(2) CHARACTER SET latin1 NOT NULL,
-    `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-    PRIMARY KEY (`id`)
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `country_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `language_id` varchar(2) CHARACTER SET latin1 NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=239 ;
 
 INSERT INTO `<DB_PREFIX>countries_description` (`id`, `country_id`, `language_id`, `name`) VALUES
@@ -803,13 +803,13 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>customers` (
   `company` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `logo` VARCHAR(125) NOT NULL DEFAULT '',
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `b_address` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `b_address_2` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `b_city` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `b_state` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `b_country` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  `b_zipcode` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `b_address` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `b_address_2` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `b_city` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `b_state` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `b_country` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `b_zipcode` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `phone` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `fax` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_name` varchar(32) CHARACTER SET latin1 NOT NULL,
@@ -820,8 +820,8 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>customers` (
   `date_created` datetime NULL DEFAULT NULL,
   `date_lastlogin` datetime NULL DEFAULT NULL,
   `created_by_admin_id` int(11) NOT NULL DEFAULT '0',
-  `registered_from_ip` varchar(15) CHARACTER SET latin1 NOT NULL,
-  `last_logged_ip` varchar(15) CHARACTER SET latin1 NOT NULL DEFAULT '000.000.000.000',
+  `registered_from_ip` varchar(15) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  `last_logged_ip` varchar(15) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `email_notifications` tinyint(1) NOT NULL DEFAULT '0',
   `notification_status_changed` datetime NULL DEFAULT NULL,
   `orders_count` smallint(6) NOT NULL DEFAULT '0',
@@ -834,7 +834,7 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>customers` (
   `is_active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 - registration pending, 1 - active customer',
   `is_removed` tinyint(4) NOT NULL DEFAULT '0',
   `comments` text COLLATE utf8_unicode_ci NOT NULL,
-  `registration_code` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `registration_code` varchar(20) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `registered_via_provider` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `provider_identifier` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
@@ -1353,7 +1353,7 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>modules` (
   `module_tables` varchar(255) CHARACTER SET latin1 NOT NULL,
   `dependent_modules` varchar(20) CHARACTER SET latin1 NOT NULL,
   `settings_page` varchar(60) CHARACTER SET latin1 NOT NULL,
-  `settings_const` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `settings_const` varchar(40) CHARACTER SET latin1 NOT NULL,
   `settings_access_by` varchar(50) CHARACTER SET latin1 NOT NULL,
   `management_page` varchar(255) CHARACTER SET latin1 NOT NULL,
   `management_const` varchar(125) CHARACTER SET latin1 NOT NULL,
@@ -1389,7 +1389,7 @@ INSERT INTO `<DB_PREFIX>modules` (`id`, `name`, `name_const`, `description_const
 DROP TABLE IF EXISTS `<DB_PREFIX>modules_settings`;
 CREATE TABLE IF NOT EXISTS `<DB_PREFIX>modules_settings` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `module_name` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `module_name` varchar(25) CHARACTER SET latin1 NOT NULL,
   `settings_key` varchar(40) CHARACTER SET latin1 NOT NULL,
   `settings_value` text COLLATE utf8_unicode_ci NOT NULL,
   `settings_name_const` VARCHAR( 60 ) NOT NULL DEFAULT  '',
@@ -1787,22 +1787,30 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>rooms` (
   `room_picture_4_thumb` varchar(70) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `room_picture_5` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `room_picture_5_thumb` varchar(70) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_6` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_6_thumb` varchar(70) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_7` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_7_thumb` varchar(70) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_8` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_8_thumb` varchar(70) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_9` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `room_picture_9_thumb` varchar(70) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `priority_order` smallint(6) unsigned NOT NULL DEFAULT '0',
   `number_of_views` smallint(6) unsigned NOT NULL DEFAULT '0',
   `is_active` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
-INSERT INTO `<DB_PREFIX>rooms` (`id`, `hotel_id`, `room_type`, `room_short_description`, `room_long_description`, `room_count`, `room_floor`, `max_adults`, `max_extra_beds`, `suitable_for_kids`, `max_children`, `default_price`, `extra_bed_charge`, `discount_night_type`, `discount_night_3` , `discount_night_4`, `discount_night_5`, `discount_guests_type`, `discount_guests_3` , `discount_guests_4`, `discount_guests_5`, `refund_money_type`, `refund_money_value`, `default_availability`, `beds`, `bathrooms`, `room_area`, `facilities`, `room_icon`, `room_icon_thumb`, `room_picture_1`, `room_picture_1_thumb`, `room_picture_2`, `room_picture_2_thumb`, `room_picture_3`, `room_picture_3_thumb`, `room_picture_4`, `room_picture_4_thumb`, `room_picture_5`, `room_picture_5_thumb`, `priority_order`, `number_of_views`, `is_active`) VALUES
-(1, 1, 'Single', '', 'Single', 15, '1', 1, 0, 1, 0, '55.00', '22.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '20.0', 'a:7:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"7";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"11";i:6;s:2:"15";}', 'single_icon.png', 'single_icon_thumb.jpg', 'single_1.jpg', 'single_1_thumb.jpg', 'single_2.jpg', 'single_2_thumb.jpg', 'single_3.jpg', 'single_3_thumb.jpg', 'single_4.jpg', 'single_4_thumb.jpg', 'single_5.jpg', 'single_5_thumb.jpg', 1, 0, 1),
-(2, 1, 'Double', '', 'Double', 10, '1', 2, 1, 1, 1, '80.00', '30.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00',  1, 2, 2, '25.0', 'a:8:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"7";i:3;s:1:"8";i:4;s:2:"10";i:5;s:2:"13";i:6;s:2:"16";i:7;s:2:"17";}', 'double_icon.png', 'double_icon_thumb.jpg', 'double_1.jpg', 'double_1_thumb.jpg', 'double_2.jpg', 'double_2_thumb.jpg', 'double_3.jpg', 'double_3_thumb.jpg', '', '', '', '', 2, 0, 1),
-(3, 1, 'Superior', '', 'Superior', 5, '1', 3, 1, 1, 1, '140.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 1, '35.0', 'a:11:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"7";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"12";i:6;s:2:"15";i:7;s:2:"16";i:8;s:2:"19";i:9;s:2:"22";i:10;s:2:"24";}', 'superior_icon.png', 'superior_icon_thumb.jpg', 'superior_1.jpg', 'superior_1_thumb.jpg', 'superior_2.jpg', 'superior_2_thumb.jpg', 'superior_3.jpg', 'superior_3_thumb.jpg', '', '', '', '', 3, 0, 1),
-(4, 1, 'Luxury', '', 'Luxury', 3, '1', 4, 2, 1, 2, '190.00', '80.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 2, '60.0', 'a:12:{i:0;s:1:"4";i:1;s:1:"7";i:2;s:1:"9";i:3;s:2:"10";i:4;s:2:"11";i:5;s:2:"12";i:6;s:2:"13";i:7;s:2:"15";i:8;s:2:"16";i:9;s:2:"17";i:10;s:2:"18";i:11;s:2:"19";}', 'luxury_icon.png', 'luxury_icon_thumb.jpg', 'luxury_1.jpg', 'luxury_1_thumb.jpg', 'luxury_2.jpg', 'luxury_2_thumb.jpg', 'luxury_3.jpg', 'luxury_3_thumb.jpg', '', '', '', '', 4, 0, 1),
-(5, 2, 'Standard Room', '<p>Relax in our standard room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest.</p>', '<p>Relax in our standard room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest, flat screen TV, mini-fridge, executive desk, wireless internet, all tastefully decorated with climate control at your fingertips. Exercise in our state of the art fitness facility, swim in our heated indoor swimming pool or relax in our sauna, all free of cost for our guests.</p>', 12, '1', 2, 1, 1, 0, '78.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '44.0', 'a:9:{i:0;s:1:"4";i:1;s:2:"11";i:2;s:2:"12";i:3;s:2:"13";i:4;s:2:"14";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";i:8;s:2:"18";}', '2_icon_standard.jpg', '2_icon_standard_thumb.jpg', '2_view1_standard.jpg', '2_view1_standard_thumb.jpg', '2_view2_standard.jpg', '2_view2_standard_thumb.jpg', '', '', '', '', '', '', 0, 0, 1),
-(6, 2, 'Double Room with Two Double Beds', '<p>A standard hotel room is an elongated hotel room designed for two people, though some standard doubles can accommodate up to four. The standard double hotel room is available at many full-service hotels, with the exclusion of facilities that house only suites or extended-stay guests.</p>', '<p>A standard hotel room is an elongated hotel room designed for two people, though some standard doubles can accommodate up to four. The standard double hotel room is available at many full-service hotels, with the exclusion of facilities that house only suites or extended-stay guests. The standard double room is ideal for a brief stay of up to a few days. It doesn''t contain a kitchen, so guests can''t cook their own meals.</p>', 10, '1', 4, 1, 1, 1, '119.00', '80.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 2, '90.0', 'a:11:{i:0;s:1:"2";i:1;s:1:"4";i:2;s:1:"5";i:3;s:1:"9";i:4;s:2:"12";i:5;s:2:"15";i:6;s:2:"18";i:7;s:2:"19";i:8;s:2:"21";i:9;s:2:"23";i:10;s:2:"24";}', '2_icon_double_two.jpg', '2_icon_double_two_thumb.jpg', '2_view1_double_two.jpg', '2_view1_double_two_thumb.jpg', '2_view2_double_two.jpg', '2_view2_double_two_thumb.jpg', '', '', '', '', '', '', 1, 0, 1),
-(7, 3, 'Junior Suite', '<p>Our spacious Junior hotel Suites are 460 square feet (43 square meters) featuring floor-to-ceiling windows overlooking Manhattan from our New York City hotel suites. Junior Suites offer luxurious king beds, 55-inch flat-panel HDTV with Blu-ray player and iPod docking station, marble baths, and a large walk-in closet.</p>', '<p>Our spacious Junior hotel Suites are 460 square feet (43 square meters) featuring floor-to-ceiling windows overlooking Manhattan from our New York City hotel suites. Junior Suites offer luxurious king beds, 55-inch flat-panel HDTV with Blu-ray player and iPod docking station, marble baths, and a large walk-in closet.<br /> For your comfort and convenience, most also include a fully equipped European-style kitchen with appliances by Sub-Zero, and a sitting area with a twin-size sofa bed. All of our New York hotel guests enjoy full access to our health club and spa.</p>', 5, '1', 1, 1, 1, 0, '75.00', '45.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '99.0', 'a:11:{i:0;s:1:"3";i:1;s:1:"4";i:2;s:1:"5";i:3;s:1:"6";i:4;s:1:"7";i:5;s:1:"8";i:6;s:1:"9";i:7;s:2:"10";i:8;s:2:"11";i:9;s:2:"12";i:10;s:2:"14";}', '3_icon_junior.jpg', '3_icon_junior_thumb.jpg', '3_view1_junior.jpg', '3_view1_junior_thumb.jpg', '3_view2_junior.jpg', '3_view2_junior_thumb.jpg', '3_view3_junior.jpg', '3_view3_junior_thumb.jpg', '', '', '', '', 0, 0, 1),
-(8, 3, 'Executive Double Room', '<p>Stunning Executive Double bedrooms provide the perfect setting in the heart of London. Exclusive features you won’t find in Double Cumberland Guest rooms include luxurious bathrobes and slippers, complimentary mineral water and full access to the Guoman Club Lounge with complimentary newspapers and refreshments available all day.</p>', '<p>Stunning Executive Double bedrooms provide the perfect setting in the heart of London. Exclusive features you won’t find in Double Cumberland Guest rooms include luxurious bathrobes and slippers, complimentary mineral water and full access to the Guoman Club Lounge with complimentary newspapers and refreshments available all day.</p>\r\n<p> </p>\r\n<p>As you would expect from Guoman, all our 50 Executive Double bedrooms also benefit from fast, complimentary BT Wi-fi and entertainment at your fingertips with a 32-inch LCD TV. You’ll appreciate extra space to unwind and recharge for the day ahead with beautifully designed bathrooms featuring walk-in power showers and mist-free mirrors. Welcome details that provide an oasis of calm in the centre of London.</p>', 12, '1', 3, 1, 1, 1, '109.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 2, '112.0', 'a:9:{i:0;s:1:"1";i:1;s:1:"5";i:2;s:1:"6";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"10";i:6;s:2:"13";i:7;s:2:"15";i:8;s:2:"17";}', '3_icon_executive.jpg', '3_icon_executive_thumb.jpg', '3_view1_executive.jpg', '3_view1_executive_thumb.jpg', '3_view2_executive.jpg', '3_view2_executive_thumb.jpg', '', '', '', '', '', '', 2, 0, 1),
-(9, 4, 'Family Room', '<p>Relax in our family room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest.</p>', '<p>Relax in our standard room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest, flat screen TV, mini-fridge, executive desk, wireless internet, all tastefully decorated with climate control at your fingertips. Exercise in our state of the art fitness facility, swim in our heated indoor swimming pool or relax in our sauna, all free of cost for our guests.</p>', 3, '1', 2, 1, 1, 0, '78.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '44.0', 'a:9:{i:0;s:1:"4";i:1;s:2:"11";i:2;s:2:"12";i:3;s:2:"13";i:4;s:2:"14";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";i:8;s:2:"18";}', '4_icon_standard.jpg', '4_icon_standard_thumb.jpg', '4_view1_standard.jpg', '4_view1_standard_thumb.jpg', '4_view2_standard.jpg', '4_view2_standard_thumb.jpg', '', '', '', '', '', '', 0, 0, 1);
+INSERT INTO `<DB_PREFIX>rooms` (`id`, `hotel_id`, `room_type`, `room_short_description`, `room_long_description`, `room_count`, `room_floor`, `max_adults`, `max_extra_beds`, `suitable_for_kids`, `max_children`, `default_price`, `extra_bed_charge`, `discount_night_type`, `discount_night_3` , `discount_night_4`, `discount_night_5`, `discount_guests_type`, `discount_guests_3` , `discount_guests_4`, `discount_guests_5`, `refund_money_type`, `refund_money_value`, `default_availability`, `beds`, `bathrooms`, `room_area`, `facilities`, `room_icon`, `room_icon_thumb`, `room_picture_1`, `room_picture_1_thumb`, `room_picture_2`, `room_picture_2_thumb`, `room_picture_3`, `room_picture_3_thumb`, `room_picture_4`, `room_picture_4_thumb`, `room_picture_5`, `room_picture_5_thumb`, `room_picture_6`, `room_picture_6_thumb`, `room_picture_7`, `room_picture_7_thumb`, `room_picture_8`, `room_picture_8_thumb`, `room_picture_9`, `room_picture_9_thumb`, `priority_order`, `number_of_views`, `is_active`) VALUES
+(1, 1, 'Single', '', 'Single', 15, '1', 1, 0, 1, 0, '55.00', '22.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '20.0', 'a:7:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"7";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"11";i:6;s:2:"15";}', 'single_icon.png', 'single_icon_thumb.jpg', 'single_1.jpg', 'single_1_thumb.jpg', 'single_2.jpg', 'single_2_thumb.jpg', 'single_3.jpg', 'single_3_thumb.jpg', 'single_4.jpg', 'single_4_thumb.jpg', 'single_5.jpg', 'single_5_thumb.jpg', '', '', '', '', '', '', '', '', 1, 0, 1),
+(2, 1, 'Double', '', 'Double', 10, '1', 2, 1, 1, 1, '80.00', '30.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00',  1, 2, 2, '25.0', 'a:8:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"7";i:3;s:1:"8";i:4;s:2:"10";i:5;s:2:"13";i:6;s:2:"16";i:7;s:2:"17";}', 'double_icon.png', 'double_icon_thumb.jpg', 'double_1.jpg', 'double_1_thumb.jpg', 'double_2.jpg', 'double_2_thumb.jpg', 'double_3.jpg', 'double_3_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', 2, 0, 1),
+(3, 1, 'Superior', '', 'Superior', 5, '1', 3, 1, 1, 1, '140.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 1, '35.0', 'a:11:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"7";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"12";i:6;s:2:"15";i:7;s:2:"16";i:8;s:2:"19";i:9;s:2:"22";i:10;s:2:"24";}', 'superior_icon.png', 'superior_icon_thumb.jpg', 'superior_1.jpg', 'superior_1_thumb.jpg', 'superior_2.jpg', 'superior_2_thumb.jpg', 'superior_3.jpg', 'superior_3_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', 3, 0, 1),
+(4, 1, 'Luxury', '', 'Luxury', 3, '1', 4, 2, 1, 2, '190.00', '80.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 2, '60.0', 'a:12:{i:0;s:1:"4";i:1;s:1:"7";i:2;s:1:"9";i:3;s:2:"10";i:4;s:2:"11";i:5;s:2:"12";i:6;s:2:"13";i:7;s:2:"15";i:8;s:2:"16";i:9;s:2:"17";i:10;s:2:"18";i:11;s:2:"19";}', 'luxury_icon.png', 'luxury_icon_thumb.jpg', 'luxury_1.jpg', 'luxury_1_thumb.jpg', 'luxury_2.jpg', 'luxury_2_thumb.jpg', 'luxury_3.jpg', 'luxury_3_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', 4, 0, 1),
+(5, 2, 'Standard Room', '<p>Relax in our standard room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest.</p>', '<p>Relax in our standard room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest, flat screen TV, mini-fridge, executive desk, wireless internet, all tastefully decorated with climate control at your fingertips. Exercise in our state of the art fitness facility, swim in our heated indoor swimming pool or relax in our sauna, all free of cost for our guests.</p>', 12, '1', 2, 1, 1, 0, '78.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '44.0', 'a:9:{i:0;s:1:"4";i:1;s:2:"11";i:2;s:2:"12";i:3;s:2:"13";i:4;s:2:"14";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";i:8;s:2:"18";}', '2_icon_standard.jpg', '2_icon_standard_thumb.jpg', '2_view1_standard.jpg', '2_view1_standard_thumb.jpg', '2_view2_standard.jpg', '2_view2_standard_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 1),
+(6, 2, 'Double Room with Two Double Beds', '<p>A standard hotel room is an elongated hotel room designed for two people, though some standard doubles can accommodate up to four. The standard double hotel room is available at many full-service hotels, with the exclusion of facilities that house only suites or extended-stay guests.</p>', '<p>A standard hotel room is an elongated hotel room designed for two people, though some standard doubles can accommodate up to four. The standard double hotel room is available at many full-service hotels, with the exclusion of facilities that house only suites or extended-stay guests. The standard double room is ideal for a brief stay of up to a few days. It doesn''t contain a kitchen, so guests can''t cook their own meals.</p>', 10, '1', 4, 1, 1, 1, '119.00', '80.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 2, '90.0', 'a:11:{i:0;s:1:"2";i:1;s:1:"4";i:2;s:1:"5";i:3;s:1:"9";i:4;s:2:"12";i:5;s:2:"15";i:6;s:2:"18";i:7;s:2:"19";i:8;s:2:"21";i:9;s:2:"23";i:10;s:2:"24";}', '2_icon_double_two.jpg', '2_icon_double_two_thumb.jpg', '2_view1_double_two.jpg', '2_view1_double_two_thumb.jpg', '2_view2_double_two.jpg', '2_view2_double_two_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 0, 1),
+(7, 3, 'Junior Suite', '<p>Our spacious Junior hotel Suites are 460 square feet (43 square meters) featuring floor-to-ceiling windows overlooking Manhattan from our New York City hotel suites. Junior Suites offer luxurious king beds, 55-inch flat-panel HDTV with Blu-ray player and iPod docking station, marble baths, and a large walk-in closet.</p>', '<p>Our spacious Junior hotel Suites are 460 square feet (43 square meters) featuring floor-to-ceiling windows overlooking Manhattan from our New York City hotel suites. Junior Suites offer luxurious king beds, 55-inch flat-panel HDTV with Blu-ray player and iPod docking station, marble baths, and a large walk-in closet.<br /> For your comfort and convenience, most also include a fully equipped European-style kitchen with appliances by Sub-Zero, and a sitting area with a twin-size sofa bed. All of our New York hotel guests enjoy full access to our health club and spa.</p>', 5, '1', 1, 1, 1, 0, '75.00', '45.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '99.0', 'a:11:{i:0;s:1:"3";i:1;s:1:"4";i:2;s:1:"5";i:3;s:1:"6";i:4;s:1:"7";i:5;s:1:"8";i:6;s:1:"9";i:7;s:2:"10";i:8;s:2:"11";i:9;s:2:"12";i:10;s:2:"14";}', '3_icon_junior.jpg', '3_icon_junior_thumb.jpg', '3_view1_junior.jpg', '3_view1_junior_thumb.jpg', '3_view2_junior.jpg', '3_view2_junior_thumb.jpg', '3_view3_junior.jpg', '3_view3_junior_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 1),
+(8, 3, 'Executive Double Room', '<p>Stunning Executive Double bedrooms provide the perfect setting in the heart of London. Exclusive features you won’t find in Double Cumberland Guest rooms include luxurious bathrobes and slippers, complimentary mineral water and full access to the Guoman Club Lounge with complimentary newspapers and refreshments available all day.</p>', '<p>Stunning Executive Double bedrooms provide the perfect setting in the heart of London. Exclusive features you won’t find in Double Cumberland Guest rooms include luxurious bathrobes and slippers, complimentary mineral water and full access to the Guoman Club Lounge with complimentary newspapers and refreshments available all day.</p>\r\n<p> </p>\r\n<p>As you would expect from Guoman, all our 50 Executive Double bedrooms also benefit from fast, complimentary BT Wi-fi and entertainment at your fingertips with a 32-inch LCD TV. You’ll appreciate extra space to unwind and recharge for the day ahead with beautifully designed bathrooms featuring walk-in power showers and mist-free mirrors. Welcome details that provide an oasis of calm in the centre of London.</p>', 12, '1', 3, 1, 1, 1, '109.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 2, 2, '112.0', 'a:9:{i:0;s:1:"1";i:1;s:1:"5";i:2;s:1:"6";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"10";i:6;s:2:"13";i:7;s:2:"15";i:8;s:2:"17";}', '3_icon_executive.jpg', '3_icon_executive_thumb.jpg', '3_view1_executive.jpg', '3_view1_executive_thumb.jpg', '3_view2_executive.jpg', '3_view2_executive_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 0, 1),
+(9, 4, 'Family Room', '<p>Relax in our family room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest.</p>', '<p>Relax in our standard room, complete with two queen size beds, customized furniture, gel-infused pillow top mattresses topped with luxurious duvets and duvet covers clean for every guest, flat screen TV, mini-fridge, executive desk, wireless internet, all tastefully decorated with climate control at your fingertips. Exercise in our state of the art fitness facility, swim in our heated indoor swimming pool or relax in our sauna, all free of cost for our guests.</p>', 3, '1', 2, 1, 1, 0, '78.00', '50.00', 0, '0.00', '0.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '0.00', 1, 1, 1, '44.0', 'a:9:{i:0;s:1:"4";i:1;s:2:"11";i:2;s:2:"12";i:3;s:2:"13";i:4;s:2:"14";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";i:8;s:2:"18";}', '4_icon_standard.jpg', '4_icon_standard_thumb.jpg', '4_view1_standard.jpg', '4_view1_standard_thumb.jpg', '4_view2_standard.jpg', '4_view2_standard_thumb.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 1);
 
 
 DROP TABLE IF EXISTS `<DB_PREFIX>rooms_availabilities`;
@@ -2104,7 +2112,7 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>rooms_description` (
   `room_id` int(10) NOT NULL DEFAULT '0',
   `language_id` varchar(2) CHARACTER SET latin1 NOT NULL DEFAULT 'en',
   `room_type` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
-  `room_short_description` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  `room_short_description` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
   `room_long_description` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `language_id` (`room_id`)
@@ -2396,7 +2404,7 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>reviews` (
   `rating_sleep_quality` float(2,1) NOT NULL DEFAULT '0.0',
   `rating_price` float(2,1) NOT NULL DEFAULT '0.0',
   `evaluation` tinyint(1) NOT NULL DEFAULT '2' COMMENT '0 - Not Recommend, 1 - Not Good, 2 - Neutral, 3 - Good, 4 - Very Good, 5 - Wonderful',
-  `travel_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 - Not Defined, 1 - Work, 2 - Tourismus, 3 - Other',
+  `travel_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 - Not Defined, 1 - Work, 2 - Tourism, 3 - Other',
   `passenger_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 - Not Defined, 1 - An individual, 2 - A young couple, 3 - An old couple, 4 - Family with young children, 5 - Family with older children, 6 - Groups of Friends',
   `image_file_1` varchar(50) COLLATE utf8_unicode_ci DEFAULT '' NOT NULL,
   `image_file_1_thumb` varchar(70) COLLATE utf8_unicode_ci DEFAULT '' NOT NULL,
@@ -2409,11 +2417,11 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>reviews` (
   `priority_order` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `hotel_id` (`hotel_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 INSERT INTO `<DB_PREFIX>reviews` (`id`, `hotel_id`, `customer_id`, `title`, `positive_comments`, `negative_comments`, `admin_answer`, `rating_cleanliness`, `rating_room_comfort`, `rating_location`, `rating_service`, `rating_sleep_quality`, `rating_price`, `evaluation`, `travel_type`, `passenger_type`, `image_file_1`, `image_file_1_thumb`, `image_file_2`, `image_file_2_thumb`, `image_file_3`, `image_file_3_thumb`, `date_created`, `is_active`, `priority_order`) VALUES
 (1, 1, 1, 'Great experience', 'Nice large hotel located on the Red Sea. The breakfast buffet is GREAT! Good location, good beach, good facilities. Staff was more or less friendly, with some exceptions. Nice breakfasts.', 'Noisy at evenings, especially when lots of people arrive. The hotel facilities are outdated. When the hotel is heavily booked it becomes too crowded everywhere and not nice to be.', 'Thank you for this review! We''ll be glad to see you again in our hotel.', 2.0, 3.0, 4.0, 4.1, 4.2, 4.0, 4, 0, 2, '', '', '', '', '', '', '2013-01-02 12:03:00', 1, 0),
-(2, 1, 2, 'I liked it very mutch!', 'It is close to everything but if you go in the lower season the pool won''t be ready even though the temperature was quiet high already.', 'Your front staff was wonderful, i believe her name was Moran, please thank her from us.', '', 4.4, 2.3, 3.0, 5.0, 4.0, 4.0, 5.0, 1, 1, '', '', '', '', '', '', '2013-01-04 13:04:00', 1, 1),
+(2, 1, 2, 'I liked it very much!', 'It is close to everything but if you go in the lower season the pool won''t be ready even though the temperature was quiet high already.', 'Your front staff was wonderful, i believe her name was Moran, please thank her from us.', '', 4.4, 2.3, 3.0, 5.0, 4.0, 4.0, 5.0, 1, 1, '', '', '', '', '', '', '2013-01-04 13:04:00', 1, 1),
 (3, 1, 3, 'Excellent hotel, very good!', 'The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything was very clean.', 'The breakfast was below average, although not bad. If back in this town we would stay there again.', '', 4.0, 5.0, 4.1, 4.3, 4.0, 3.0, 3, 2, 0, '', '', '', '', '', '' , '2013-01-04 15:04:00', 1, 2),
 (4, 1, 4, 'Great experience', 'Excellent hotel, friendly staff would def go there again. Breakfast is from 7:00 until 12:00, which is Great. Breakfast is really good and worth the cost.', '', '', 4.1, 3.2, 4.0, 4.0, 5.0, 4.0, 4, 3, 1, '', '', '', '', '', '', '2013-01-05 12:05:00', 1, 3),
 (5, 2, 1, 'Super, great experience', 'Rooms clean tidy and serviced daily. Pool stunning.', 'Nice location, but the hotel is so old...', '', 3.2, 4.2, 4.0, 2.5, 5.0, 4.0, 3, 4, 2, '', '', '', '', '', '', '2013-01-06 16:05:00', 1, 4);
@@ -2446,13 +2454,14 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>hotels_property_types` (
   `priority_order` smallint(6) unsigned NOT NULL DEFAULT '0',
   `is_default` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `is_active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `show_on_menu` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
-INSERT INTO `<DB_PREFIX>hotels_property_types` (`id`, `property_code`, `priority_order`, `is_default`, `is_active`) VALUES
-(1, 'hotels', 1, 1, 1),
-(2, 'villas', 2, 0, 1),
-(3, 'apartments', 3, 0, 1);
+INSERT INTO `<DB_PREFIX>hotels_property_types` (`id`, `property_code`, `priority_order`, `is_default`, `is_active`, `show_on_menu`) VALUES
+(1, 'hotels', 1, 1, 1, 1),
+(2, 'villas', 2, 0, 1, 1),
+(3, 'apartments', 3, 0, 1, 1);
 
 
 DROP TABLE IF EXISTS `<DB_PREFIX>hotels_property_types_description`;
@@ -2514,7 +2523,7 @@ CREATE TABLE IF NOT EXISTS `<DB_PREFIX>wishlist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT '0',
   `item_id` int(11) NOT NULL DEFAULT '0',
-  `item_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 - hotel, 2 - room, 3 - car',
+  `item_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 - hotel, 2 - room, 3 - car, 4 - tour',
   `date_added` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
@@ -3611,7 +3620,7 @@ INSERT INTO `<DB_PREFIX>vocabulary` (`id`, `language_id`, `key_value`, `key_text
 (1070, 'en', '_MS_ALLOW_DEFAULT_PERIODS', 'Specifies whether to allow adding and management of default periods for rooms '),
 (1071, 'en', '_MS_ALLOW_EXTRA_BEDS', 'Specifies whether to allow extra beds in the rooms'),
 (1072, 'en', '_MS_ALLOW_PAYMENT_WITH_BALANCE', 'Specifies whether to allow agencies to pay for bookings with their balance'),
-(1073, 'en', '_MS_ALLOW_RELOCATION_TO_OTHER_ROOM', 'Specifies whether allow relocation to other room on empty search results'),
+(1073, 'en', '_MS_ALLOW_RELOCATION_TO_OTHER_ROOM', 'Specifies whether allow relocation to other room of the same hotel on empty search results'),
 (1074, 'en', '_MS_ALLOW_RELOCATION_TO_OTHER_HOTEL', 'Specifies whether allow relocation to other hotel on empty search results'),
 (1075, 'en', '_MS_ALLOW_RESERVATION_WITHOUT_ACCOUNT', 'Specifies whether to allow reservation for customer without creating account'),
 (1076, 'en', '_MS_AUTHORIZE_LOGIN_ID', 'Specifies Authorize.Net API Login ID'),
@@ -4374,8 +4383,8 @@ INSERT INTO `<DB_PREFIX>vocabulary` (`id`, `language_id`, `key_value`, `key_text
 (1832, 'en', '_YOU_HAVE_RESERVED', 'You have reserved _NUMBER_ROOMS_ _ROOMS_ for a total of _PRICE_'),
 (1833, 'en', '_YOU_MAY_ALSO_LIKE', 'You May Also Like'),
 (1834, 'en', '_YOU_NOT_DOUBLE_REVIEW', 'You cannot double-post a review for a hotel'),
-(1835, 'en', '_YOU_NOT_REVIEW_THIS_FLAT', 'Sorry, but you can''t leave a review for this flat, you''ve never been there'),
-(1836, 'en', '_YOU_NOT_REVIEW_THIS_HOTEL', 'Sorry, but you can not leave a review for this hotel, you''ve never been there'),
+(1835, 'en', '_YOU_NOT_REVIEW_THIS_FLAT', 'Sorry, but you can''t leave a review for this flat, you''ve never reserved it'),
+(1836, 'en', '_YOU_NOT_REVIEW_THIS_HOTEL', 'Sorry, but you can not leave a review for this hotel, you''ve never reserved it'),
 (1837, 'en', '_ZIPCODE_EMPTY_ALERT', 'Zip/Postal code cannot be empty! Please re-enter.'),
 (1838, 'en', '_ZIP_CODE', 'Zip/Postal code'),
 (1839, 'en', '_Z_A', 'Z to A');

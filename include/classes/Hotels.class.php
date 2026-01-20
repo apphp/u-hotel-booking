@@ -1,7 +1,7 @@
 <?php
 
 /**
- *	Hotels Class
+ *	Hotels Class 
  *  --------------
  *  Description : encapsulates Hotels class properties
  *  Updated	    : 28.02.2016
@@ -34,10 +34,10 @@
 
 
 class Hotels extends MicroGrid {
-
+	
 	protected $debug = false;
 	protected $assigned_to_hotels = '';
-
+	
 	private $arrTranslations = '';
 	private $hotelOwner = false;
 	private $regionalManager = false;
@@ -50,14 +50,14 @@ class Hotels extends MicroGrid {
 		'3'=>'<img src="images/smallstar-3.png" alt="3" title="3-stars hotel" />',
 		'4'=>'<img src="images/smallstar-4.png" alt="4" title="4-stars hotel" />',
 		'5'=>'<img src="images/smallstar-5.png" alt="5" title="5-stars hotel" />');
-
+	
 	//==========================================================================
     // Class Constructor
 	//==========================================================================
 	function __construct()
-	{
+	{		
 		parent::__construct();
-
+		
 		global $objLogin;
 
 		$this->hotelOwner = $objLogin->IsLoggedInAs('hotelowner');
@@ -65,13 +65,13 @@ class Hotels extends MicroGrid {
 		$allow_default_periods = ModulesSettings::Get('rooms', 'allow_default_periods');
 
 		$this->params = array();
-
+		
 		## for standard fields
-
+		
 		if(isset($_POST['hotel_location_id']))   $this->params['hotel_location_id'] = prepare_input($_POST['hotel_location_id']);
 		if(isset($_POST['property_type_id']))   $this->params['property_type_id'] = (int)$_POST['property_type_id'];
         if(isset($_POST['hotel_group_id']))   $this->params['hotel_group_id'] = (int)$_POST['hotel_group_id'];
-
+        
 		if(isset($_POST['phone']))                  $this->params['phone']                  = prepare_input($_POST['phone']);
 		if(isset($_POST['fax']))                    $this->params['fax']                    = prepare_input($_POST['fax']);
 		if(isset($_POST['email']))                  $this->params['email']                  = prepare_input($_POST['email']);
@@ -115,14 +115,14 @@ class Hotels extends MicroGrid {
             }
         }
 
-		## for checkboxes
+		## for checkboxes 
 		//$this->params['field4'] = isset($_POST['field4']) ? prepare_input($_POST['field4']) : '0';
 
 		## for images (not necessary)
 		//if(isset($_POST['icon'])){
 		//	$this->params['icon'] = prepare_input($_POST['icon']);
 		//}elseif(isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != ''){
-		//	// nothing
+		//	// nothing 			
 		//}elseif (self::GetParameter('action') == 'create'){
 		//	$this->params['icon'] = '';
 		//}
@@ -131,11 +131,11 @@ class Hotels extends MicroGrid {
 		// define nothing
 
 		///$this->params['language_id'] = MicroGrid::GetParameter('language_id');
-
+	
 		//$this->uPrefix 		= 'prefix_';
-
+		
 		$this->primaryKey 	= 'id';
-		$this->tableName 	= TABLE_HOTELS; //
+		$this->tableName 	= TABLE_HOTELS; // 
 		$this->dataSet 		= array();
 		$this->error 		= '';
 		$this->formActionURL = 'index.php?admin=hotels_info';
@@ -167,7 +167,7 @@ class Hotels extends MicroGrid {
 		$this->WHERE_CLAUSE .= $this->assigned_to_hotels;
 
 		$this->ORDER_CLAUSE = 'ORDER BY '.$this->tableName.'.priority_order ASC';
-
+		
 		$this->isAlterColorsAllowed = true;
 
 		$this->isPagingAllowed = true;
@@ -177,7 +177,7 @@ class Hotels extends MicroGrid {
 
 		$this->isExportingAllowed = true;
 		$this->arrExportingTypes = array('csv'=>true);
-
+		
 		///$this->isAggregateAllowed = false;
 		///// define aggregate fields for View Mode
 		///$this->arrAggregateFields = array(
@@ -192,10 +192,10 @@ class Hotels extends MicroGrid {
 		///$time_format = get_time_format(); /* by default 1st param - shows seconds */
 		///$currency_format = get_currency_format();
 		$default_currency = Currencies::GetDefaultCurrency();
-        $this->currencyFormat = get_currency_format();
+        $this->currencyFormat = get_currency_format();		
 		$this->hotelGetDistance = '[ <a href="javascript:Hotel_GetDistantionCenterPoint()">'._GET_DISTANCE.'</a> ]';
 
-		// prepare locations array
+		// prepare locations array		
 		$total_hotels_locations = HotelsLocations::GetAllLocations();
 		$arr_hotels_locations = array();
 		$arr_hotels_locations_wm = array();
@@ -203,25 +203,25 @@ class Hotels extends MicroGrid {
 		foreach($total_hotels_locations[0] as $key => $val){
 			// For regional managers we need only approved locations
 			if($this->regionalManager && !in_array($val['id'], $hotel_locations)){
-				continue;
+				continue;	
 			}
 			$arr_hotels_locations[$val['country_name']][$val['id']] = $val['name'];
 			$arr_hotels_locations_wm[$val['id']] = $val['name'].'<br><small>'.$val['country_name'].'</small>';
 		}
-
-		// prepare facilities array
+        
+		// prepare facilities array		
 		$total_facilities = RoomFacilities::GetAllActive();
 		$arr_facilities = array();
 		foreach($total_facilities[0] as $key => $val){
 			$arr_facilities[$val['id']] = $val['name'];
 		}
 
-		// prepare properties array
+		// prepare properties array		
         $property_types = HotelsPropertyTypes::GetHotelsPropertyTypes();
 		foreach($property_types as $key => $val){
 			$arr_property_types[$val['id']] = $val['name'];
 		}
-
+		
 		// Prepare hotel reviews
 		$sql = 'SELECT hotel_id, SUM(evaluation) as evaluation, COUNT(*) as cnt FROM '.TABLE_REVIEWS.' GROUP BY hotel_id';
 		$reviews = database_query($sql, DATA_AND_ROWS);
@@ -229,10 +229,10 @@ class Hotels extends MicroGrid {
 		foreach($reviews[0] as $review){
 			$reviewed_hotel_ids[$review['hotel_id']] = round($review['evaluation'] / $review['cnt'], 1).' / '.$review['cnt'];
 		}
-
+		
 
         $arr_hotel_groups = array('1'=>_TOP, '2'=>_LAST_MINUTE, '3'=>_EARLY_BOOKING, '4'=>_HOT_DEALS, '5'=>_TODAY_TOP_DEALS, '6'=>_FEATURED_OFFERS);
-
+		
 		$arr_time_zones = get_timezones_array();
 
 		$arr_active_vm = array('0'=>'<span class=no>'._NO.'</span>', '1'=>'<span class=yes>'._YES.'</span>');
@@ -245,7 +245,7 @@ class Hotels extends MicroGrid {
 			$ind = $i * 0.5;
 			$arr_agent_commisions[(string)$ind] = $ind;
 		}
-
+		
 		$this->isFilteringAllowed = true;
 		// define filtering fields
 		$this->arrFilteringFields = array(
@@ -273,9 +273,9 @@ class Hotels extends MicroGrid {
 		$this->arrTranslations = $this->PrepareTranslateFields(
 			array('name', 'name_center_point', 'address', 'description', 'preferences')
 		);
-		///////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////			
 
-		///////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////			
 		// #003. prepare translations array for add/edit/detail modes
 		/// REMEMBER! to add '.$sql_translation_description.' in EDIT_MODE_SQL
 		/// $sql_translation_description = $this->PrepareTranslateSql(
@@ -284,16 +284,16 @@ class Hotels extends MicroGrid {
 			'hotel_id',
 			array('name', 'name_center_point', 'address', 'description', 'preferences')
 		);
-		///////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////			
 
-
-		//----------------------------------------------------------------------
+		
+		//---------------------------------------------------------------------- 
 		// VIEW MODE
 		// format: strip_tags
 		// format: nl2br
 		// format: 'format'=>'date', 'format_parameter'=>'M d, Y, g:i A'
 		// format: 'format'=>'currency', 'format_parameter'=>'european|2' or 'format_parameter'=>'american|4'
-		//----------------------------------------------------------------------
+		//---------------------------------------------------------------------- 
 		$this->VIEW_MODE_SQL = 'SELECT
 				'.$this->tableName.'.'.$this->primaryKey.',
 				'.$this->tableName.'.'.$this->primaryKey.' as hotel_id,
@@ -327,7 +327,7 @@ class Hotels extends MicroGrid {
 			FROM ('.$this->tableName.'
 				LEFT OUTER JOIN '.TABLE_HOTELS_DESCRIPTION.' ON '.$this->tableName.'.id = '.TABLE_HOTELS_DESCRIPTION.'.hotel_id AND '.TABLE_HOTELS_DESCRIPTION.'.language_id = \''.$this->languageId.'\')
 			';
-
+								
 		// define view mode fields
 		$this->arrViewModeFields = array(
 			'hotel_image_thumb' 	=> array('title'=>_IMAGE, 'type'=>'image', 'align'=>'center', 'width'=>'60px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>true, 'image_width'=>'50px', 'image_height'=>'30px', 'target'=>'images/hotels/', 'no_image'=>'no_image.png'),
@@ -344,13 +344,13 @@ class Hotels extends MicroGrid {
 			'is_default'     		=> array('title'=>_DEFAULT, 'type'=>'enum',  'align'=>'center', 'width'=>'55px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>($this->hotelOwner ? false : true), 'source'=>$arr_default_types_vm),
 			'priority_order' 		=> array('title'=>_ORDER,  'type'=>'label', 'align'=>'center', 'width'=>'55px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>($this->hotelOwner ? false : true), 'tooltip'=>'', 'maxlength'=>'', 'format'=>'', 'format_parameter'=>'', 'movable'=>true),
 			'number_of_views' 		=> array('title'=>_VIEWS,  'type'=>'label', 'align'=>'center', 'width'=>'55px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>true, 'movable'=>false),
-			'link_rooms' 			=> array('title'=>_ROOMS, 'type'=>'label', 'align'=>'center', 'width'=>'90px', 'sortable'=>false, 'visible'=>true),
-			'link_upload_images'  	=> array('title'=>_IMAGES, 'type'=>'label', 'align'=>'center', 'width'=>'90px', 'sortable'=>false),
+			'link_rooms' 			=> array('title'=>_ROOMS, 'type'=>'label', 'align'=>'center', 'width'=>'95px', 'sortable'=>false, 'visible'=>true),
+			'link_upload_images'  	=> array('title'=>_IMAGES, 'type'=>'label', 'align'=>'center', 'width'=>'95px', 'sortable'=>false),
 			'link_default_periods' 	=> array('title'=>_PERIODS, 'type'=>'label', 'align'=>'center', 'width'=>'70px', 'sortable'=>false, 'visible'=>(($allow_default_periods == 'yes' && ! $this->regionalManager) ? true : false)),
 		);
-
+		
 		if($channel_manager_enabled){
-			$this->arrViewModeFields['link_channel_manager'] = array('title'=>_CHANNEL_MANAGER, 'type'=>'label', 'align'=>'center', 'width'=>'70px', 'sortable'=>false, 'visible'=>($channel_manager_enabled ? true : false));
+			$this->arrViewModeFields['link_channel_manager'] = array('title'=>_CHANNEL_MANAGER, 'type'=>'label', 'align'=>'center', 'width'=>'75px', 'sortable'=>false, 'visible'=>($channel_manager_enabled ? true : false));
 		}
 		if($property_management_enabled){
 			$this->arrViewModeFields['link_property_management'] = array('title'=>_PROPERTY_MANAGEMENT, 'type'=>'label', 'align'=>'center', 'width'=>'70px', 'sortable'=>false, 'visible'=>($property_management_enabled ? true : false));
@@ -366,9 +366,9 @@ class Hotels extends MicroGrid {
 		// - Validation Max Length: 12, 255... Ex.: 'validation_maxlength'=>'255'
 		// - Validation Min Length: 4, 6... Ex.: 'validation_minlength'=>'4'
 		// - Validation Max Value: 12, 255... Ex.: 'validation_maximum'=>'99.99'
-		//----------------------------------------------------------------------
+		//---------------------------------------------------------------------- 
 		// define add mode fields
-		$this->arrAddModeFields = array(
+		$this->arrAddModeFields = array(		    
 
 			'separator_1'   =>array(
 				'separator_info'            => array('legend'=>FLATS_INSTEAD_OF_HOTELS ? _FLAT_INFO : _HOTEL_INFO, 'columns'=>'0'),
@@ -411,7 +411,7 @@ class Hotels extends MicroGrid {
 			),
 		);
 
-		//----------------------------------------------------------------------
+		//---------------------------------------------------------------------- 
 		// EDIT MODE
 		// - Validation Type: alpha|numeric|float|alpha_numeric|text|email|ip_address|password|date
 		//   Validation Sub-Type: positive (for numeric and float)
@@ -420,7 +420,7 @@ class Hotels extends MicroGrid {
 		// - Validation Min Length: 4, 6... Ex.: 'validation_minlength'=>'4'
 		// - Validation Max Value: 12, 255... Ex.: 'validation_maximum'=>'99.99'
 		// - for editable passwords they must be defined directly in SQL : '.$this->tableName.'.user_password,
-		//----------------------------------------------------------------------
+		//---------------------------------------------------------------------- 
 		$this->EDIT_MODE_SQL = 'SELECT
 								'.$this->tableName.'.'.$this->primaryKey.',
 								'.$this->tableName.'.'.$this->primaryKey.' as hotel_id,
@@ -507,7 +507,7 @@ class Hotels extends MicroGrid {
 			),
 		);
 
-		//----------------------------------------------------------------------
+		//---------------------------------------------------------------------- 
 		// DETAILS MODE
 		//----------------------------------------------------------------------
 		$this->DETAILS_MODE_SQL = $this->EDIT_MODE_SQL;
@@ -540,9 +540,9 @@ class Hotels extends MicroGrid {
 			),
 			'separator_2'   =>array(
 				'separator_info'   => array('legend'=>_COORDINATES_CENTER_POINT),
-				'latitude_center'  => array('title'=>_CENTRAL_POINT_LATITUDE, 'type'=>'textbox', 'width'=>'210px', 'required'=>false, 'maxlength'=>'20', 'validation_type'=>'float', 'unique'=>false),
-				'longitude_center' => array('title'=>_CENTRAL_POINT_LONGITUDE, 'type'=>'textbox', 'width'=>'210px', 'required'=>false, 'maxlength'=>'20', 'validation_type'=>'float', 'unique'=>false),
-				'distance_center'  => array('title'=>_DISTANCE_TO_CENTER_POINT, 'type'=>'textbox', 'width'=>'210px', 'required'=>false, 'maxlength'=>'20', 'validation_type'=>'float', 'unique'=>false, 'post_html'=>' '._KILOMETERS_SHORTENED),
+				'latitude_center'  => array('title'=>_CENTRAL_POINT_LATITUDE, 'type'=>'label'),
+				'longitude_center' => array('title'=>_CENTRAL_POINT_LONGITUDE, 'type'=>'label'),
+				'distance_center'  => array('title'=>_DISTANCE_TO_CENTER_POINT, 'type'=>'label', 'post_html'=>' '._KILOMETERS_SHORTENED),
 			),
 			'separator_3'   =>array(
 				'separator_info' => array('legend'=>_ROOM_FACILITIES),
@@ -561,9 +561,9 @@ class Hotels extends MicroGrid {
 			          'description'       => array('title'=>_DESCRIPTION, 'type'=>'textarea', 'width'=>'410px', 'height'=>'90px', 'required'=>false, 'maxlength'=>'2048', 'validation_maxlength'=>'2048', 'readonly'=>false, 'editor_type'=>'wysiwyg')
 			)
 		);
-		///////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////			
 	}
-
+	
 
 	//==========================================================================
     // Class Destructor
@@ -594,7 +594,7 @@ class Hotels extends MicroGrid {
 	public static function GetAllHotels($where_clause = '', $lang = '')
 	{
 		$language = !empty($lang) ? $lang : Application::Get('lang');
-
+		
 		$sql = 'SELECT
 					'.TABLE_HOTELS.'.*,
 					'.TABLE_HOTELS_DESCRIPTION.'.name,
@@ -608,7 +608,7 @@ class Hotels extends MicroGrid {
                     LEFT OUTER JOIN '.TABLE_HOTELS_LOCATIONS_DESCRIPTION.' ON '.TABLE_HOTELS.'.hotel_location_id = '.TABLE_HOTELS_LOCATIONS_DESCRIPTION.'.hotel_location_id AND '.TABLE_HOTELS_LOCATIONS_DESCRIPTION.'.language_id = \''.$language.'\'
 				WHERE 1 = 1
 					'.(!empty($where_clause) ? ' AND '.$where_clause : '').'
-				ORDER BY '.TABLE_HOTELS.'.is_active DESC, '.TABLE_HOTELS.'.priority_order ASC ';
+				ORDER BY '.TABLE_HOTELS.'.is_active DESC, '.TABLE_HOTELS.'.priority_order ASC ';			
 		return database_query($sql, DATA_AND_ROWS);
 	}
 
@@ -617,10 +617,10 @@ class Hotels extends MicroGrid {
 	 * @param $draw
 	 */
 	public static function DrawAboutUs($draw = true)
-	{
-		$lang = Application::Get('lang');
+	{		
+		$lang = Application::Get('lang');		
 		$output = '';
-
+		
 		$sql = 'SELECT
 					h.phone,
 					h.fax,
@@ -635,31 +635,31 @@ class Hotels extends MicroGrid {
 				FROM '.TABLE_HOTELS.' h
 					INNER JOIN '.TABLE_HOTELS_DESCRIPTION.' hd ON h.id = hd.hotel_id
 				WHERE h.is_default = 1 AND hd.language_id = \''.$lang.'\'';
-
+				
 		$result = database_query($sql, DATA_AND_ROWS, FIRST_ROW_ONLY);
 		if($result[1] > 0){
 			$output .= '<h3>'.$result[0]['name'].'</h3>';
 			if($result[0]['stars'] > 0) $output .= '<p>'._STARS.': '.self::$arr_stars_vm[$result[0]['stars']].'</p>';
-			$output .= '<p>'.$result[0]['description'].'</p>';
+			$output .= '<p>'.$result[0]['description'].'</p>';		
 			$output .= '<p>'._ADDRESS.': '.$result[0]['address'].'</p>';
 			$output .= '<p>'._PHONE.': '.$result[0]['phone'].'<br />'._FAX.': '.$result[0]['fax'].'</p>';
 			$output .= self::DrawMap($result[0], array('width'=>90), false);
 		}
-
+		
 		if($draw) echo $output;
 		else return $output;
 	}
 
 	/**
 	 * Returns hotel info
-	 * @param $hotel_id
+	 * @param $hotel_id 
 	 */
 	public static function GetHotelInfo($hotel_id = '')
 	{
 		$output = array();
 		$sql = 'SELECT *
 				FROM '.TABLE_HOTELS.'
-				WHERE '.(!empty($hotel_id) ? ' id ='.(int)$hotel_id : ' is_default = 1');
+				WHERE '.(!empty($hotel_id) ? ' id ='.(int)$hotel_id : ' is_default = 1');		
 		$result = database_query($sql, DATA_AND_ROWS, FIRST_ROW_ONLY);
 		if($result[1] > 0){
 			$output = $result[0];
@@ -698,7 +698,7 @@ class Hotels extends MicroGrid {
 			$output['lowest_price'] = self::GetHotelLowestPrice($result[0]['id']);
 		}
 		return $output;
-	}
+	}	
 
 	/**
 	 * Get hotel's lowest price
@@ -709,7 +709,7 @@ class Hotels extends MicroGrid {
 		$lower_price = 0;
 
 		$hotel_id = (int)$hotel_id;
-
+		
         $sql = 'SELECT 
                 COUNT(*) as cnt,
                 MIN(mon) as min_mon,
@@ -766,10 +766,10 @@ class Hotels extends MicroGrid {
 						$lower_price = $room_price_result['total_price'];
 					}
 				}
-			}
-
+			}			
+		
 		return $lower_price;
-	}
+	}	
 
 	/**
 	 * Returns hotels full info
@@ -802,7 +802,7 @@ class Hotels extends MicroGrid {
 			}
 		}
 		return $output;
-	}
+	}	
 
 
 	/**
@@ -813,7 +813,7 @@ class Hotels extends MicroGrid {
 	public static function DrawLocalTime($hotel_id = '', $draw = true)
 	{
 		global $objSettings;
-
+		
 		// set timezone
 		//----------------------------------------------------------------------
 		$hotelInfo = Hotels::GetHotelInfo($hotel_id);
@@ -821,22 +821,22 @@ class Hotels extends MicroGrid {
 		$time_offset_site = $objSettings->GetParameter('time_zone');
 		$time_zome_diff = $time_offset_hotel - $time_offset_site;
 		$time_with_offset = time() + $time_zome_diff * 3600;
-
+		
 		if(Application::Get('lang') != 'en'){
-			$dmy_string = ($objSettings->GetParameter('date_format') == 'mm/dd/yyyy') ? '%B %d, %Y' : '%d %B, %Y';
+			$dmy_string = ($objSettings->GetParameter('date_format') == 'mm/dd/yyyy') ? '%B %d, %Y' : '%d %B, %Y'; 
 			$output1 = strftime(str_replace('%B', get_month_local(@strftime('%m', $time_with_offset)), $dmy_string), $time_with_offset);
-			$output2 = strftime(str_replace('%A', get_weekday_local(@strftime('%w', $time_with_offset)+1), '%A %H:%M'), $time_with_offset);
+			$output2 = strftime(str_replace('%A', get_weekday_local(@strftime('%w', $time_with_offset)+1), '%A %H:%M'), $time_with_offset);			
 		}else{
-			$dmy_string = ($objSettings->GetParameter('date_format') == 'mm/dd/yyyy') ? 'F dS, Y' : 'dS \of F Y';
+			$dmy_string = ($objSettings->GetParameter('date_format') == 'mm/dd/yyyy') ? 'F dS, Y' : 'dS \of F Y'; 
 			$output1 = @date($dmy_string, $time_with_offset);
 			$output2 = @date('l g:i A', $time_with_offset);
 		}
 		$output = $output1.'<br />'.$output2;
-
+		
 		if($draw) echo $output;
 		else return $output;
 	}
-
+	
 	/**
 	 * Draws hotel phones
 	 * 	@param $draw
@@ -853,7 +853,7 @@ class Hotels extends MicroGrid {
 		if(!empty($room_id)){
 			$hotel_id = Rooms::GetRoomInfo($room_id, 'hotel_id');
 		}
-
+		
 		// Get hotel info
 		if(!empty($hotel_id)){
 			$hotel_info = Hotels::GetHotelInfo($hotel_id);
@@ -861,10 +861,10 @@ class Hotels extends MicroGrid {
 			$hotel_info = Hotels::GetAllActive('is_default = 1');
 			$hotel_info = isset($hotel_info[0][0]) ? $hotel_info[0][0] : array();
 		}
-
+		
 		if(!empty($hotel_info)){
 			$output = $hotel_info[0][0]['phone'].$separator.$hotel_info[0][0]['fax'];
-		}
+		}	
 
 		if($draw) echo $output;
 		else return $output;
@@ -921,7 +921,7 @@ class Hotels extends MicroGrid {
             </form>
         ';
 		}
-
+		
 		return $output;
 	}
 
@@ -984,31 +984,31 @@ class Hotels extends MicroGrid {
                     '.TABLE_CUSTOMERS.'.need_assistance_count = '.(int)$need_assistance_count.',
                     '.TABLE_CUSTOMERS.'.last_need_assistance = "'.$last_need_assistance.'"
                 WHERE '.TABLE_CUSTOMERS.'.id = '.(int)$rid;
-
+		
 		$result = database_void_query($sql);
 
 		return $result;
 	}
-
+	
 	/**
-	 * Gets support info
+	 * Gets support info 
 	 * @return array
-	 */
+	 */	
 	public static function GetSupportInfo()
 	{
 		$hotel_id = Application::Get('hotel_id');
 		$room_id = Application::Get('room_id');
 		$hotel_info = array();
-
+		
 		if(ModulesSettings::Get('rooms', 'show_hotel_in_search_result') == 'yes'){
 			$hotel_info['phone'] = ModulesSettings::Get('rooms', 'default_contant_phone');
 			$hotel_info['email'] = ModulesSettings::Get('rooms', 'default_contant_email');
-		}else{
+		}else{			
 			// Get hotel ID from room ID
 			if(!empty($room_id)){
 				$hotel_id = Rooms::GetRoomInfo($room_id, 'hotel_id');
 			}
-
+			
 			// Get hotel info
 			if(!empty($hotel_id)){
 				$hotel_info = Hotels::GetHotelInfo($hotel_id);
@@ -1020,7 +1020,7 @@ class Hotels extends MicroGrid {
 
 		return $hotel_info;
 	}
-
+    
 	/**
 	 * Draws side support block
 	 * @return array
@@ -1031,12 +1031,12 @@ class Hotels extends MicroGrid {
 		$room_id = Application::Get('room_id');
 		$hotel_info = array();
 		$output = '';
-
+		
 		// Get hotel ID from room ID
 		if(!empty($room_id)){
 			$hotel_id = Rooms::GetRoomInfo($room_id, 'hotel_id');
 		}
-
+		
 		// Get hotel info
 		if(!empty($hotel_id)){
 			$hotel_info = Hotels::GetHotelInfo($hotel_id);
@@ -1044,7 +1044,7 @@ class Hotels extends MicroGrid {
 			$hotel_info = Hotels::GetAllActive('is_default = 1');
 			$hotel_info = isset($hotel_info[0][0]) ? $hotel_info[0][0] : array();
 		}
-
+	
 		return $hotel_info;
 	}
 
@@ -1061,14 +1061,14 @@ class Hotels extends MicroGrid {
 		}
 
 		// Get the "canceled days" of settings
-		$cancel_reservation_days = ModulesSettings::Get('booking', 'customers_cancel_reservation');
+		$cancel_reservation_days = ModulesSettings::Get('booking', 'customers_cancel_reservation');	
 
 		// Get the "canceled days" at the hotel
 		$sql = 'SELECT 
 			'.TABLE_HOTELS.'.cancel_reservation_day
 		FROM '.TABLE_HOTELS.'
 		WHERE '.TABLE_HOTELS.'.id = '.(int)$hotel_id;
-
+		
 		$result = database_query($sql, DATA_ONLY, FIRST_ROW_ONLY);
 		if(!empty($result)){
 			if($result['cancel_reservation_day'] > 0){
@@ -1096,7 +1096,7 @@ class Hotels extends MicroGrid {
 	*/
 	public static function HotelsCount()
 	{
-		$sql = 'SELECT COUNT(*) as cnt FROM '.TABLE_HOTELS.' WHERE is_active = 1';
+		$sql = 'SELECT COUNT(*) as cnt FROM '.TABLE_HOTELS.' WHERE is_active = 1'; 
 		$result = database_query($sql, DATA_AND_ROWS, FIRST_ROW_ONLY);
 		if($result[1] > 0){
 			return (int)$result[0]['cnt'];
@@ -1111,7 +1111,7 @@ class Hotels extends MicroGrid {
 	*/
 	public static function GetHotelsImages($hotel_id)
 	{
-        // hotel images
+        // hotel images 
         $sql = 'SELECT
                     h.hotel_image,
                     h.hotel_image_thumb,
@@ -1139,7 +1139,7 @@ class Hotels extends MicroGrid {
 	public static function DrawHotelDescription($hotel_id, $draw = true)
 	{
 		$output = '';
-
+		
 		$sql = 'SELECT
 					h.id,
 					h.hotel_location_id,
@@ -1162,11 +1162,11 @@ class Hotels extends MicroGrid {
 				FROM '.TABLE_HOTELS.' h
 					LEFT OUTER JOIN '.TABLE_HOTELS_DESCRIPTION.' hd ON h.id = hd.hotel_id AND hd.language_id = \''.Application::Get('lang').'\'
 				WHERE h.is_active = 1 AND h.id = '.(int)$hotel_id;
-
+				
 		$result = database_query($sql, DATA_AND_ROWS, FIRST_ROW_ONLY);
 		if($result[1] > 0){
 			$output .= draw_title_bar($result[0]['hotel_name'].' &nbsp;'.(($result[0]['stars'] > 0) ? self::$arr_stars_vm[$result[0]['stars']] : ''), false);
-
+			
 			$output .= '<table class="tblHotelDescription" width="100%">';
 			$output .= '<tr>';
 			$output .= ' <td colspan="3"><b>'._ADDRESS.'</b>: '.$result[0]['hotel_address'].'</td>';
@@ -1179,45 +1179,45 @@ class Hotels extends MicroGrid {
 				if($result[0]['phone']) $output .= '<b>'._PHONE.'</b>: '.$result[0]['phone'].'<br />';
 				if($result[0]['fax']) $output .= '<b>'._FAX.'</b>: '.$result[0]['fax'];
 			}
-			$output .= '</td>';
+			$output .= '</td>';			
 			$output .= '<td valign="top" height="80px"></td>';
 			$output .= '</tr>';
-
-			// hotel images
+			
+			// hotel images 
 			$sql = 'SELECT id, hotel_id, item_file, item_file_thumb, image_title, priority_order, is_active
 					FROM '.TABLE_HOTEL_IMAGES.'
 					WHERE is_active = 1 AND hotel_id = '.(int)$hotel_id.'
 					ORDER BY priority_order ASC';
 			$result_img = database_query($sql, DATA_AND_ROWS, ALL_ROWS);
 			if($result_img[1] > 0){
-				$output .= '<tr align="'.Application::Get('defined_right').'">';
+				$output .= '<tr align="'.Application::Get('defined_right').'">';			
 				$output .= '<td colspan="4">';
 					for($i=0; $i < $result_img[1]; $i++){
-						$output .= '<a href="images/hotels/'.$result_img[0][$i]['item_file'].'" title="'.$result_img[0][$i]['image_title'].'" rel="lyteshow"><img src="images/hotels/'.$result_img[0][$i]['item_file_thumb'].'" style="margin:0 2px;" alt="" width="42px" /></a>';
+						$output .= '<a href="images/hotels/'.$result_img[0][$i]['item_file'].'" title="'.$result_img[0][$i]['image_title'].'" rel="lyteshow"><img src="images/hotels/'.$result_img[0][$i]['item_file_thumb'].'" style="margin:0 2px;" alt="" width="42px" /></a>';						
 					}
 				$output .= '</td>';
-				$output .= '</tr>';
+				$output .= '</tr>';							
 			}
 
 			$output .= '<tr><td colspan="4">'.$result[0]['hotel_description'].'</td></tr>';
 			$output .= '<tr><td colspan="4">'.Rooms::DrawRoomsInHotel($hotel_id, false).'</td></tr>';
 			$output .= '</table>';
-
-			if($result[0]['map_code']) $output .= '<p><b>'._LOCATION.'</b>:<br /> '.$result[0]['map_code'].'</p>';
-
+			
+			if($result[0]['map_code']) $output .= '<p><b>'._LOCATION.'</b>:<br /> '.$result[0]['map_code'].'</p>';			
+						
 		}else{
-			$output = draw_important_message(_WRONG_PARAMETER_PASSED, false);
+			$output = draw_important_message(_WRONG_PARAMETER_PASSED, false);					
 		}
-
+		
 		if($draw) echo $output;
 		else return $output;
 	}
-
+	
 
 	/**
 	 * Draw information about rooms and services
 	 * @param $draw
-	 */
+	 */	
 	public static function DrawHotelsInfo($draw = true)
 	{
 		$lang = Application::Get('lang');
@@ -1234,10 +1234,10 @@ class Hotels extends MicroGrid {
 			WHERE
 				h.is_active = 1 AND
 				hd.language_id = \''.$lang.'\'';
-
+			
 		$result = database_query($sql, DATA_AND_ROWS);
 		for($i=0; $i<$result[1]; $i++){
-			if($i > 0) $output .= '<div class="line-hor"></div>';
+			if($i > 0) $output .= '<div class="line-hor"></div>';					
 			$output .= '<h3>'.prepare_link((FLATS_INSTEAD_OF_HOTELS ? 'flats' : 'hotels'), (FLATS_INSTEAD_OF_HOTELS ? 'fid' : 'hid'), $result[0][$i]['id'], $result[0][$i]['name'], $result[0][$i]['name'], '', _CLICK_TO_VIEW).'</h3>';
 			if($result[0][$i]['stars'] > 0) $output .= self::$arr_stars_vm[$result[0][$i]['stars']].'<br>';
 			$output .= strip_tags($result[0][$i]['description'], '<b><u><i><br>').'<br>';
@@ -1248,20 +1248,20 @@ class Hotels extends MicroGrid {
 		if($draw) echo $output;
 		else return $output;
 	}
-
+	
 	/**
 	 * Draw hotel map
 	 * @param $data
 	 * @param $params
 	 * @param $draw
-	 */
+	 */	
 	public static function DrawMap($data = array(), $params = array(), $draw = true)
 	{
         global $objSettings;
 
 		$width = isset($params['width']) ? (int)$params['width'] : 99;
-
-		// Show map
+		
+		// Show map 
 		if(empty($data['latitude']) && empty($data['longitude'])){
 			$output = $data['map_code'];
 		}else{
@@ -1296,9 +1296,9 @@ class Hotels extends MicroGrid {
 						}
 					});								
 				});
-				</script>';
+				</script>';				
 		}
-
+		
 		if($draw) echo $output;
 		else return $output;
 	}
@@ -1306,12 +1306,12 @@ class Hotels extends MicroGrid {
 	/**
 	 * Draw hotels by rating
 	 * @param $draw
-	 */
+	 */	
 	public static function DrawHotelsBestRated($draw = true)
 	{
 		$lang = Application::Get('lang');
 		$output = '';
-
+		
 		// Get 5 best rated hotels
 		$sql = 'SELECT hotel_id, SUM(evaluation) as evaluation, COUNT(*) as cnt FROM '.TABLE_REVIEWS.' GROUP BY hotel_id ORDER BY evaluation DESC';
 		$result = database_query($sql, DATA_AND_ROWS, ALL_ROWS);
@@ -1321,7 +1321,7 @@ class Hotels extends MicroGrid {
 		}
 
 		// Get info about these hotels
-		if(!empty($rated_hotel_ids)){
+		if(!empty($rated_hotel_ids)){			
 			$sql = 'SELECT
 					h.*,
 					hd.name,
@@ -1337,9 +1337,9 @@ class Hotels extends MicroGrid {
 					h.id IN ('.implode(',', array_keys($rated_hotel_ids)).')
 				ORDER BY FIELD(h.id, '.implode(',', array_keys($rated_hotel_ids)).')';
 			$result = database_query($sql, DATA_AND_ROWS);
-
+			
 			for($i=0; $i<$result[1]; $i++){
-				$votes = $rated_hotel_ids[$result[0][$i]['id']]['votes'];
+				$votes = $rated_hotel_ids[$result[0][$i]['id']]['votes'];				
 				$rate = $rated_hotel_ids[$result[0][$i]['id']]['rate'] / (!empty($votes) ? $votes : 1);
 				$output .=  '<div class="best-hotels-title">
                         <p><a href="index.php?page='.(FLATS_INSTEAD_OF_HOTELS ? 'flats&amp;fid=' : 'hotels&amp;hid=').$result[0][$i]['id'].'" class="dark">'.$result[0][$i]['name'].'</a></p>
@@ -1348,22 +1348,20 @@ class Hotels extends MicroGrid {
                     </div>';
 			}
 		}
-
+		
         if($draw) echo $output;
 		else return $output;
 	}
 
-	/**
-	 * Iteration counter for room
-	 * @param array $room
-	 * @return void
-	*/
+    /**
+     * Iteration counter for hotel
+     * @param  int  $hid
+     * @return bool
+     */
 	public static function NumberViewsIteration($hid = 0)
 	{
 		if(!empty($hid) && is_numeric($hid)){
-			$sql = 'UPDATE '.TABLE_HOTELS.' SET number_of_views = number_of_views + 1
-			WHERE id = '.(int)$hid;
-
+			$sql = 'UPDATE '.TABLE_HOTELS.' SET number_of_views = number_of_views + 1 WHERE id = '.(int)$hid;
 			return database_void_query($sql);
 		}
 		return false;
@@ -1375,15 +1373,16 @@ class Hotels extends MicroGrid {
 	 * @param $image
 	 * @param $draw
 	 * @param $params
-	 */
-	public static function DrawHotelsByGroup($group = 0, $image = false, $draw = true, $params = array())
+	 */	
+	public static function DrawHotelsByGroup($group = 0, $image = false, $draw = true, $params = [])
 	{
 		$lang = Application::Get('lang');
         $currencyRate = Application::Get('currency_rate');
-        $currencyFormat = get_currency_format();
+        $currencyFormat = get_currency_format();		  
 		$output = '';
 
 		$cols = isset($params['col-md']) ? $params['col-md'] : 'col-md-4';
+        $max = isset($params['max']) ? $params['max'] : 2;
 
 		$sql = 'SELECT
 				h.*,
@@ -1403,7 +1402,7 @@ class Hotels extends MicroGrid {
 		$result = database_query($sql, DATA_AND_ROWS);
 
         if($group == 1){
-            for($i=0; $i<$result[1] && $i<2; $i++){
+            for ($i = 0; $i < $result[1] && $i < $max; $i++) {
 				$hotel_lowest_price = Hotels::GetHotelLowestPrice($result[0][$i]['id']);
                 $href = prepare_link((FLATS_INSTEAD_OF_HOTELS ? 'flats' : 'hotels'), (FLATS_INSTEAD_OF_HOTELS ? 'fid' : 'hid'), $result[0][$i]['id'], $result[0][$i]['name'], $result[0][$i]['name'], '', _CLICK_TO_VIEW, true);
                 $output .= '<div class="'.$cols.'">
@@ -1414,7 +1413,7 @@ class Hotels extends MicroGrid {
                         </div>
                     </div>
                 </div>';
-            }
+            }            
         }elseif(($group == 2 || $group == 3 || $group == 4) && $result[1]){
             $output .= '<div class="col-md-4">';
 
@@ -1435,7 +1434,7 @@ class Hotels extends MicroGrid {
             }else{
                 if($group == 2) $output .= '<span class="dtitle">'._LAST_MINUTE.'</span>';
                 else if($group == 3) $output .= '<span class="dtitle">'._EARLY_BOOKING.'</span>';
-                else if($group == 4) $output .= '<span class="dtitle">'._HOT_DEALS.'</span>';
+                else if($group == 4) $output .= '<span class="dtitle">'._HOT_DEALS.'</span>';            
             }
 
             for($i=0; $i<$result[1] && $i<3; $i++){
@@ -1454,7 +1453,7 @@ class Hotels extends MicroGrid {
             }
             $output .= '</div>';
         }elseif(($group == 5 || $group == 6) && $result[1]){
-
+            
             $output .= '<div class="col-md-3">';
             if($group == 5){
                 $output .= '<h2>'._TODAY_TOP_DEALS_WITH_BR.'</h2><br/>';
@@ -1465,7 +1464,7 @@ class Hotels extends MicroGrid {
             }
             $output .= '</div>';
             $output .= '<div class="col-md-9">';
-
+            
             $output .= '<!-- Carousel -->';
             $output .= '<div class="wrapper">';
             $output .= '<div class="list_carousel">';
@@ -1474,7 +1473,7 @@ class Hotels extends MicroGrid {
             }elseif($group == 6){
                 $output .= '<ul id="foo2">';
             }
-
+            
 			// [05.02.2015] - Bugfix for slider with 3 images
 			if($result[1] == 3){
 				$result[0][3] = $result[0][0];
@@ -1492,40 +1491,40 @@ class Hotels extends MicroGrid {
                         <h6 class="lh1 dark"><b>'.$result[0][$i]['name'].', '.$result[0][$i]['location_name'].'</b></h6>
                         <h6 class="lh1 green">'._STARTING_FROM.' '.Currencies::PriceFormat(($hotel_lowest_price * $currencyRate), '', '', $currencyFormat).'</h6>							
                     </div>
-                </li>';
+                </li>';                
             }
-
+            
             $output .= '</ul>';
 
             $output .= '<div class="clearfix"></div>';
             $output .= '<a id="prev_btn'.($group == 6 ? '2' : '').'" class="prev" href="javascript:void(0);"><img src="templates/'.Application::Get('template').'/images/spacer.png" alt=""/></a>';
             $output .= '<a id="next_btn'.($group == 6 ? '2' : '').'" class="next" href="javascript:void(0);"><img src="templates/'.Application::Get('template').'/images/spacer.png" alt=""/></a>';
             $output .= '</div>';
-            $output .= '</div>';
+            $output .= '</div>';          
             $output .= '</div>';
         }
-
+        
         if($draw) echo $output;
 		else return $output;
     }
-
-
+    
+        
 	//==========================================================================
     // MicroGrid Methods
-	//==========================================================================
+	//==========================================================================	
 	/**
 	 * Validate translation fields
 	 */
-	private function ValidateTranslationFields()
+	private function ValidateTranslationFields()	
 	{
 		foreach($this->arrTranslations as $key => $val){
 			if(trim($val['name']) == ''){
 				$this->error = str_replace('_FIELD_', '<b>'._NAME.'</b>', _FIELD_CANNOT_BE_EMPTY);
 				$this->errorField = 'name_'.$key;
-				return false;
-			}
-		}
-		return true;
+				return false;				
+			}			
+		}		
+		return true;		
 	}
 
 	/**
@@ -1542,7 +1541,7 @@ class Hotels extends MicroGrid {
 	public function AfterInsertRecord()
 	{
 		global $objLogin;
-
+		
 		$sql = 'INSERT INTO '.TABLE_HOTELS_DESCRIPTION.'(id, hotel_id, language_id, name, name_center_point, address, description, preferences) VALUES ';
 		$count = 0;
 		foreach($this->arrTranslations as $key => $val){
@@ -1551,14 +1550,14 @@ class Hotels extends MicroGrid {
 			$count++;
 		}
 
-		if(database_void_query($sql)){
+		if(database_void_query($sql)){			
 			// set default  = 0 for other languages
 			if(self::GetParameter('is_default', false) == '1'){
 				$sql = 'UPDATE '.TABLE_HOTELS.'
 						SET is_active = IF(id = '.(int)$this->lastInsertId.', 1, is_active),
 						    is_default = IF(id = '.(int)$this->lastInsertId.', 1, 0)';
-				database_void_query($sql);
-			}
+				database_void_query($sql);					
+			}			
 
 			$sql = "INSERT INTO ".TABLE_HOTEL_PAYMENT_GATEWAYS." (id, hotel_id, payment_type, payment_type_name, api_login, api_key, payment_info) VALUES
 				(NULL, ".(int)$this->lastInsertId.", 'poa', 'Pay on Arrival', '', '', ''),
@@ -1569,7 +1568,7 @@ class Hotels extends MicroGrid {
 				(NULL, ".(int)$this->lastInsertId.", 'bank.transfer', 'Bank Transfer', '', '', 'Bank name: {BANK NAME HERE}\r\nSwift code: {CODE HERE}\r\nRouting in Transit# or ABA#: {ROUTING HERE}\r\nAccount number *: {ACCOUNT NUMBER HERE}\r\n\r\n*The account number must be in the IBAN format which may be obtained from the branch handling the customer''s account or may be seen at the top the customer''s bank statement\r\n'),
 				(NULL, ".(int)$this->lastInsertId.", 'account.balance', 'Pay with Balance', '', '', '')";
 			database_void_query($sql);
-
+			
 			// Update list of hotels for current hotel owner
 			if($this->hotelOwner && $objLogin->HasPrivileges('add_hotel_info')){
 				$hotel_ids = $objLogin->AssignedToHotels();
@@ -1579,19 +1578,19 @@ class Hotels extends MicroGrid {
 							SET companies = '".implode(',', $hotel_ids)."'
 							WHERE id = ".$objLogin->GetLoggedId();
 					database_void_query($sql);
-
+					
 					// Update session variables
 					$session_user_privileges = Session::Get('session_user_privileges');
-					$session_user_privileges['hotel_ids'] = $hotel_ids;
+					$session_user_privileges['hotel_ids'] = $hotel_ids;		
 					Session::Set('session_user_privileges', $session_user_privileges);
 				}
 			}
-
+			
 			return true;
 		}else{
 			return false;
 		}
-	}
+	}	
 
 	/**
 	 * Before-Updating operations
@@ -1607,16 +1606,16 @@ class Hotels extends MicroGrid {
 	public function AfterUpdateRecord()
 	{
 		// set always default hotel to be active
-		$sql = 'SELECT * FROM '.TABLE_HOTELS.' WHERE id = '.(int)$this->curRecordId;
-		if($language = database_query($sql, DATA_ONLY, FIRST_ROW_ONLY)){
+		$sql = 'SELECT * FROM '.TABLE_HOTELS.' WHERE id = '.(int)$this->curRecordId;                    
+		if($language = database_query($sql, DATA_ONLY, FIRST_ROW_ONLY)){                        
 			// set default  = 0 for other languages
 			if(self::GetParameter('is_default', false) == '1'){
 				$sql = 'UPDATE '.TABLE_HOTELS.'
 						SET is_active = IF(id = '.(int)$this->curRecordId.', 1, is_active),
 						    is_default = IF(id = '.(int)$this->curRecordId.', 1, 0)';
-				database_void_query($sql);
-			}
-		}
+				database_void_query($sql);					
+			}			
+		}			
 
 		foreach($this->arrTranslations as $key => $val){
 			$sql = 'UPDATE '.TABLE_HOTELS_DESCRIPTION.'
@@ -1634,11 +1633,11 @@ class Hotels extends MicroGrid {
 	 *	Before-editing record
 	 */
 	public function BeforeEditRecord()
-	{
+	{ 
 		if(!$this->CheckRecordAssigned($this->curRecordId)){
 			redirect_to($this->formActionURL);
 		}
-
+		
 		return true;
 	}
 
@@ -1650,7 +1649,7 @@ class Hotels extends MicroGrid {
 		if(!$this->CheckRecordAssigned($this->curRecordId)){
 			redirect_to($this->formActionURL);
 		}
-
+		
 		return true;
 	}
 
@@ -1662,7 +1661,7 @@ class Hotels extends MicroGrid {
 		if(!$this->CheckRecordAssigned($this->curRecordId)){
 			return false;
 		}
-
+		
 		$sql = 'SELECT COUNT(*) as cnt FROM '.TABLE_HOTELS.' WHERE is_active = 1';
 		$result = database_query($sql, DATA_ONLY, FIRST_ROW_ONLY);
 
@@ -1672,19 +1671,19 @@ class Hotels extends MicroGrid {
 			if($result['is_default'] == '1'){
 				$this->error = FLATS_INSTEAD_OF_HOTELS ? _DEFAULT_FLAT_DELETE_ALERT : _DEFAULT_HOTEL_DELETE_ALERT;
 				return false;
-			}
-			return true;
+			}			
+			return true;		
 		}else{
 			$sql = 'SELECT is_active FROM '.TABLE_HOTELS.' WHERE id = '.(int)$this->curRecordId;
 			$result = database_query($sql, DATA_ONLY, FIRST_ROW_ONLY);
 			if($result['is_active'] == '1'){
 				$this->error = FLATS_INSTEAD_OF_HOTELS ? _LAST_FLAT_ALERT : _LAST_HOTEL_ALERT;
-				return false;
+				return false;	
 			}
-			return true;
+			return true;		
 		}
-
-		return false;
+	    
+		return false;	
 	}
 
     /**
@@ -1709,7 +1708,7 @@ class Hotels extends MicroGrid {
 			for($i=0; $i<$rooms[1]; $i++){
 				$ids[] = $rooms[0][$i]['id'];
 			}
-			$ids_string = implode(',', $ids);
+			$ids_string = implode(',', $ids);			
 			ChannelHotelRooms::DeleteRooms($ids_string);
 		}
 
@@ -1722,28 +1721,28 @@ class Hotels extends MicroGrid {
 
 		$sql = 'DELETE FROM '.TABLE_ROOMS.' WHERE hotel_id = '.$this->curRecordId;
 		database_void_query($sql);
-
+		
 		$sql = 'DELETE FROM '.TABLE_ROOMS_AVAILABILITIES.' WHERE hotel_id = '.$this->curRecordId;
 		database_void_query($sql);
-
+		
 		$sql = 'DELETE FROM '.TABLE_ROOMS_DESCRIPTION.' WHERE hotel_id = '.$this->curRecordId;
 		database_void_query($sql);
-
+	
 		$sql = 'DELETE FROM '.TABLE_ROOMS_PRICES.' WHERE hotel_id = '.$this->curRecordId;
 		database_void_query($sql);
-
+	
 		$sql = 'SELECT id FROM '.TABLE_MEAL_PLANS.' WHERE hotel_id = '.$this->curRecordId;
 		$result = database_query($sql, DATA_AND_ROWS, ALL_ROWS);
 		for($i=0; $i<$result[1]; $i++){
 			$sql = 'DELETE FROM '.TABLE_MEAL_PLANS_DESCRIPTION.' WHERE meal_plan_id = '.$result[0][$i]['id'];
-			database_void_query($sql);
+			database_void_query($sql);		
 		}
 		$sql = 'DELETE FROM '.TABLE_MEAL_PLANS.' WHERE hotel_id = '.$this->curRecordId;
-		database_void_query($sql);
-
+		database_void_query($sql);					
+		
 		$sql = 'DELETE FROM '.TABLE_HOTEL_IMAGES.' WHERE hotel_id = '.$this->curRecordId;
 		database_void_query($sql);
-
+		
 		$sql = 'DELETE FROM '.TABLE_HOTEL_PAYMENT_GATEWAYS.' WHERE hotel_id = '.$this->curRecordId;
 		database_void_query($sql);
 
@@ -1772,18 +1771,18 @@ class Hotels extends MicroGrid {
 	private function CheckRecordAssigned($curRecordId = 0)
 	{
 		global $objSession;
-
+		
 		$sql = 'SELECT * 
 				FROM '.$this->tableName.' 
 				WHERE '.$this->primaryKey.' = '.(int)$curRecordId . $this->assigned_to_hotels;
-
+				
 		$result = database_query($sql, DATA_AND_ROWS, FIRST_ROW_ONLY);
 		if($result[1] <= 0){
 			$objSession->SetMessage('notice', draw_important_message(_WRONG_PARAMETER_PASSED, false));
 			return false;
 		}
-
-		return true;
+		
+		return true;		
 	}
 
 

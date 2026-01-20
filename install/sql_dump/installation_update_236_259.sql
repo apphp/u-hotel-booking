@@ -26,6 +26,6 @@ ALTER TABLE `<DB_PREFIX>rooms` ADD `discount_guests_type` tinyint(1) unsigned NO
                                ADD `refund_money_value` decimal(10,2) NOT NULL DEFAULT '0.00' AFTER `refund_money_type`,
                                ADD `number_of_views` smallint(6) unsigned NOT NULL DEFAULT '0' AFTER `priority_order`;
 ALTER TABLE `<DB_PREFIX>settings` CHANGE `admin_email` `admin_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL;
-ALTER TABLE `<DB_PREFIX>reviews` ADD `travel_type` tinyint(1) NOT NULL DEFAULT '2' COMMENT '0 - Work, 1 - Tourismus, 2 - Other' AFTER `evaluation`,
+ALTER TABLE `<DB_PREFIX>reviews` ADD `travel_type` tinyint(1) NOT NULL DEFAULT '2' COMMENT '0 - Work, 1 - Tourism, 2 - Other' AFTER `evaluation`,
                                  ADD `passenger_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 - An individual, 1 - A young couple, 2 - An old couple, 3 - Family with young children, 4 - Family with older children, 5 - Groups of Friends' AFTER `travel_type`;
 ALTER TABLE `<DB_PREFIX>testimonials` CHANGE `author_email` `author_email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;

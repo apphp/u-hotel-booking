@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -130,6 +130,43 @@ function draw_reservation_car_bar($current_tab = '', $is_draw = true, $links_all
 	$output .= '</table>';
 	if(!$is_draw) return $output;
 	else echo $output;		
+}
+
+/**
+ * Draws reservation tour bar
+ * @param $current_tab
+ */
+function draw_reservation_tour_bar($current_tab = '', $is_draw = true, $links_allowed = true)
+{
+    global $objLogin;
+
+    $selected_tours_link = false;
+    $booking_details_link = false;
+    $reservation_link = false;
+    $payment_link = false;
+    if($links_allowed){
+        if($current_tab == 'booking_details'){
+            $selected_tours_link = true;
+        }elseif($current_tab == 'reservation'){
+            $booking_details_link = true;
+            $selected_tours_link = true;
+        }elseif($current_tab == 'payment'){
+            $booking_details_link = false;
+            $selected_tours_link = false;
+            $reservation_link = true;
+        }
+    }
+
+    $output = '<table class="reservation_tabs" align="center" border="0">';
+    $output .= '<tr>';
+    $output .= ' <td class="'.(($current_tab == 'selected_tours') ? 'reservation_tab_active' : 'reservation_tab').'">'.(($selected_tours_link) ? '<a href="index.php?page=book_now_tour">'._SELECTED_TOURS.'</a>' : _SELECTED_TOURS).'</td>';
+    $output .= ' <td class="'.(($current_tab == 'booking_details') ? 'reservation_tab_active' : 'reservation_tab').'">'.(($booking_details_link) ? '<a href="index.php?page=booking_tour_details'.($objLogin->IsLoggedInAsAdmin() ? '' : '&m=edit').'">'._BOOKING_DETAILS.'</a>' : _BOOKING_DETAILS).'</td>';
+    $output .= ' <td class="'.(($current_tab == 'reservation') ? 'reservation_tab_active' : 'reservation_tab').'">'._RESERVATION.'</td>';
+    $output .= ' <td class="'.(($current_tab == 'payment') ? 'reservation_tab_active' : 'reservation_tab').'">'._PAYMENT.'</td>';
+    $output .= '</tr>';
+    $output .= '</table>';
+    if(!$is_draw) return $output;
+    else echo $output;
 }
 
 /**

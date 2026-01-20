@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -21,7 +21,7 @@ define('DEFAULT_TEMPLATE', 'default'); 		// default
 define('DEFAULT_DIRECTION', 'ltr');    		// ltr|rtl
 
 // Script mode
-define('SITE_MODE', 'production');     	// demo|development|production
+define('SITE_MODE', 'development');     	// demo|development|production
 
 // (list of supported Timezones - http://us3.php.net/manual/en/timezones.php)    
 define('TIME_ZONE', 'America/Los_Angeles');
@@ -197,6 +197,8 @@ define('DESTINATION_VALIDATION', true); // true|false
 define('AUTOMATIC_RE_SEARCH_ROOM', true);
 // Show tab "All" for search all types of properties on homepage
 define('ALLOW_TAB_SEARCH_ALL', false);
+// Group all property types in a dropdownbox
+define('GROUP_PROPERTY_DROPDOWNBOX', false);
 
 
 // Check availability settings & search results

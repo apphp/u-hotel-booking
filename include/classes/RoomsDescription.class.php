@@ -138,7 +138,7 @@ class RoomsDescription extends MicroGrid {
 		$this->arrEditModeFields = array(
 			'lang_name'              => array('title'=>_LANGUAGE, 'type'=>'label'),
 			'room_type' 	         => array('title'=>_NAME, 'type'=>'textbox',  'width'=>'210px', 'required'=>true, 'readonly'=>false, 'default'=>'', 'validation_type'=>'text', 'maxlength'=>'70'),
-			'room_short_description' => array('title'=>_SHORT_DESCRIPTION, 'type'=>'textarea', 'editor_type'=>'wysiwyg', 'width'=>'470px', 'height'=>'80px', 'required'=>false, 'readonly'=>false, 'default'=>'', 'validation_type'=>'text', 'validation_maxlength'=>'512'),
+			'room_short_description' => array('title'=>_SHORT_DESCRIPTION, 'type'=>'textarea', 'editor_type'=>'wysiwyg', 'width'=>'470px', 'height'=>'80px', 'required'=>false, 'readonly'=>false, 'default'=>'', 'validation_type'=>'text', 'validation_maxlength'=>'1024'),
 			'room_long_description'  => array('title'=>_LONG_DESCRIPTION, 'type'=>'textarea', 'editor_type'=>'wysiwyg', 'width'=>'470px', 'height'=>'240px', 'required'=>false, 'readonly'=>false, 'default'=>'', 'validation_type'=>'text', 'validation_maxlength'=>'4096'),
 		);
 

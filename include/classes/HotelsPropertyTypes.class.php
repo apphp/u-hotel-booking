@@ -85,7 +85,8 @@ class HotelsPropertyTypes extends MicroGrid {
 		if(isset($_POST['priority_order'])) $this->params['priority_order'] = prepare_input($_POST['priority_order']);
 		if(isset($_POST['property_code'])) $this->params['property_code'] = prepare_input($_POST['property_code']);
 		if(isset($_POST['is_active']))  $this->params['is_active'] = (int)$_POST['is_active']; else $this->params['is_active'] = '0';
-		
+		if(isset($_POST['show_on_menu']))  $this->params['show_on_menu'] = (int)$_POST['show_on_menu']; else $this->params['show_on_menu'] = '0';
+
 		## for checkboxes 
 		//$this->params['field4'] = isset($_POST['field4']) ? prepare_input($_POST['field4']) : '0';
 
@@ -191,6 +192,7 @@ class HotelsPropertyTypes extends MicroGrid {
 									'.$this->tableName.'.property_code,
 									'.$this->tableName.'.priority_order,
 									'.$this->tableName.'.is_active,
+									'.$this->tableName.'.show_on_menu,
 									'.TABLE_HOTELS_PROPERTY_TYPES_DESCRIPTION.'.name as property_name
 								FROM '.$this->tableName.' 
 									LEFT OUTER JOIN '.TABLE_HOTELS_PROPERTY_TYPES_DESCRIPTION.' ON '.$this->tableName.'.id = '.TABLE_HOTELS_PROPERTY_TYPES_DESCRIPTION.'.hotel_property_id AND '.TABLE_HOTELS_PROPERTY_TYPES_DESCRIPTION.'.language_id = \''.$this->languageId.'\'
@@ -201,6 +203,7 @@ class HotelsPropertyTypes extends MicroGrid {
 			'property_name'  => array('title'=>_NAME, 'type'=>'label', 'align'=>'left', 'width'=>'', 'sortable'=>true, 'nowrap'=>'', 'visible'=>true, 'tooltip'=>'', 'maxlength'=>'', 'format'=>'', 'format_parameter'=>''),
 			'priority_order' => array('title'=>_ORDER,  'type'=>'label', 'align'=>'center', 'width'=>'85px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>'', 'tooltip'=>'', 'maxlength'=>'', 'format'=>'', 'format_parameter'=>'', 'movable'=>true),			
 			'is_active'      => array('title'=>_ACTIVE, 'type'=>'enum',  'align'=>'center', 'width'=>'90px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>true, 'source'=>$arr_active_vm),
+			'show_on_menu'   => array('title'=>_SHOW_ON_MENU, 'type'=>'enum',  'align'=>'center', 'width'=>'120px', 'sortable'=>true, 'nowrap'=>'', 'visible'=>true, 'source'=>$arr_active_vm),
 		);
 		
 		//---------------------------------------------------------------------- 
@@ -217,6 +220,7 @@ class HotelsPropertyTypes extends MicroGrid {
 			'property_code'  => array('title'=>_CODE, 'type'=>'textbox', 'header_tooltip'=>_EX_OTELS_VILLAS_OR_APARTMENTS, 'required'=>true, 'width'=>'150px', 'readonly'=>false, 'maxlength'=>'20', 'default'=>'', 'validation_type'=>'alpha_numeric', 'unique'=>false, 'visible'=>true),
 			'priority_order' => array('title'=>_ORDER, 'type'=>'textbox', 'required'=>true, 'width'=>'40px', 'readonly'=>false, 'maxlength'=>'2', 'default'=>'0', 'validation_type'=>'numeric|positive', 'unique'=>false, 'visible'=>true),
 			'is_active'      => array('title'=>_ACTIVE, 'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false),		
+			'show_on_menu'      => array('title'=>_SHOW_ON_MENU, 'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false),
 		);
 
 		//---------------------------------------------------------------------- 
@@ -234,7 +238,8 @@ class HotelsPropertyTypes extends MicroGrid {
 								'.$sql_translation_description.'
 								'.$this->tableName.'.property_code,
 								'.$this->tableName.'.priority_order,
-								'.$this->tableName.'.is_active
+								'.$this->tableName.'.is_active,
+								'.$this->tableName.'.show_on_menu
 							FROM '.$this->tableName.'
 							WHERE '.$this->tableName.'.'.$this->primaryKey.' = _RID_';		
 		// define edit mode fields
@@ -242,6 +247,7 @@ class HotelsPropertyTypes extends MicroGrid {
 			'property_code'  => array('title'=>_CODE, 'type'=>'label'),
 			'priority_order' => array('title'=>_ORDER, 'type'=>'textbox', 'required'=>true, 'width'=>'40px', 'readonly'=>false, 'maxlength'=>'2', 'default'=>'0', 'validation_type'=>'numeric|positive', 'unique'=>false, 'visible'=>true),
 			'is_active'      => array('title'=>_ACTIVE, 'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false),		
+			'show_on_menu'      => array('title'=>_SHOW_ON_MENU, 'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false),
 		);
 
 		//---------------------------------------------------------------------- 
@@ -252,6 +258,7 @@ class HotelsPropertyTypes extends MicroGrid {
 			'property_code'  => array('title'=>_CODE, 'type'=>'label'),
 			'priority_order' => array('title'=>_ORDER, 'type'=>'label'),
 			'is_active'      => array('title'=>_ACTIVE, 'type'=>'enum', 'source'=>$arr_active_vm),
+			'show_on_menu'      => array('title'=>_SHOW_ON_MENU, 'type'=>'enum', 'source'=>$arr_active_vm),
 		);
 
 		///////////////////////////////////////////////////////////////////////////////
@@ -280,7 +287,7 @@ class HotelsPropertyTypes extends MicroGrid {
 	{
 		$lang_id = Application::Get('lang');
 		$sql = 'SELECT
-					hp.id, hp.property_code, hp.priority_order, hp.is_active,
+					hp.id, hp.property_code, hp.priority_order, hp.is_active, hp.show_on_menu,
 					hpd.name
 				FROM ('.TABLE_HOTELS_PROPERTY_TYPES.' hp
 					INNER JOIN '.TABLE_HOTELS_PROPERTY_TYPES_DESCRIPTION.' hpd ON hp.id = hpd.hotel_property_id AND hpd.language_id = \''.$lang_id.'\')

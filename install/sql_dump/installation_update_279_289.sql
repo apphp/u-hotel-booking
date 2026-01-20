@@ -263,3 +263,4 @@ UPDATE `<DB_PREFIX>privileges` SET `description` = 'See and modify the hotel roo
 
 -- 30.01.2019
 ALTER TABLE `<DB_PREFIX>accounts` MODIFY `account_type` enum('owner','mainadmin','admin','hotelowner','agencyowner','regionalmanager','hotelmanager') CHARACTER SET latin1 NOT NULL DEFAULT 'mainadmin';
+

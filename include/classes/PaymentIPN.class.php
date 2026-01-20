@@ -247,119 +247,121 @@ class PaymentIPN {
 	public static function DrawPayPalPaymentForm($pp_params, $mode = 'real')
 	{
 		global $objLogin;
-		
-		$nl = "\n";
-		$output = '';
-		
-		//if($mode == 'test'){
-		//	$output .= $nl.'<tr><td colspan="3" nowrap height="10px">';
-		//	$output .= $nl.'<form action="index.php?page=booking_notify_paypal" method="post" name="payform">';
-		//	$output .= $nl.draw_hidden_field('txn_id', 'TEST_'.get_random_string(8), false);
-		//	$output .= $nl.draw_hidden_field('payer_status', 'verified', false);
-		//	$output .= $nl.draw_hidden_field('mc_gross', round($pp_params['cart_total'], 2), false);
-		//	$output .= $nl.draw_hidden_field('custom', $pp_params['booking_number'], false);
-		//	$output .= $nl.draw_token_field(false);
-		//	
-		//	$output .= $nl.'<table width="99%" border="0">';
-		//	$output .= $nl.'<tr>';
-		//	$output .= $nl.'<td align="left">';
-		//	$output .= $nl.'<br />'._PAYPAL_NOTICE.'<br /><br />';
-		//	$output .= $nl.'<input type="image" style="border:0px" src="images/ppc_icons/btn_pp_paynow.gif" title="'._BOOK_NOW.'" value="Go To Payment" name="btnSubmit" />';
-		//	$output .= $nl.'&nbsp; - '._OR.' - &nbsp;';
-		//	$output .= $nl.'<a href="javascript:void(0);" onclick="javascript:appGoTo(\'page=booking_details\')">'._BUTTON_CANCEL.'</a>';
-		//	$output .= $nl.'</td>';
-		//	$output .= $nl.'</tr>';
-		//	$output .= $nl.'</table>';
-		//	$output .= $nl.'</form>';
-		//	$output .= $nl.'</td></tr>';
-		//}else{
-		///}
-		
-		$output .= $nl.'<tr><td colspan="3" nowrap height="10px">';
-		if($mode == 'test' || $mode == 'editable'){
-			$output .= $nl.'<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" name="payform">';
-		}
-		else{
-			$output .= $nl.'<form action="https://www.paypal.com/cgi-bin/webscr" method="post" name="payform">';
-		}			 
-		$output .= $nl.draw_hidden_field('business', $pp_params['api_login'], false);
 
-		if($pp_params['paypal_form_type'] == 'multiple' && !$pp_params['is_prepayment'] == 'multiple' && !$pp_params['discount_value']){
-			$output .= $nl.draw_hidden_field('cmd', '_cart', false);
-			$output .= $nl.draw_hidden_field('upload', '1', false);
-			$output .= $pp_params['paypal_form_fields'];
+        $nl = "\n";
+        $output = '';
 
-			if($pp_params['extras_sub_total'] > 0){
-				$pp_params['paypal_form_fields_count']++;					
-				$output .= $nl.draw_hidden_field('item_name_'.$pp_params['paypal_form_fields_count'], _EXTRAS, false);
-				$output .= $nl.draw_hidden_field('quantity_'.$pp_params['paypal_form_fields_count'], '1', false);
-				$output .= $nl.draw_hidden_field('amount_'.$pp_params['paypal_form_fields_count'], number_format($pp_params['extras_sub_total'], '2', '.', ''), false);
-			}									
-			if($pp_params['vat_cost'] > 0){
-				$pp_params['paypal_form_fields_count']++;
-				$output .= $nl.draw_hidden_field('item_name_'.$pp_params['paypal_form_fields_count'], _VAT, false);
-				$output .= $nl.draw_hidden_field('quantity_'.$pp_params['paypal_form_fields_count'], '1', false);
-				$output .= $nl.draw_hidden_field('amount_'.$pp_params['paypal_form_fields_count'], number_format($pp_params['vat_cost'], '2', '.', ''), false);
-			}									
+		if($mode == 'test'){
+
+            $action = !empty($pp_params['notify']) ? $pp_params['notify'] : 'index.php?page=booking_notify_paypal';
+
+			$output .= $nl.'<tr><td colspan="3" nowrap height="10px">';
+			$output .= $nl.'<form action="'.$action.'" method="post" name="payform">';
+			$output .= $nl.draw_hidden_field('txn_id', 'TEST_'.get_random_string(8), false);
+			$output .= $nl.draw_hidden_field('payer_status', 'verified', false);
+			$output .= $nl.draw_hidden_field('mc_gross', round($pp_params['cart_total'], 2), false);
+			$output .= $nl.draw_hidden_field('custom', $pp_params['booking_number'], false);
+			$output .= $nl.draw_token_field(false);
+
+			$output .= $nl.'<table width="99%" border="0">';
+			$output .= $nl.'<tr>';
+			$output .= $nl.'<td align="left">';
+			$output .= $nl.'<br />'._PAYPAL_NOTICE.'<br /><br />';
+			$output .= $nl.'<input type="image" style="border:0px" src="images/ppc_icons/btn_pp_paynow.gif" title="'._BOOK_NOW.'" value="Go To Payment" name="btnSubmit" />';
+			$output .= $nl.'&nbsp; - '._OR.' - &nbsp;';
+			$output .= $nl.'<a href="javascript:void(0);" onclick="javascript:appGoTo(\'page=booking_details\')">'._BUTTON_CANCEL.'</a>';
+			$output .= $nl.'</td>';
+			$output .= $nl.'</tr>';
+			$output .= $nl.'</table>';
+			$output .= $nl.'</form>';
+			$output .= $nl.'</td></tr>';
 		}else{
-			$output .= $nl.draw_hidden_field('cmd', '_xclick', false);
-			$output .= $nl.draw_hidden_field('item_name', !empty($pp_params['item_name']) ? $pp_params['item_name'] : 'Rooms Reservation', false);
-			$output .= $nl.draw_hidden_field('item_number', !empty($pp_params['item_number']) ? $pp_params['item_number'] : '002', false);
-			$output .= $nl.draw_hidden_field('amount', round($pp_params['cart_total'], 2), false);
-			
-			if($mode == 'real-editable' || 'test-editable'){
-				$output .= '</td></tr>';
-				$output .= '<tr id="row-change" style="display:none;"><td>'._BUTTON_CHANGE.': </td><td width="2%">:</td><td><input type="text" style="width:100px" maxlength="10" name="amount" value="'.round($pp_params['cart_total'], 2).'"></td></tr>';
-				$output .= $nl.'<tr><td colspan="3" nowrap height="10px">';
-				// $nl.draw_hidden_field('amount', round($pp_params['cart_total'], 2), false);
-			}
-		}
-		$output .= $nl.draw_hidden_field('custom', $pp_params['booking_number'], false);
-		$output .= $nl.draw_hidden_field('lc', 'US', false);
-		$output .= $nl.draw_hidden_field('currency_code', $pp_params['currency_code'], false);
-		$output .= $nl.draw_hidden_field('cn', '', false);
-		$output .= $nl.draw_hidden_field('no_shipping', '1', false);
-		$output .= $nl.draw_hidden_field('rm', '1', false);
+            $output .= $nl.'<tr><td colspan="3" nowrap height="10px">';
+            if($mode == 'test' || $mode == 'editable'){
+                $output .= $nl.'<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" name="payform">';
+            }
+            else{
+                $output .= $nl.'<form action="https://www.paypal.com/cgi-bin/webscr" method="post" name="payform">';
+            }
+            $output .= $nl.draw_hidden_field('business', $pp_params['api_login'], false);
 
-		$output .= $nl.draw_hidden_field('address_override', '0', false);
-		if(isset($pp_params['address1'])) $output .= $nl.draw_hidden_field('address1', $pp_params['address1'], false);
-		if(isset($pp_params['address2'])) $output .= $nl.draw_hidden_field('address2', $pp_params['address2'], false);
-		if(isset($pp_params['city'])) $output .= $nl.draw_hidden_field('city', $pp_params['city'], false);
-		if(isset($pp_params['zip'])) $output .= $nl.draw_hidden_field('zip', $pp_params['zip'], false);
-		if(isset($pp_params['country'])) $output .= $nl.draw_hidden_field('country', $pp_params['country'], false);			
-		if(isset($pp_params['state'])) $output .= $nl.draw_hidden_field('state', $pp_params['state'], false);
-		if(isset($pp_params['first_name'])) $output .= $nl.draw_hidden_field('first_name', $pp_params['first_name'], false);
-		if(isset($pp_params['last_name'])) $output .= $nl.draw_hidden_field('last_name', $pp_params['last_name'], false);
-		if(isset($pp_params['email'])) $output .= $nl.draw_hidden_field('email', $pp_params['email'], false);
+            if($pp_params['paypal_form_type'] == 'multiple' && !$pp_params['is_prepayment'] == 'multiple' && !$pp_params['discount_value']){
+                $output .= $nl.draw_hidden_field('cmd', '_cart', false);
+                $output .= $nl.draw_hidden_field('upload', '1', false);
+                $output .= $pp_params['paypal_form_fields'];
 
-		if(isset($pp_params['phone'])){
-			$phone_parts = explode('-', $pp_params['phone']);
-			if(isset($phone_parts[0])) $output .= $nl.draw_hidden_field('night_phone_a', $phone_parts[0], false);
-			if(isset($phone_parts[1])) $output .= $nl.draw_hidden_field('night_phone_b', $phone_parts[1], false);
-			if(isset($phone_parts[2])) $output .= $nl.draw_hidden_field('night_phone_c', $phone_parts[2], false);
-		}
+                if($pp_params['extras_sub_total'] > 0){
+                    $pp_params['paypal_form_fields_count']++;
+                    $output .= $nl.draw_hidden_field('item_name_'.$pp_params['paypal_form_fields_count'], _EXTRAS, false);
+                    $output .= $nl.draw_hidden_field('quantity_'.$pp_params['paypal_form_fields_count'], '1', false);
+                    $output .= $nl.draw_hidden_field('amount_'.$pp_params['paypal_form_fields_count'], number_format($pp_params['extras_sub_total'], '2', '.', ''), false);
+                }
+                if($pp_params['vat_cost'] > 0){
+                    $pp_params['paypal_form_fields_count']++;
+                    $output .= $nl.draw_hidden_field('item_name_'.$pp_params['paypal_form_fields_count'], _VAT, false);
+                    $output .= $nl.draw_hidden_field('quantity_'.$pp_params['paypal_form_fields_count'], '1', false);
+                    $output .= $nl.draw_hidden_field('amount_'.$pp_params['paypal_form_fields_count'], number_format($pp_params['vat_cost'], '2', '.', ''), false);
+                }
+            }else{
+                $output .= $nl.draw_hidden_field('cmd', '_xclick', false);
+                $output .= $nl.draw_hidden_field('item_name', !empty($pp_params['item_name']) ? $pp_params['item_name'] : 'Rooms Reservation', false);
+                $output .= $nl.draw_hidden_field('item_number', !empty($pp_params['item_number']) ? $pp_params['item_number'] : '002', false);
+                $output .= $nl.draw_hidden_field('amount', round($pp_params['cart_total'], 2), false);
 
-        if(defined('IS_WIDGET') && IS_WIDGET){
-            $pp_params['cancel_return'] .= '&'.WIDGET_HASH;
-            $output .= $nl.draw_hidden_field('notify', WIDGET_HOST.$pp_params['notify'], false);
-            $output .= $nl.draw_hidden_field('return', APPHP_BASE.$pp_params['return'].'&'.WIDGET_HASH, false);
-        }else{
-            $output .= $nl.draw_hidden_field('notify', APPHP_BASE.$pp_params['notify'], false);
-            $output .= $nl.draw_hidden_field('return', APPHP_BASE.$pp_params['return'], false);
-        }
-        $output .= $nl.draw_hidden_field('cancel_return', APPHP_BASE.$pp_params['cancel_return'], false);
-		$output .= $nl.draw_hidden_field('bn', 'PP-BuyNowBF', false);
-		
-		$output .= $nl.'<br />'._PAYPAL_NOTICE.'<br /><br />';
-		$output .= $nl.'<input type="image" style="border:0px" src="images/ppc_icons/btn_pp_paynow.gif" title="'._BOOK_NOW.'" value="Go To Payment" name="btnSubmit" />';
-		$output .= $nl.'&nbsp; - '._OR.' - &nbsp;';
-		if($mode == 'real-editable' || $mode == 'test-editable'){
-			$output .= $nl.'<a href="javascript:void(0);" onclick="javascript:appGoTo(\''.(!empty($pp_params['cancel_button']) ? $pp_params['cancel_button'] : ($objLogin->IsLoggedInAsAdmin() ? 'admin=mod_booking_bookings' : 'customer=my_bookings')).'\')">'._BUTTON_CANCEL.'</a>';					
-		}else{
-			$output .= $nl.'<a href="javascript:void(0);" onclick="javascript:appGoTo(\''.(!empty($pp_params['cancel_button']) ? $pp_params['cancel_button'] : 'page=booking_details').'\')">'._BUTTON_CANCEL.'</a>';	
+                if($mode == 'real-editable' || 'test-editable'){
+                    $output .= '</td></tr>';
+                    $output .= '<tr id="row-change" style="display:none;"><td>'._BUTTON_CHANGE.': </td><td width="2%">:</td><td><input type="text" style="width:100px" maxlength="10" name="amount" value="'.round($pp_params['cart_total'], 2).'"></td></tr>';
+                    $output .= $nl.'<tr><td colspan="3" nowrap height="10px">';
+                    // $nl.draw_hidden_field('amount', round($pp_params['cart_total'], 2), false);
+                }
+            }
+            $output .= $nl.draw_hidden_field('custom', $pp_params['booking_number'], false);
+            $output .= $nl.draw_hidden_field('lc', 'US', false);
+            $output .= $nl.draw_hidden_field('currency_code', $pp_params['currency_code'], false);
+            $output .= $nl.draw_hidden_field('cn', '', false);
+            $output .= $nl.draw_hidden_field('no_shipping', '1', false);
+            $output .= $nl.draw_hidden_field('rm', '1', false);
+
+            $output .= $nl.draw_hidden_field('address_override', '0', false);
+            if(isset($pp_params['address1'])) $output .= $nl.draw_hidden_field('address1', $pp_params['address1'], false);
+            if(isset($pp_params['address2'])) $output .= $nl.draw_hidden_field('address2', $pp_params['address2'], false);
+            if(isset($pp_params['city'])) $output .= $nl.draw_hidden_field('city', $pp_params['city'], false);
+            if(isset($pp_params['zip'])) $output .= $nl.draw_hidden_field('zip', $pp_params['zip'], false);
+            if(isset($pp_params['country'])) $output .= $nl.draw_hidden_field('country', $pp_params['country'], false);
+            if(isset($pp_params['state'])) $output .= $nl.draw_hidden_field('state', $pp_params['state'], false);
+            if(isset($pp_params['first_name'])) $output .= $nl.draw_hidden_field('first_name', $pp_params['first_name'], false);
+            if(isset($pp_params['last_name'])) $output .= $nl.draw_hidden_field('last_name', $pp_params['last_name'], false);
+            if(isset($pp_params['email'])) $output .= $nl.draw_hidden_field('email', $pp_params['email'], false);
+
+            if(isset($pp_params['phone'])){
+                $phone_parts = explode('-', $pp_params['phone']);
+                if(isset($phone_parts[0])) $output .= $nl.draw_hidden_field('night_phone_a', $phone_parts[0], false);
+                if(isset($phone_parts[1])) $output .= $nl.draw_hidden_field('night_phone_b', $phone_parts[1], false);
+                if(isset($phone_parts[2])) $output .= $nl.draw_hidden_field('night_phone_c', $phone_parts[2], false);
+            }
+
+            if(defined('IS_WIDGET') && IS_WIDGET){
+                $pp_params['cancel_return'] .= '&'.WIDGET_HASH;
+                $output .= $nl.draw_hidden_field('notify', WIDGET_HOST.$pp_params['notify'], false);
+                $output .= $nl.draw_hidden_field('return', APPHP_BASE.$pp_params['return'].'&'.WIDGET_HASH, false);
+            }else{
+                $output .= $nl.draw_hidden_field('notify', APPHP_BASE.$pp_params['notify'], false);
+                $output .= $nl.draw_hidden_field('return', APPHP_BASE.$pp_params['return'], false);
+            }
+            $output .= $nl.draw_hidden_field('cancel_return', APPHP_BASE.$pp_params['cancel_return'], false);
+            $output .= $nl.draw_hidden_field('bn', 'PP-BuyNowBF', false);
+
+            $output .= $nl.'<br />'._PAYPAL_NOTICE.'<br /><br />';
+            $output .= $nl.'<input type="image" style="border:0px" src="images/ppc_icons/btn_pp_paynow.gif" title="'._BOOK_NOW.'" value="Go To Payment" name="btnSubmit" />';
+            $output .= $nl.'&nbsp; - '._OR.' - &nbsp;';
+            if($mode == 'real-editable' || $mode == 'test-editable'){
+                $output .= $nl.'<a href="javascript:void(0);" onclick="javascript:appGoTo(\''.(!empty($pp_params['cancel_button']) ? $pp_params['cancel_button'] : ($objLogin->IsLoggedInAsAdmin() ? 'admin=mod_booking_bookings' : 'customer=my_bookings')).'\')">'._BUTTON_CANCEL.'</a>';
+            }else{
+                $output .= $nl.'<a href="javascript:void(0);" onclick="javascript:appGoTo(\''.(!empty($pp_params['cancel_button']) ? $pp_params['cancel_button'] : 'page=booking_details').'\')">'._BUTTON_CANCEL.'</a>';
+            }
+            $output .= $nl.'</form>';
+            $output .= $nl.'</td></tr>';
 		}
-		$output .= $nl.'</form>';
-		$output .= $nl.'</td></tr>';
 
 		return $output;
 	}
@@ -436,7 +438,7 @@ class PaymentIPN {
 	{
 		$nl = "\n";
         if(defined('IS_WIDGET') && IS_WIDGET){
-            $action = !empty($pp_params['notify']) ? WIDGET_HOST.$pp_params['notify'] : APPHP_BASE.'index.php?page=booking_notify_autorize_net&'.WIDGET_HASH;
+            $action = !empty($pp_params['notify']) ? WIDGET_HOST.$pp_params['notify'] : APPHP_BASE.'index.php?page=booking_notify_authorize_net&'.WIDGET_HASH;
             $url_cancel = (!empty($pp_params['cancel_button']) ? $pp_params['cancel_button'] : 'page=booking_details').'&'.WIDGET_HASH;
         }else{
             $action = !empty($pp_params['notify']) ? $pp_params['notify'] : 'index.php?page=booking_payment';

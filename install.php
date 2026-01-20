@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -98,9 +98,6 @@
 									$short_open_tag = isset($phpinfo[$php_core_index]) ? $phpinfo[$php_core_index]['short_open_tag'][0] : 'unknown';
 									$session_support = isset($phpinfo['session']['session support']) ? $phpinfo['session']['session support'] : 'unknown';
 									$mbstring_support = (function_exists('mb_detect_encoding')) ? 'enabled' : 'disabled';
-									$magic_quotes_gpc = ini_get('magic_quotes_gpc') ? 'On' : 'Off';
-									$magic_quotes_runtime = ini_get('magic_quotes_runtime') ? 'On' : 'Off';
-									$magic_quotes_sybase = ini_get('magic_quotes_sybase') ? 'On' : 'Off';
 								?>
                                 <ul>
                                     <li>PHP Version: <b><i><?= phpversion(); ?></i></b></li>
@@ -119,9 +116,6 @@
 									<li>Short Open Tag: <b><i><?= $short_open_tag; ?></i></b></li>
 									<li>Session Support: <b><i><?= $session_support; ?></i></b></li>
 									<li>mbString Support: <b><i><?= $mbstring_support; ?></i></b></li>
-									<li>Magic Quotes GPC: <b><i><?= $magic_quotes_gpc; ?></i></b></li>
-									<li>Magic Quotes RunTime: <b><i><?= $magic_quotes_runtime; ?></i></b></li>
-									<li>Magic Quotes SyBase: <b><i><?= $magic_quotes_sybase; ?></i></b></li>
 								</ul>
 							</td>
                         </tr>

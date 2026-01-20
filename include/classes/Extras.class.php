@@ -372,7 +372,7 @@ class Extras extends MicroGrid {
 			}else{
 				$output .= '<table '.((Application::Get('lang_dir') == 'rtl') ? 'dir="rtl"' : '').' width="100%" border="0" cellspacing="0" cellpadding="3" class="tblExtrasDetails" style="border:1px solid #d1d2d3">';
 			}
-			$output .= '<thead>'.($type == 'email' ? '<tr>' : '<tr style=background-color:#e1e2e3;font-weight:bold;font-size:13px;">');
+			$output .= '<thead>'.($type == 'email' ? '<tr>' : '<tr style="background-color:#e1e2e3;font-weight:bold;font-size:13px;">');
 			$output .= '<th align="center"> # </th>';
 			$output .= '<th align="left">'._NAME.'</th>';
 			$output .= '<th align="right" '.(($type == 'email') ? '' : 'width="12%"').'>'._UNIT_PRICE.'</th>';

@@ -433,8 +433,8 @@ class AdminsAccounts extends MicroGrid {
 			'is_active'  	 => array('title'=>_ACTIVE,	'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false),
 		);
         if($page == 'hotel_admins'){
-            $this->arrAddModeFields['separator_4']['room_relocation'] = array('title'=>_MS_ROOM_RELOCATION,	'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false);
-            $this->arrAddModeFields['separator_4']['hotel_relocation'] = array('title'=>_MS_HOTEL_RELOCATION,	'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false);
+            $this->arrAddModeFields['separator_4']['room_relocation'] = array('title'=>_MS_ROOM_RELOCATION.' <img src="images/microgrid_icons/question.png" class="help" title="'._MS_ALLOW_RELOCATION_TO_OTHER_ROOM.'" alt="tooltip">',	'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false);
+            $this->arrAddModeFields['separator_4']['hotel_relocation'] = array('title'=>_MS_HOTEL_RELOCATION.' <img src="images/microgrid_icons/question.png" class="help" title="'._MS_ALLOW_RELOCATION_TO_OTHER_HOTEL.'" alt="tooltip">',	'type'=>'checkbox', 'readonly'=>false, 'default'=>'1', 'true_value'=>'1', 'false_value'=>'0', 'unique'=>false);
         }
 
 		if($page == 'hotel_admins' || ($page == 'hotel_managers' && Modules::IsModuleInstalled('property_management') && $this->multiHotelsForManagers == 'yes')){
@@ -509,8 +509,8 @@ class AdminsAccounts extends MicroGrid {
 			'is_active'  	   	=> array('title'=>_ACTIVE, 'type'=>'checkbox', 'true_value'=>'1', 'false_value'=>'0'),
 		);
         if($page == 'hotel_admins'){
-            $this->arrEditModeFields['separator_4']['room_relocation'] = array('title'=>_MS_ROOM_RELOCATION, 'type'=>'checkbox', 'true_value'=>'1', 'false_value'=>'0');
-            $this->arrEditModeFields['separator_4']['hotel_relocation'] = array('title'=>_MS_HOTEL_RELOCATION, 'type'=>'checkbox', 'true_value'=>'1', 'false_value'=>'0');
+            $this->arrEditModeFields['separator_4']['room_relocation'] = array('title'=>_MS_ROOM_RELOCATION.' <img src="images/microgrid_icons/question.png" class="help" title="'._MS_ALLOW_RELOCATION_TO_OTHER_ROOM.'" alt="tooltip">', 'type'=>'checkbox', 'true_value'=>'1', 'false_value'=>'0');
+            $this->arrEditModeFields['separator_4']['hotel_relocation'] = array('title'=>_MS_HOTEL_RELOCATION.' <img src="images/microgrid_icons/question.png" class="help" title="'._MS_ALLOW_RELOCATION_TO_OTHER_HOTEL.'" alt="tooltip">', 'type'=>'checkbox', 'true_value'=>'1', 'false_value'=>'0');
         }
 		if($page == 'hotel_admins' || ($this->page == 'hotel_managers' && $this->multiHotelsForManagers == 'yes')){
 			$this->arrEditModeFields['separator_4']['autocomplete_companies'] = array('title'=>FLATS_INSTEAD_OF_HOTELS ? _EX_FLAT_OR_LOCATION : _EX_HOTEL_OR_LOCATION, 'type'=>'textbox', 'width'=>'', 'required'=>false, 'readonly'=>false, 'default'=>'', 'javascript_event'=>'', 'post_html'=>$autocomplete_companies);

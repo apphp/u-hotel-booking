@@ -684,11 +684,12 @@ class Login {
 					SET date_lastlogin = \''.@date('Y-m-d H:i:s').'\'
 					WHERE id = '.(int)$account_information['id'];
 		}else{
+            $last_logged_ip = get_current_ip();
 			$sql = 'UPDATE '.TABLE_CUSTOMERS.'
 					SET
 						date_lastlogin = \''.@date('Y-m-d H:i:s').'\',
-						last_logged_ip = \''.get_current_ip().'\'
-					WHERE id = '.(int)$account_information['id'];			
+						last_logged_ip = \''.($last_logged_ip == '::1' ? '127.0.0.1' : $last_logged_ip).'\'
+					WHERE id = '.(int)$account_information['id'];
 		}
 		return database_void_query($sql);
 	}	
@@ -1250,20 +1251,38 @@ class Login {
 					$output .= $this->PrepareLink('my_reviews', _MY_REVIEWS);
 				}
 				$output .= $this->PrepareLink('my_wishlist', _WISHLIST);
-				if(Modules::IsModuleInstalled('car_rental')){
-					if(ModulesSettings::Get('car_rental', 'is_active') == 'yes'){
-						$output .= $this->PrepareLink('my_car_rentals', _MY_CAR_RENTALS);
-					}
-				}
+
 				$output .= '</ul>';
-				// logout
-				$output .= '<form action="index.php?customer='.($this->GetCustomerType() == 1 ? TRAVEL_AGENCY_LOGIN : 'login').'" style="margin-bottom:7px;" method="post">
+			$output .= draw_block_bottom(false);
+
+            if(Modules::IsModuleInstalled('car_rental')){
+                if(ModulesSettings::Get('car_rental', 'is_active') == 'yes'){
+                    $output .= draw_block_top(_CAR_RENTAL, -2, 'maximized', '', false);
+                    $output .= '<ul>';
+                    $output .= $this->PrepareLink('my_car_rentals', _MY_CAR_RENTALS);
+                    $output .= '</ul>';
+                    $output .= draw_block_bottom(false);
+                }
+            }
+
+            if(Modules::IsModuleInstalled('tours_and_attractions')){
+                if(ModulesSettings::Get('tours_and_attractions', 'is_active') == 'yes'){
+                    $output .= draw_block_top(_TOURS_AND_ATTRACTIONS, -3, 'maximized', '', false);
+                    $output .= '<ul>';
+                    $output .= $this->PrepareLink('my_tour_reservations', _MY_TOUR_RESERVATIONS);
+                    $output .= $this->PrepareLink('my_tour_reviews', _MY_TOUR_REVIEWS);
+                    $output .= '</ul>';
+                    $output .= draw_block_bottom(false);
+                }
+            }
+
+            // logout
+            $output .= '<form action="index.php?customer='.($this->GetCustomerType() == 1 ? TRAVEL_AGENCY_LOGIN : 'login').'" style="margin-bottom:7px;" method="post">
 					  '.draw_hidden_field('submit_logout', 'logout', false).'
 					  &nbsp;&nbsp;
 					  <input class="form_button" type="submit" name="btnLogout" value="'._BUTTON_LOGOUT.'" />&nbsp;&nbsp;
 					  </form>';
-			$output .= draw_block_bottom(false);
-		}		
+		}
 		
 		$this->activeMenuCount = $menu_index;
 

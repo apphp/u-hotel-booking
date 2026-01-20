@@ -731,7 +731,7 @@ class Bookings extends MicroGrid {
 			'vat_percent'  		 => array('title'=>_VAT_PERCENT, 'type'=>'label'),
 			'payment_sum'  		 => array('title'=>_PAYMENT_SUM, 'type'=>'label'),
 			'currency'  		 => array('title'=>_CURRENCY, 'type'=>'label'),
-			'customer_name'      => array('title'=>_CUSTOMER, 'type'=>'label'),
+			'customer_name'      => array('title'=>_CUSTOMER, 'type'=>'html'),
 			'transaction_number' => array('title'=>_TRANSACTION, 'type'=>'label'),
 			'payment_date_formated' => array('title'=>_DATE, 'type'=>'label'),
 			'payment_type'       => array('title'=>_PAYMENT_TYPE, 'type'=>'enum', 'source'=>$this->arr_payment_types),

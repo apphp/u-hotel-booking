@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -30,10 +30,14 @@ if(mysqli_connect_errno()){
 set_collation();
 // set group_concat max length
 set_group_concat_max_length();
-/// set sql_mode to empty if you have Mixing of GROUP columns SQL issue
-///set_sql_mode();
-/// set SQL_BIG_SELECTS 
-///set_sql_big_selects()
+// Set sql_mode to empty if you have Mixing of GROUP columns SQL issue
+// set_sql_mode();
+
+// Set SQL_BIG_SELECTS
+// set_sql_big_selects();
+
+// Disable ONLY_FULL_GROUP_BY
+// set_only_full_group_by();
 
 /**
  * Database query
@@ -212,6 +216,15 @@ function set_sql_big_selects()
 {
 	database_void_query('SET SQL_BIG_SELECTS = 1');
 }
+
+/**
+ * Disable ONLY_FULL_GROUP_BY
+ */
+function set_only_full_group_by()
+{
+	database_void_query('SET sql_mode=(SELECT REPLACE(@@sql_mode, "ONLY_FULL_GROUP_BY", ""));');
+}
+
 
 /**
  * Return database error
