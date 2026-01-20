@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -136,9 +136,11 @@ if(ModulesSettings::Get('accounts', 'hotel_owner_allow_registration') == 'yes' &
                         <input type="password" class="form-control m-b-5" name="confirm_password" id="confirm_password" value="<?= decode_text($confirm_password); ?>" placeholder="<?= _CONFIRM_PASSWORD; ?>" autocomplete="off">
                         <input type="checkbox" class="tution_selector_main main_tuition_checkboxes" name="room_relocation" id="room_relocation" <?= (($room_relocation) ? 'checked="checked"' : '');?> value="1" autocomplete="off">
                         <label for="room_relocation"><?= _MS_ROOM_RELOCATION; ?></label>
+                        <img src="images/microgrid_icons/question.png" class="help" title="<?= _MS_ALLOW_RELOCATION_TO_OTHER_ROOM; ?>" alt="tooltip">
                         <br>
                         <input type="checkbox" class="tution_selector_main main_tuition_checkboxes" name="hotel_relocation" id="hotel_relocation" <?= (($hotel_relocation) ? 'checked="checked"' : '');?> value="1" autocomplete="off">
                         <label for="hotel_relocation"><?= _MS_HOTEL_RELOCATION; ?></label>
+                        <img src="images/microgrid_icons/question.png" class="help" title="<?= _MS_ALLOW_RELOCATION_TO_OTHER_HOTEL; ?>" alt="tooltip">
                     </fieldset>
                 </div>
             </div>

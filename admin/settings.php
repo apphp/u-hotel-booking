@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -546,9 +546,6 @@ if($objLogin->IsLoggedInAs('owner','mainadmin')){
 
 		$session_support = isset($phpinfo['session']['Session Support']) ? $phpinfo['session']['Session Support'] : 'unknown';
 		$mbstring_support = (function_exists('mb_detect_encoding')) ? 'enabled' : 'disabled';
-		$magic_quotes_gpc = ini_get('magic_quotes_gpc') ? _ON : _OFF;
-		$magic_quotes_runtime = ini_get('magic_quotes_runtime') ? _ON : _OFF;
-		$magic_quotes_sybase = ini_get('magic_quotes_sybase') ? _ON : _OFF;
 
 		$tab_content_7 = '<table border="0" class="tabs_table"><tr><td>';		
 		$tab_content_7 .= '<ul>
@@ -573,11 +570,6 @@ if($objLogin->IsLoggedInAs('owner','mainadmin')){
 				<li><b>Sendmail From:</b> <i>'.$sendmail_from.'</i></li>
 				<li><b>Sendmail Path:</b> <i>'.$sendmail_path.'</i></li>
 			</ul>';		
-		$tab_content_7 .= '<ul>
-				<li><b>Magic Quotes GPC:</b> <i>'.$magic_quotes_gpc.'</i></li>
-				<li><b>Magic Quotes RunTime:</b> <i>'.$magic_quotes_runtime.'</i></li>
-				<li><b>Magic Quotes SyBase:</b> <i>'.$magic_quotes_sybase.'</i></li>
-			</ul>';
 		$tab_content_7 .= '</td></tr></table>';
 
 	}elseif($tabid == '1_8'){		

@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -161,12 +161,14 @@ if($objLogin->IsLoggedInAsAdmin()){
         <td>
             <input type="checkbox" class="tution_selector_main main_tuition_checkboxes" name="room_relocation" id="room_relocation" <?= (($objAdmin->GetParameter('room_relocation')) ? 'checked="checked"' : '');?> value="1" autocomplete="off">
             <label for="room_relocation"><?= _MS_ROOM_RELOCATION; ?></label>
+            <img src="images/microgrid_icons/question.png" class="help" title="<?= _MS_ALLOW_RELOCATION_TO_OTHER_ROOM; ?>" alt="tooltip">
         </td>
     </tr>
     <tr>
         <td>
             <input type="checkbox" class="tution_selector_main main_tuition_checkboxes" name="hotel_relocation" id="hotel_relocation" <?= (($objAdmin->GetParameter('hotel_relocation')) ? 'checked="checked"' : '');?> value="1" autocomplete="off">
             <label for="hotel_relocation"><?= _MS_HOTEL_RELOCATION; ?></label>
+            <img src="images/microgrid_icons/question.png" class="help" title="<?= _MS_ALLOW_RELOCATION_TO_OTHER_HOTEL; ?>" alt="tooltip">
         </td>
     </tr>
     <?php endif; ?>

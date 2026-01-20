@@ -3,7 +3,7 @@
  * @project uHotelBooking
  * @copyright (c) 2019 ApPHP
  * @author ApPHP <info@apphp.com>
- * @site https://www.hotel-booking-script.com
+ * @site http://www.hotel-booking-script.com
  * @license http://hotel-booking-script.com/license.php
  */
 
@@ -281,134 +281,6 @@ if($check_key == 'apphphs' && ($token == $session_token) && (ModulesSettings::Ge
     }else{
        $arr[] = '{"status":"0"}';
     }
-
-
-	// algoritm I
-
-	// 1. Get list of available rooms in hotel
-	// 2. Perform split search between these rooms in selected period
-
-    // Rooms from one hotel //
-    // $rooms_count = array
-    // (
-        // 'rooms' => 2,
-        // 'hotels' => 1,
-        // 'min_price' => 0,
-        // 'min_price_per_hotel' => 55
-    // );
-
-    // $params = Array
-    // (
-        // 'room_id' => '',
-        // 'from_date' => array(1=>'2019-05-01',2=>'2019-05-05'),
-        // 'to_date' => array(1=>'2019-05-05',2=>'2019-05-10'),
-        // 'nights' => array(1=>4, 2=>5, 'total'=>9),
-        // 'from_year' => array(1=>'2019',2=>'2019'),
-        // 'from_month' => array(1=>'05',2=>'05'),
-        // 'from_day' => array(1=>'01',2=>'05'),
-        // 'to_year' => array(1=>'2019',2=>'2019'),
-        // 'to_month' => array(1=>'05',2=>'05'),
-        // 'to_day' => array(1=>'05',2=>'10'),
-        // 'max_adults' => 1,
-        // 'max_children' => 0,
-        // 'sort_by' => '',
-        // 'hotel_sel_id' => 2,
-        // 'hotel_sel_loc_id' => 2,
-        // 'property_type_id' => 1,
-        // 'min_max_hotels' => array(),
-        // 'sort_rating' => '',
-        // 'sort_price' => '',
-        // 'arr_filter_facilities' => array(),
-        // 'arr_serialize_facilities' => array(),
-        // 'arr_filter_rating' => array(),
-        // 'filter_start_distance' => 0,
-        // 'filter_end_distance' => 1000,
-        // 'filter_start_price' => 0,
-        // 'filter_end_price' => 10000,
-        // 'minimum_beds' => '',
-    // );
-
-    // $arrAvRooms = array(
-        // '2' => array(
-            // '0' => array(
-                // 'id' => 5,
-                // 'available_rooms' => 12,
-                // 'facilities' => 'a:8:{i:0;s:1:"4";i:1;s:1:"6";i:2;s:1:"9";i:3;s:2:"11";i:4;s:2:"12";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";}',
-                // 'lowest_price_per_night' => 55,
-                // 'max_adults' => 2
-            // ),
-            // '1' => array(
-                // 'id' => 6,
-                // 'available_rooms' => 10,
-                // 'facilities' => 'a:8:{i:0;s:1:"4";i:1;s:1:"6";i:2;s:1:"9";i:3;s:2:"11";i:4;s:2:"12";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";}',
-                // 'lowest_price_per_night' => 80,
-                // 'max_adults' => 4
-            // ),
-        // )
-    // );
-
-	// Rooms from different hotels //
-    //$rooms_count = array
-    //(
-        //'rooms' => 2,
-        //'hotels' => 2,
-        //'min_price' => 0,
-        //'min_price_per_hotel' => 80
-    //);
-
-    //$params = Array
-    //(
-        //'room_id' => '',
-        //'from_date' => array(1=>'2019-05-01',2=>'2019-05-05'),
-        //'to_date' => array(1=>'2019-05-05',2=>'2019-05-10'),
-        //'nights' => array(1=>4, 2=>5, 'total'=>9),
-        //'from_year' => array(1=>'2019',2=>'2019'),
-        //'from_month' => array(1=>'05',2=>'05'),
-        //'from_day' => array(1=>'01',2=>'05'),
-        //'to_year' => array(1=>'2019',2=>'2019'),
-        //'to_month' => array(1=>'05',2=>'05'),
-        //'to_day' => array(1=>'05',2=>'10'),
-        //'max_adults' => 4,
-        //'max_children' => 0,
-        //'sort_by' => '',
-        //'hotel_sel_id' => '',
-        //'hotel_sel_loc_id' => '',
-        //'property_type_id' => 1,
-        //'min_max_hotels' => array(),
-        //'sort_rating' => '',
-        //'sort_price' => '',
-        //'arr_filter_facilities' => array(),
-        //'arr_serialize_facilities' => array(),
-        //'arr_filter_rating' => array(),
-        //'filter_start_distance' => 0,
-        //'filter_end_distance' => 1000,
-        //'filter_start_price' => 0,
-        //'filter_end_price' => 10000,
-        //'minimum_beds' => '',
-    //);
-
-    //$arrAvRooms = array(
-        //'2' => array(
-            //'0' => array(
-                //'id' => 6,
-                //'available_rooms' => 10,
-                //'facilities' => 'a:8:{i:0;s:1:"4";i:1;s:1:"6";i:2;s:1:"9";i:3;s:2:"11";i:4;s:2:"12";i:5;s:2:"15";i:6;s:2:"16";i:7;s:2:"17";}',
-                //'lowest_price_per_night' => 80,
-                //'max_adults' => 4
-            //),
-        //),
-        //'3' => array(
-            //'0' => array(
-                //'id' => 8,
-                //'available_rooms' => 12,
-                //'facilities' => 'a:11:{i:0;s:1:"1";i:1;s:1:"3";i:2;s:1:"4";i:3;s:1:"8";i:4;s:1:"9";i:5;s:2:"12";i:6;s:2:"14";i:7;s:2:"15";i:8;s:2:"17";i:9;s:2:"19";i:10;s:2:"22";}',
-                //'lowest_price_per_night' => 190,
-                //'max_adults' => 3
-            //),
-        //),
-    //);
-
-    // $objRooms->SetArrAvailableRooms($arrAvRooms);
 
 	echo '[';
 	echo implode(',', $arr);

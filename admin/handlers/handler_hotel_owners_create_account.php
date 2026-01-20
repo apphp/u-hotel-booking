@@ -3,7 +3,7 @@
  * @project uHotelBooking
  * @copyright (c) 2019 ApPHP
  * @author ApPHP <info@apphp.com>
- * @site https://www.hotel-booking-script.com
+ * @site http://www.hotel-booking-script.com
  * @license http://hotel-booking-script.com/license.php
  */
 
@@ -151,7 +151,7 @@ if(ModulesSettings::Get('accounts', 'hotel_owner_allow_registration') == 'yes' &
         if($msg == ''){
             if($registrationType == 'advanced'){
                 $email = $hotel['email'];
-                $companies = serialize(array(1=>$hotel['id']));
+                $companies = $hotel['id'];
             }elseif($registrationType == 'standard'){
                 if(!PASSWORDS_ENCRYPTION){
                     $user_password = '\''.encode_text($password).'\'';

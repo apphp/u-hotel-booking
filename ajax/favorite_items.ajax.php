@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -12,7 +12,7 @@ define('APPHP_CONNECT', 'direct');
 require_once('../include/base.inc.php');
 require_once('../include/connection.php');
 
-$arr_item_types = array('hotel'=>'1', 'room'=>'2', 'car'=>'3');
+$arr_item_types = array('hotel'=>'1', 'room'=>'2', 'car'=>'3', 'tour'=>'4');
 
 $action = isset($_POST['action']) && in_array($_POST['action'], array('add', 'remove')) ? $_POST['action'] : '';
 $item_type = isset($_POST['item_type']) && isset($arr_item_types[$_POST['item_type']]) ? $arr_item_types[$_POST['item_type']] : '';
