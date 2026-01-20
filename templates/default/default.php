@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -31,7 +31,7 @@ if(!empty($affiliate_id) && Modules::IsModuleInstalled('affiliates')){
 
 ?>
 <!DOCTYPE html>
-<html<?= Application::Get('lang') != '' ? ' lang="'.Application::Get('lang').'"' : ''; ?>>
+<html <?= Application::Get('lang') != '' ? 'lang="'.Application::Get('lang').'"' : ''; ?>>
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,7 +45,7 @@ if(!empty($affiliate_id) && Modules::IsModuleInstalled('affiliates')){
 	<link href="<?= APPHP_BASE; ?>images/icons/apphp.ico" rel="SHORTCUT ICON" />
     <?php
         include('templates/'.Application::Get('template').'/javascript.top.php');
-		if(in_array(Application::Get('page'), array('hotels', 'home', 'rooms', 'check_cars_availability', 'check_availability'))){
+		if(in_array(Application::Get('page'), array('hotels', 'home', 'rooms', 'check_cars_availability', 'check_tours_availability', 'check_availability'))){
 			if(Application::Get('page') == 'hotels' || Application::Get('page') == 'rooms'){
 		?>
                 <!-- jQuery-->
@@ -72,7 +72,7 @@ if(!empty($affiliate_id) && Modules::IsModuleInstalled('affiliates')){
 		}
 		
 		// Swipe support
-		if(in_array(Application::Get('page'), array('home', 'rooms', 'check_status', 'check_cars_availability', 'check_availability'))){
+		if(in_array(Application::Get('page'), array('home', 'rooms', 'check_status', 'check_cars_availability', 'check_tours_availability', 'check_availability'))){
 			echo '<!-- Swipe plugin -->'."\n";
 			echo '<script type="text/javascript" src="'.APPHP_BASE.'templates/'.Application::Get('template').'/assets/js/jquery.detect_swipe.js"></script>'."\n";
 		}
@@ -100,6 +100,21 @@ if(!empty($affiliate_id) && Modules::IsModuleInstalled('affiliates')){
 			include('templates/'.Application::Get('template').'/check_properties.content.php');
             include('templates/'.Application::Get('template').'/home-javascript.bottom.php');
             Rooms::DrawSearchAvailabilityFooter();
+        }elseif(Application::Get('page') == 'hotels'){
+            include('templates/'.Application::Get('template').'/breadcrubs.php');
+            include('templates/'.Application::Get('template').'/hotel_description.content.php');
+            include('templates/'.Application::Get('template').'/footer.php');
+            include('templates/'.Application::Get('template').'/javascript.details.bottom.php');
+            Rooms::DrawSearchAvailabilityFooter('.details');
+        }elseif(Application::Get('page') == 'rooms'){
+            include('templates/'.Application::Get('template').'/breadcrubs.php');
+            include('templates/'.Application::Get('template').'/room_description.content.php');
+            include('templates/'.Application::Get('template').'/footer.php');
+            include('templates/'.Application::Get('template').'/javascript.details.bottom.php');
+            Rooms::DrawSearchAvailabilityFooter();
+
+        // CARS
+        // -------------------------------------------------
 		}elseif(
 			(Modules::IsModuleInstalled('car_rental') && ModulesSettings::Get('car_rental', 'is_active') != 'no') &&
 			((Application::Get('page') == 'check_cars_availability' && Application::Get('customer') == '')
@@ -120,19 +135,34 @@ if(!empty($affiliate_id) && Modules::IsModuleInstalled('affiliates')){
             include('templates/'.Application::Get('template').'/car_description.content.php');
             include('templates/'.Application::Get('template').'/footer.php');
             include('templates/'.Application::Get('template').'/javascript.details.bottom.php');
-            Rooms::DrawSearchAvailabilityFooter();		
-        }elseif(Application::Get('page') == 'hotels'){
+            Rooms::DrawSearchAvailabilityFooter();
+
+        // TOURS
+		// -------------------------------------------------
+        }elseif(
+            (Modules::IsModuleInstalled('tours_and_attractions') && ModulesSettings::Get('tours_and_attractions', 'is_active') != 'no') &&
+            ((Application::Get('page') == 'check_tours_availability' && Application::Get('customer') == '')
+//                || (Application::Get('page') == 'book_now_car')
+//                || (Application::Get('page') == 'booking_car_details')
+//                || (Application::Get('page') == 'booking_car_checkout')
+//                || (Application::Get('page') == 'booking_car_payment')
+//                || (Application::Get('page') == 'cars_payment')
+//                || (Application::Get('page') == 'cars_return')
+			)
+        ){
             include('templates/'.Application::Get('template').'/breadcrubs.php');
-            include('templates/'.Application::Get('template').'/hotel_description.content.php');
+            include('templates/'.Application::Get('template').'/content_tours.php');
             include('templates/'.Application::Get('template').'/footer.php');
-            include('templates/'.Application::Get('template').'/javascript.details.bottom.php');
-            Rooms::DrawSearchAvailabilityFooter('.details');
-        }elseif(Application::Get('page') == 'rooms'){
+            include('templates/'.Application::Get('template').'/javascript.bottom.php');
+        }elseif((Modules::IsModuleInstalled('tours_and_attractions') && ModulesSettings::Get('tours_and_attractions', 'is_active') != 'no') && Application::Get('page') == 'tours'){
             include('templates/'.Application::Get('template').'/breadcrubs.php');
-            include('templates/'.Application::Get('template').'/room_description.content.php');
+            include('templates/'.Application::Get('template').'/tour_description.content.php');
             include('templates/'.Application::Get('template').'/footer.php');
             include('templates/'.Application::Get('template').'/javascript.details.bottom.php');
             Rooms::DrawSearchAvailabilityFooter();
+
+        // CONFERENCES
+        // -------------------------------------------------
         }elseif(Application::Get('page') == 'conferences'
             && Modules::IsModuleInstalled('conferences') && ModulesSettings::Get('conferences', 'is_active') != 'no') {
             include('templates/'.Application::Get('template').'/breadcrubs.php');
@@ -140,12 +170,7 @@ if(!empty($affiliate_id) && Modules::IsModuleInstalled('affiliates')){
             include('templates/'.Application::Get('template').'/footer.php');
             include('templates/'.Application::Get('template').'/javascript.conferences.bottom.php');
             Rooms::DrawSearchAvailabilityFooter();
-        //}elseif(Application::Get('page') == 'activities'){
-        //  include('templates/'.Application::Get('template').'/breadcrubs.php');
-        //  include('templates/'.Application::Get('template').'/activities.content.php');
-        //  include('templates/'.Application::Get('template').'/footer.php');
-        //  include('templates/'.Application::Get('template').'/javascript.conferences.bottom.php');
-        //  Rooms::DrawSearchAvailabilityFooter();
+
         }else{
             include('templates/'.Application::Get('template').'/breadcrubs.php');
             include('templates/'.Application::Get('template').'/content.php');

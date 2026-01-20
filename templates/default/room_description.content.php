@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -23,7 +23,7 @@ $arrFloor = Rooms::GetFloors();
 $customer_id = $objLogin->GetLoggedID();
 
 // Get info about wishlist
-$in_wishlist = Wishlist::GetHotelInfo($room_id, 'room', $customer_id);
+$in_wishlist = Wishlist::GetWishListItemInfo($room_id, 'room', $customer_id);
 
 if(empty($hotel_info) || empty($room_info) || $room_info['is_active'] == 0){
 
@@ -115,7 +115,7 @@ if(empty($hotel_info) || empty($room_info) || $room_info['is_active'] == 0){
             <div class="col-md-8" id="bx-slider">
                 <ul id="bxslider">
                 <?php for($i = 0, $max_count = count($arr_images); $i < $max_count; $i++){ ?>
-                    <li<?= ($i > 0 ? ' style="display:none;float:none;list-style:none;"' : ' style="float:none;list-style:none;"'); ?>><img src="images/rooms/<?= htmlentities($arr_images[$i]); ?>" /></li>
+                    <li <?= ($i > 0 ? ' style="display:none;float:none;list-style:none;"' : ' style="float:none;list-style:none;"'); ?>><img src="images/rooms/<?= htmlentities($arr_images[$i]); ?>" /></li>
                 <?php } ?>
                 </ul>
 

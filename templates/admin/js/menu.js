@@ -278,7 +278,7 @@ function open_popup(file, key_1, key_2, key_3, token){
 		type: "POST",
 		data: ({param : key_1, id : key_2, customer_type : key_3, check_key : "apphphs", token : token_}),
 		dataType: "html",
-		async:false,
+		async:true,
 		error: function(html){
 			alert("AJAX: cannot connect to the server or server response error! Please try again later.");
 		},

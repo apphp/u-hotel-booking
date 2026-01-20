@@ -1,0 +1,26 @@
+Version 1.3.0 - [25.02.2019]
+----------------------------
+1. Feature: [added] possibility to login/restore password on widget pages
+2. Feature: [improved] SQL queries optimization
+1. Bug: [fixed] background fixation on scrolling
+2. Bug: [fixed] button click error until page is fully loaded
+3. Bug: [fixed] wrong drawing language flags
+
+
+Version 1.2.0 - [03 Jan, 2018]
+----------------------------
+1. Bug: [fixed] error on Long-Term Stay Discount
+2. Bug: [fixed] error on email validation when creating customer account
+3. Bug: [fixed] error on customer account update
+
+
+Version 1.1.0 - [29 Dec, 2017]
+----------------------------
+1. Feature: [added] display of discounts
+2. Feature: [added] responsive
+1. Feature: [improved] check css and background file paths
+
+
+Version 1.0.0 - [12 Jan, 2017]
+----------------------------
+Initial release

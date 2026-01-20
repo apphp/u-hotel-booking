@@ -1,0 +1,103 @@
+INSTALL
+================================================================
+- mobile/
+- templates/mobile/
+- add to include/settings.inc.php
+    define('MOBILE_APP_NAME', 'uHotelBooking Mobile App');
+    define('MOBILE_APP_VERSION', '1.0.0');
+- add changes in index.php
+- add changes in include/functions.common.inc.php
+- add changes in include/classes/core/Application
+- add changes in include/connection
+- run SQL dump
+================================================================
+
+
+[+] BUG - after loading new content - refresh dons't work
+
+
+
+GENERAL:
+---------------
+
+** DO only on home page
+== add changing langs
+	[+] select lang
+	[+] changeLanguage()
+	[+] test, add new langs
+	[+] load langs automatically from server ???
+	[+] get langs from website call:
+		[+] SEE: init: function () {}
+		[+] place // Load languages into separate function !!!
+
+	- when click on item - leave it selected or bolded to see when we open action sheets: both for lang and curre
+	- show toast after lang is chaged
+	- translate words in JS app.js
+	- BUG: when back to the home page ac1.open(); doesn't work
+	- if RTL - make - make layout RTL !!!!
+
+== add changing currency
+
+    [+] make it shows all langs and cutrrent y of the system : loads dinamikally !!!
+    [+] change currncy or lang    -
+    == changeCurrency()
+
+    - make Action Sheet catches click on item
+    - make it closes popover-links on any action with Action Sheet !!!!
+    - when close currency - close languages also!!! and revert
+
+
+
+- in mobile block access from non-mobile access
+- make pages slides aside !!! like in native app
+- add min version of uhb for this mobile app
+	- where to write it ? in README? yues. create such file
+- make views are changed from side and not from bottom
+
+
+TEMPLATE:
+--------------
+- clear files
+
+
+LEFT MENU:
+---------------
+- exit app link???
+- make color black + link colors
+- implement pages
+	-- home
+	=== about us
+		- receive page and load systme page content
+		- use handler
+	=== about APP
+		- transalte
+		- how to open links in broswer!!!
+
+	-- 404
+- on click add panel-close active-state - to save selected ???
+
+PAGES:
+---------------
+- about app
+
+- 404
+- about us
+- Home page
+- search
+
+
+
+BUGS:
+--------------------
+- make such urls #!/home/ are redirected to mobile or make it place in history a rela URL
+- if place the same url few times prevent it place it in pushState !!!
+
+
+
+MUST BE DONE IN ANDROID APP:
+---------------
+- splash window ?? - must be done in android app
+  http://forum.framework7.io/t/how-to-do-a-splash-screen-in-framework7/1978
+- placeholder on no connection
+
+- check if RTR of original browser works also in app

@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://hotel-booking-script.com/license.php
 */
 
@@ -47,7 +47,7 @@ defined('APPHP_EXEC') or die('Restricted Access');
     }
 
 	// Get info about wishlist
-	$in_wishlist = Wishlist::GetHotelInfo($hotel_id, 'hotel', $customer_id);
+	$in_wishlist = Wishlist::GetWishListItemInfo($hotel_id, 'hotel', $customer_id);
 	
 	$hotel_facilities  = isset($hotel_info['facilities']) ? unserialize($hotel_info['facilities']) : array();
 	// prepare facilities array		
@@ -115,40 +115,39 @@ defined('APPHP_EXEC') or die('Restricted Access');
 
 <!-- CONTENT -->
 <div class="container">
-<?php
-	if(ADMIN_CAN_SEE_INACTIVE_PROPERTIES && $objLogin->IsLoggedInAs('owner','mainadmin')){
-		$view_condition = empty($hotel_info);
-	}else{
-		$view_condition = empty($hotel_info) || $hotel_info['is_active'] == 0;
-	}
-	
-	if($view_condition){
-?>
-		<div class="container pagecontainer offset-2">
-			<?php
-				draw_title_bar(_HOTEL_DESCRIPTION);
-				draw_important_message(_WRONG_PARAMETER_PASSED);
-			?>
-            <br/>
-            <br/>
-		</div>
-<?php			
-	}else{			
-
-	$not_iteration = Session::Get('session_hotel_'.$hotel_id.'_not_iteration');
-	$not_iteration_time = time() - (int)Session::Get('session_hotel_'.$hotel_id.'_not_iteration_time');
-	if(!$not_iteration || $not_iteration_time > 60){
-		// iteration number of views
-		if(Hotels::NumberViewsIteration($hotel_id)){
-			$hotel_info['number_of_views']++;
-			Session::Set('session_hotel_'.$hotel_id.'_not_iteration', '1');
-			Session::Set('session_hotel_'.$hotel_id.'_not_iteration_time', time());
+	<?php
+		if(ADMIN_CAN_SEE_INACTIVE_PROPERTIES && $objLogin->IsLoggedInAs('owner','mainadmin')){
+			$view_condition = empty($hotel_info);
+		}else{
+			$view_condition = empty($hotel_info) || $hotel_info['is_active'] == 0;
 		}
-	}
 
-?>
-    <div class="container pagecontainer offset-0">	
+		if($view_condition){
+	?>
+			<div class="container pagecontainer offset-2">
+				<?php
+					draw_title_bar(_HOTEL_DESCRIPTION);
+					draw_important_message(_WRONG_PARAMETER_PASSED);
+				?>
+				<br/>
+				<br/>
+			</div>
+	<?php
+		}else{
 
+		$not_iteration = Session::Get('session_hotel_'.$hotel_id.'_not_iteration');
+		$not_iteration_time = time() - (int)Session::Get('session_hotel_'.$hotel_id.'_not_iteration_time');
+		if(!$not_iteration || $not_iteration_time > 60){
+			// iteration number of views
+			if(Hotels::NumberViewsIteration($hotel_id)){
+				$hotel_info['number_of_views']++;
+				Session::Set('session_hotel_'.$hotel_id.'_not_iteration', '1');
+				Session::Set('session_hotel_'.$hotel_id.'_not_iteration_time', time());
+			}
+		}
+	?>
+
+    <div class="container pagecontainer offset-0">
         <!-- SLIDER -->
         <?php if(GALLERY_TYPE != 'carousel'){ ?>
         <div class="col-md-8 details-slider">
@@ -172,7 +171,7 @@ defined('APPHP_EXEC') or die('Restricted Access');
         <div class="col-md-8" id="bx-slider">
             <ul id="bxslider">
             <?php for($i = 0, $max_count = count($arr_images); $i < $max_count; $i++){ ?>
-				<li<?= ($i > 0 ? ' style="display:none;float:none;list-style:none;"' : ' style="float:none;list-style:none;"'); ?>><img src="images/hotels/<?= htmlentities($arr_images[$i]); ?>"/></li>
+				<li <?= ($i > 0 ? ' style="display:none;float:none;list-style:none;"' : ' style="float:none;list-style:none;"'); ?>><img src="images/hotels/<?= htmlentities($arr_images[$i]); ?>"/></li>
             <?php } ?>
             </ul>
 
@@ -339,16 +338,14 @@ defined('APPHP_EXEC') or die('Restricted Access');
 					<input name="max_children" value="0" type="hidden">
 					<input name="sort_by" value="stars-5-1" type="hidden">
 						
-					<input type="submit" href="index.php?page=check_availability" class="booknow margtop20 btnmarg" value="<?= _BOOK_NOW; ?>" />
+					<input type="submit" class="booknow margtop20 btnmarg" value="<?= _BOOK_NOW; ?>" />
 				</form>
             </div>
         </div>
         <!-- END OF RIGHT INFO -->
-
     </div>
     <!-- END OF container-->
     
-
     <div class="container mt25 offset-0">
         <div class="col-md-8 pagecontainer2 offset-0">
             <div class="cstyle10"></div>
@@ -586,10 +583,10 @@ defined('APPHP_EXEC') or die('Restricted Access');
 											<?= strtolower(_FROM); ?> <?= $reviews[0][$i]['author_city'].( !empty($reviews[0][$i]['author_city']) && $reviews[0][$i]['country_name'] ? ', ' : '' ).$reviews[0][$i]['country_name']; ?><br/>
 											<div class="vpadding10 hpadding20">
 												<span class="green "><?= Reviews::GetEvaluation($reviews[0][$i]['evaluation']); ?></span>
+                                                <?php if($reviews[0][$i]['evaluation'] > 4){ ?>
+													&nbsp; <img src="templates/default/images/check.png" alt="check" />
+                                                <?php } ?>
 											</div>
-											<?php if($reviews[0][$i]['evaluation'] > 4){ ?>
-												<img src="templates/default/images/check.png" alt=""/><br>
-											<?php } ?>
 										</div>
 										
 									</div>
@@ -720,15 +717,20 @@ defined('APPHP_EXEC') or die('Restricted Access');
 						<div class="hpadding20">
 						<?php draw_message(str_replace('_PROPERTY_NAME_', $hotel_info['name'], _PROPERTY_NOT_REVIEWED_YET)); ?>
 						</div>
-						<br/><br/>
-					<?php if(!$objLogin->IsLoggedInAsCustomer()){ ?>
-						<div class="hpadding20">
-						<?php draw_message(_MUST_BE_LOGGED); ?>
-						</div>
-						<br/><br/>
-					<?php  } 
-					   } 
-					?>
+						<br/>
+						<?php if(!$objLogin->IsLoggedInAsCustomer()){ ?>
+							<div class="hpadding20">
+							<?php draw_message(_MUST_BE_LOGGED); ?>
+							</div>
+							<br/><br/>
+    	                <?php }else{ ?>
+							<div class="hpadding20" id="title-add-review">
+								<span class="opensans dark size16 bold">
+									&nbsp; <a href="index.php?customer=my_reviews&mg_action=add&hid=<?=(int)$hotel_id?>" class="grey">+ <?=_ADD_REVIEW?></a>
+								</span>
+							</div>
+	                    <?php } ?>
+                    <?php } ?>
 
 					<?php
 					// It's allowed to be added from My Reviews menu in Customer's Account

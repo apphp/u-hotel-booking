@@ -1,0 +1,29 @@
+
+
+=== [2020-08-09 19:55:16] ===================
+---------------
+POST
+x_trans_id=TEST_ms9ptzsx
+x_method=1
+x_amount=99
+custom=ZW4V518PC0
+token=af9da362ea919a39899125256227b35d
+btnSubmit_x=51
+btnSubmit_y=14
+---------------
+GET
+page=booking_tour_notify_authorize_net
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation 
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'ZW4V518PC0' AND status = 0
+UPDATE uhb_tours_reservations SET
+							status = 3,
+							transaction_number = 'TEST_ms9ptzsx',
+							payment_date = '2020-08-09 19:55:16',
+							payment_type = 4,
+							payment_method = 1,
+							reservation_paid = 99
+						WHERE reservation_number = 'ZW4V518PC0'
+Thank you! The order has been placed in our system and will be processed shortly. Your booking number is: _BOOKING_NUMBER_.
+

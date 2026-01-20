@@ -1,0 +1,71 @@
+
+
+=== [2020-08-05 20:50:03] ===================
+---------------
+POST
+order_number=TEST_a1cb5zuo
+pay_method=2CO
+total=99
+custom=V93VY24ZQF
+token=b7206fd887d777e1c68998fc558048cc
+btnSubmit_x=63
+btnSubmit_y=35
+---------------
+GET
+page=booking_tour_notify_2co
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation 
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'V93VY24ZQF' AND status = 0
+Error: no records found. 
+Error: no records found
+
+
+=== [2020-08-08 16:06:39] ===================
+---------------
+POST
+order_number=TEST_fnmtf7t0
+pay_method=2CO
+total=99
+custom=XLBMINDF2H
+token=ce7d1abbd0e8cc4b773be1651e85757a
+btnSubmit_x=53
+btnSubmit_y=29
+---------------
+GET
+page=booking_tour_notify_2co
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation 
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'XLBMINDF2H' AND status = 0
+Error: no records found. 
+Error: no records found
+
+
+=== [2020-08-08 16:39:18] ===================
+---------------
+POST
+order_number=TEST_zzi5hvzh
+pay_method=2CO
+total=44
+custom=PSJNA0JZ2E
+token=345fef6cadf219e9269bc0929f5878b5
+btnSubmit_x=50
+btnSubmit_y=39
+---------------
+GET
+page=booking_tour_notify_2co
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation 
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'PSJNA0JZ2E' AND status = 0
+UPDATE uhb_tours_reservations SET
+							status = 3,
+							transaction_number = 'TEST_zzi5hvzh',
+							payment_date = '2020-08-08 16:39:18',
+							payment_type = 3,
+							payment_method = 1,
+							reservation_paid = 44
+						WHERE reservation_number = 'PSJNA0JZ2E'
+Thank you! The order has been placed in our system and will be processed shortly. Your booking number is: _BOOKING_NUMBER_.
+

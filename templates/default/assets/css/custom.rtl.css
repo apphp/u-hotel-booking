@@ -258,6 +258,9 @@ height:30px;
 .mt-10{position:relative; top:-10px;}
 .mt-200{position:relative; top:-261px; }
 .mt-130{position:relative; top:-130px;}
+
+.mb5{position:relative; margin-bottom:5px; }
+.mb10{position:relative; margin-bottom:10px; }
 .mb-200{position:relative; margin-bottom:-250px; }
 
 
@@ -271,6 +274,7 @@ height:30px;
 .mr30{margin-right:30px;}
 
 .pt-6{position:relative;top:-6px;}
+.pr-10{padding-right: 10px}
 
 .ca01{margin: 20px 0 0 30px;}
 .ca02{position:relative; top:-10px; margin:8px 10px 0 0;color:#999;}
@@ -1137,11 +1141,8 @@ ul.footerlistblack li a:hover{color:#72bf66; text-decoration:none;}
 .bordertype5{ border-right:1px solid #e7e7e7; color:#999; }
 .bordertype-wishlist{ text-align:left; color:#999; padding:15px 0px 0px 10px;}
 
-.purchasecontainer {
-    border-top: 1px solid #e6e6e6;
-    margin-top: 10px;
-    padding: 10px 20px 10px 20px;
-}
+.purchasecontainer { border-top: 1px solid #e6e6e6; margin-top: 10px; padding: 10px 20px 10px 20px; }
+.purchasecontainer-tours { border-top: 1px solid #e6e6e6; margin-top: 10px; padding: 5px 25px 0 25px; }
 
 .sfix{position:absolute;top:995px;}
 .sfix2{position:absolute;top:440px;}
@@ -2810,7 +2811,15 @@ a.back-to {
 	max-width: 150px !important;
 	width: 150px !important;
 	padding:4px 6px 4px 20px !important;
-}	
+}
+
+.grid-view .col-md-4{
+	width:32%;
+}
+.grid-view > div{
+	margin-right:10px;margin-bottom:20px
+}
+
 
 /* MOBILE FILTER
 ---------------------------------------------------------- */

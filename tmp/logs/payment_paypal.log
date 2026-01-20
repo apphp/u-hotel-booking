@@ -1,0 +1,197 @@
+
+
+=== [2020-08-08 16:27:33] ===================
+---------------
+POST
+txn_id=TEST_008j8bl2
+payer_status=verified
+mc_gross=99
+custom=OFOQGL3ECV
+token=01b38acc0c6b19220318bc4dee6efc2b
+btnSubmit_x=87
+btnSubmit_y=17
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'OFOQGL3ECV' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+From IP: 127.0.0.1
+Status: Completed
+Possible Attempt of Hack Attack? 
+Please check this order: 
+Order Price:  
+Payment Processing Gross Price: 99 
+
+
+
+
+=== [2020-08-08 16:28:03] ===================
+---------------
+POST
+txn_id=TEST_zm19hvec
+payer_status=verified
+mc_gross=198
+custom=OFOQGL3ECV
+token=8985740ffcd875ae06099caf76e598eb
+btnSubmit_x=79
+btnSubmit_y=14
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'OFOQGL3ECV' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+From IP: 127.0.0.1
+Status: Completed
+Possible Attempt of Hack Attack? 
+Please check this order: 
+Order Price:  
+Payment Processing Gross Price: 198 
+
+
+
+
+=== [2020-08-08 16:30:26] ===================
+---------------
+POST
+txn_id=TEST_ibctnm71
+payer_status=verified
+mc_gross=44
+custom=OFOQGL3ECV
+token=8e9b88d44708b45e5be5ad4382b41b8f
+btnSubmit_x=92
+btnSubmit_y=30
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'OFOQGL3ECV' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+From IP: 127.0.0.1
+Status: Completed
+Possible Attempt of Hack Attack? 
+Please check this order: 
+Order Price:  
+Payment Processing Gross Price: 44 
+
+
+
+
+=== [2020-08-08 16:33:23] ===================
+---------------
+POST
+txn_id=TEST_2l9grxyt
+payer_status=verified
+mc_gross=99
+custom=OFOQGL3ECV
+token=88c88453719890144bf611177a8fb9e1
+btnSubmit_x=59
+btnSubmit_y=20
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'OFOQGL3ECV' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+UPDATE uhb_tours_reservations SET
+								status = 3,
+								transaction_number = 'TEST_2l9grxyt',
+								payment_date = '2020-08-08 16:33:23',
+								payment_type = 2,
+								payment_method = 0,
+								reservation_paid = 99
+							WHERE reservation_number = 'OFOQGL3ECV'
+Thank you! The order has been placed in our system and will be processed shortly. Your booking number is: _BOOKING_NUMBER_.
+
+
+
+=== [2020-08-08 16:38:56] ===================
+---------------
+POST
+txn_id=TEST_ybp8unx2
+payer_status=verified
+mc_gross=99
+custom=HQM9V01UIY
+token=0b75c49a4dca8845d4dd8d6f8db5dc04
+btnSubmit_x=87
+btnSubmit_y=5
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'HQM9V01UIY' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+UPDATE uhb_tours_reservations SET
+								status = 3,
+								transaction_number = 'TEST_ybp8unx2',
+								payment_date = '2020-08-08 16:38:56',
+								payment_type = 2,
+								payment_method = 0,
+								reservation_paid = 99
+							WHERE reservation_number = 'HQM9V01UIY'
+Thank you! The order has been placed in our system and will be processed shortly. Your booking number is: _BOOKING_NUMBER_.
+
+
+
+=== [2020-08-09 20:09:54] ===================
+---------------
+POST
+txn_id=TEST_rc610q4y
+payer_status=verified
+mc_gross=44
+custom=NJBOSLQOWZ
+token=7898de8314009680b15a6873c2aeb573
+btnSubmit_x=76
+btnSubmit_y=19
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'NJBOSLQOWZ' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+UPDATE uhb_tours_reservations SET
+								status = 3,
+								transaction_number = 'TEST_rc610q4y',
+								payment_date = '2020-08-09 20:09:54',
+								payment_type = 2,
+								payment_method = 0,
+								reservation_paid = 44
+							WHERE reservation_number = 'NJBOSLQOWZ'
+Thank you! The order has been placed in our system and will be processed shortly. Your booking number is: _BOOKING_NUMBER_.
+
+
+
+=== [2020-08-15 19:21:48] ===================
+---------------
+POST
+txn_id=TEST_xylyvp6i
+payer_status=verified
+mc_gross=118.8
+custom=TJHEDAI2KQ
+token=b799055880fdf19ca517b23cb736c4bb
+btnSubmit_x=83
+btnSubmit_y=16
+---------------
+GET
+page=booking_tour_notify_paypal
+
+SELECT id, reservation_number, reservation_description, reservation_price, vat_fee, reservation_total_price, currency, customer_id, is_admin_reservation, status
+					FROM uhb_tours_reservations
+					WHERE reservation_number = 'TJHEDAI2KQ' AND (status = 0 OR status = 1 OR status = 2 OR status = 3)
+UPDATE uhb_tours_reservations SET
+								status = 3,
+								transaction_number = 'TEST_xylyvp6i',
+								payment_date = '2020-08-15 19:21:48',
+								payment_type = 2,
+								payment_method = 0,
+								reservation_paid = 118.8
+							WHERE reservation_number = 'TJHEDAI2KQ'
+Thank you! The order has been placed in our system and will be processed shortly. Your booking number is: _BOOKING_NUMBER_.
+

@@ -72,6 +72,7 @@ img.logo {width:120px;}
 .cunvailable{cursor:not-allowed;}
 .ohidden{overflow:hidden;}
 .posright-0{right:auto!important}
+.wordwrap{ word-wrap: break-word; word-break: break-word;-ms-hyphens: auto; -moz-hyphens: auto;-webkit-hyphens: auto;hyphens: auto;}
 
 .line1{background:#e7e7e7; height:1px;  margin:16px 0 6px 0; padding:0; display:block;}
 .line2{background:#e8e8e8; height:1px;  margin:12px 0 6px 0; padding:0; display:block;}
@@ -255,6 +256,9 @@ height:30px;
 .mt-10{position:relative; top:-10px;}
 .mt-200{position:relative; top:-261px; }
 .mt-130{position:relative; top:-130px;}
+
+.mb5{position:relative; margin-bottom:5px; }
+.mb10{position:relative; margin-bottom:10px; }
 .mb-200{position:relative; margin-bottom:-250px; }
 
 
@@ -268,6 +272,7 @@ height:30px;
 .mr30{margin-right:30px;}
 
 .pt-6{position:relative;top:-6px;}
+.pr-10{padding-right: 10px}
 
 .ca01{margin: 20px 0 0 30px;}
 .ca02{position:relative; top:-10px; margin:8px 10px 0 0;color:#999;}
@@ -1281,11 +1286,8 @@ color:#fff;
 .bordertypeh100{height:100px;}
 .bordertypeh60{height:60px;}
 
-.purchasecontainer {
-    border-top: 1px solid #e6e6e6;
-    margin-top: 10px;
-    padding: 10px 20px 10px 20px;
-}
+.purchasecontainer { border-top: 1px solid #e6e6e6; margin-top: 10px; padding: 10px 20px 10px 20px; }
+.purchasecontainer-tours { border-top: 1px solid #e6e6e6; margin-top: 10px; padding: 5px 25px 0 25px; }
 
 .sfix{position:absolute;top:995px;}
 .sfix2{position:absolute;top:440px;}
@@ -1552,7 +1554,8 @@ a:hover.backbtn{background:url('../../images/back-icon.png') #222 no-repeat  scr
 .labelleft{padding:10px 0 15px 15px;}
 .labelleft2{padding:10px 0 15px 15px;font-family:"Open Sans"; font-size:13px; line-height:18px;}
 
-
+.labelleft2-tour{padding:5px 5px 5px 5px;}
+.labelleft2-tour-descr{padding:0px 15px 0px 15px; border-right: 1px solid #e8e8e8;}
 
 .listitem2{background:#efefef; height:210px; overflow:hidden; position:relative;}
 .listitem2 img{ height:100%; -webkit-transition:.3s;-moz-transition:.3s;transition:.3s}
@@ -2548,6 +2551,7 @@ input[type=password]:focus{
     font-weight: 700;
     transition: all 0.3s ease 0s;
 }
+
 .button-availability:hover{
 	/*color:#be3507;*/
 	color:#ffffff;
@@ -2899,7 +2903,7 @@ INPUT.mgrid_text, SELECT.mgrid_select, #birth_date__nc_month, #birth_date__nc_da
 }
 
 INPUT.mgrid_text:focus {
-    border-color: #66afe9;
+    border-color: #66afe9 !important;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -2918,6 +2922,7 @@ SELECT.mgrid_select, #birth_date__nc_month, #birth_date__nc_day, #birth_date__nc
 	background: url('../../images/select.png') #fff no-repeat right 0px top -8px !important;
 	border: 2px solid #ebebeb !important;
 	color:#888;
+	outline: 0;
 }
 
 SELECT.mgrid_select:focus, #birth_date__nc_month:focus, #birth_date__nc_day:focus, #birth_date__nc_year:focus {
@@ -3244,6 +3249,15 @@ table.conference .conference-date {
 	z-index: 1020 !important;
 }
 
+.grid-view.col-md-4{
+	width:32%;
+}
+.grid-view > div{
+	margin-right:10px;margin-bottom:20px
+}
+
+
+
 /* MOBILE FILTER
 ---------------------------------------------------------- */
 .sidenav {padding:20px;}
@@ -3262,6 +3276,7 @@ table.conference .conference-date {
 	.filter-closebtn		{ display: none; }
 	ul.nav li.dropdown > ul.dropdown-menu {display: block; margin-top:40px;opacity:0;max-width:0;max-height:0;transition: all .3s ease-in-out; overflow:hidden;}
 	ul.nav li.dropdown:hover > ul.dropdown-menu {display: block;margin-top:0px;opacity:1;max-width:900px;max-height:500px;}
+
 }
 
 @media (max-width: 991px) {
@@ -3278,6 +3293,11 @@ table.conference .conference-date {
 	.sidenav .left_box_container { margin:0px 10px 15px 10px; }
 	.filter-popover 	{ background-color:#000; opacity:0.7; display: block; width:100%; height:100%; padding:1000px; position: fixed; top:62px ; z-index: 200; margin-left: 255px; transition: margin-left .5s; }
 	.filter-link		{ cursor:pointer;}
+
+	.grid-view.col-md-4{
+		width:49%;
+		float: left;
+	}
 
 }
 
@@ -3320,6 +3340,12 @@ table.conference .conference-date {
 	#frmMicroGrid_uhb_reviews select{
 		width: 100% !important;
 	}
+
+	.grid-view.col-md-4{
+		width:100%;
+		float: left;
+	}
+
 }
 
 @media (max-width: 480px) {
@@ -3345,6 +3371,14 @@ table.conference .conference-date {
 
 @media (max-width: 400px) {
 	.swipe-room-prices	{ max-width: 300px; }
+}
+
+/* Chrome fix
+---------------------------------------------------------- */
+.button-availability,
+.bookbtn,
+input[type="submit"] {
+	outline: 0;
 }
 
 

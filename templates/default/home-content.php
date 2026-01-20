@@ -3,7 +3,7 @@
 * @project uHotelBooking
 * @copyright (c) 2019 ApPHP
 * @author ApPHP <info@apphp.com>
-* @site https://www.hotel-booking-script.com
+* @site http://www.hotel-booking-script.com
 * @license http://www.gnu.org/licenses/
 */
 
@@ -21,14 +21,58 @@ if($total_hotels[1] > 1){
 <div class="wrap cstyle03">		
     <div class="container mt-200 z-index100">		
       <div class="row">
-        <div class="col-md-4">
+
+        <?php
+            // Count number of tabs
+            $tabs_count = 0;
+
+            // Prepare properties array
+            $property_types = Application::Get('property_types');
+            if (GROUP_PROPERTY_DROPDOWNBOX && !empty($property_types) && is_array($property_types)) {
+                $tabs_count++;
+            } elseif (!empty($property_types) && is_array($property_types)) {
+                foreach($property_types as $key => $val){
+                    if (!$val['show_on_menu']) continue;
+                    $tabs_count++;
+                }
+            }
+            if(Modules::IsModuleInstalled('car_rental') && ModulesSettings::Get('car_rental', 'is_active') == 'yes'){
+                $tabs_count++;
+            }
+            if(Modules::IsModuleInstalled('tours_and_attractions') && ModulesSettings::Get('tours_and_attractions', 'is_active') == 'yes' && ModulesSettings::Get('tours_and_attractions', 'show_tab_on_homepage') == 'yes'){
+                $tabs_count++;
+            }
+
+            // Prepare tabs CSS
+			if ($tabs_count < 5) {
+				$left_css = 'col-md-4';
+                $right_css = 'col-md-4';
+                $max_blocks = 2;
+			} elseif ($tabs_count == 5) {
+                $left_css = 'col-lg-offset-1 col-md-5';
+                $right_css = 'col-md-5';
+                $max_blocks = 1;
+            } elseif ($tabs_count == 6) {
+                $left_css = 'col-md-6';
+                $right_css = 'col-md-5';
+                $max_blocks = 1;
+            } elseif ($tabs_count == 7) {
+                $left_css = 'col-md-8';
+                $right_css = 'col-md-4';
+                $max_blocks = 1;
+            } else {
+                $left_css = 'col-md-12';
+                $right_css = 'col-md-4';
+                $max_blocks = 0;
+                ///echo '<style>table tr { float: left}</style>';
+            }
+        ?>
+
+        <div class="<?=$left_css;?>">
             <div class="bs-example bs-example-tabs cstyle04">
             
                 <ul class="nav nav-tabs<?= GROUP_PROPERTY_DROPDOWNBOX ? ' group-dropbox' : '' ?>" id="myTab">
 					<?php
-                    // Prepare properties array
-                    $property_types = Application::Get('property_types');
-
                     $count = 0;
                     $properties_count = 0;
                     $first_property = 1;
@@ -36,8 +80,8 @@ if($total_hotels[1] > 1){
                     <?php if(ALLOW_TAB_SEARCH_ALL){ ?>
                         <li onclick="mySelectUpdate(0)" class=""><a data-toggle="tab" href="#all"><?= _ALL; ?></a></li>
                         <?php
-                        $count++;
-                        $first_property = 0;
+                            $count++;
+                            $first_property = 0;
                         ?>
                     <?php } ?>
 
@@ -47,6 +91,7 @@ if($total_hotels[1] > 1){
                         $count++;
                     } elseif (!empty($property_types) && is_array($property_types)) {
                         foreach($property_types as $key => $val){
+                            if (!$val['show_on_menu']) continue;
                             if(!$properties_count++) $first_property = $val['id'];
                             $arr_property_types[$val['id']] = $val['name'];
                             echo '<li onclick="mySelectUpdate('.$val['id'].')" class="'.(!$count ? 'active' : '').'"><a data-toggle="tab" href="#property"><span class="'.$val['property_code'].'"></span> &nbsp;'.$val['name'].'</a></li>';
@@ -58,19 +103,25 @@ if($total_hotels[1] > 1){
                     <?php if(Modules::IsModuleInstalled('car_rental') && ModulesSettings::Get('car_rental', 'is_active') == 'yes'){	?>
                         <li onclick="mySelectUpdate(3)" class="cars-tab"><a data-toggle="tab" href="#car"><span class="car"></span> &nbsp;<?= _CARS; ?></a></li>
                     <?php } ?>
+
+                    <?php if(Modules::IsModuleInstalled('tours_and_attractions') && ModulesSettings::Get('tours_and_attractions', 'is_active') == 'yes' && ModulesSettings::Get('tours_and_attractions', 'show_tab_on_homepage') == 'yes'){	?>
+						<li onclick="mySelectUpdate(4)" class="tours-tab"><a data-toggle="tab" href="#tour"><span class="suitcase"></span> &nbsp;<?= _TOURS; ?></a></li>
+                    <?php } ?>
                 </ul>
+
                 <div class="tab-content<?= GROUP_PROPERTY_DROPDOWNBOX ? ' group-dropbox' : ''; ?>" id="myTabContent">
 					<div id="property" class="tab-pane fade active in">
                         <?php if (GROUP_PROPERTY_DROPDOWNBOX && !empty($property_types) && is_array($property_types)){ ?>
                             <label><?= _PROPERTY_TYPE; ?></label><br>
                             <select  class="my-form-control" name="select-tab" id="select-tab" style="width:91%">
                                 <?php
-                                foreach($property_types as $key => $val){
-                                    if(!$properties_count++) $first_property = $val['id'];
-                                    $arr_property_types[$val['id']] = $val['name'];
-                                    echo '<option data-toggle="tab" href="#property" value="'.$val['id'].'">'.$val['name'].'</option>';
-                                    $count++;
-                                }
+                                    foreach($property_types as $key => $val){
+                                        if (!$val['show_on_menu']) continue;
+                                        if(!$properties_count++) $first_property = $val['id'];
+                                        $arr_property_types[$val['id']] = $val['name'];
+                                        echo '<option data-toggle="tab" href="#property" value="'.$val['id'].'">'.$val['name'].'</option>';
+                                        $count++;
+                                    }
                                 ?>
                             </select>
                         <?php } ?>
@@ -90,13 +141,18 @@ if($total_hotels[1] > 1){
                         if(Modules::IsModuleInstalled('car_rental') && ModulesSettings::Get('car_rental', 'is_active') == 'yes'){
                             echo CarAgencies::DrawSearchAvailabilityBlock();
                         }
-                    ?>					
-                </div>
+                    ?>
+                    <?php
+                    if(Modules::IsModuleInstalled('tours_and_attractions') && ModulesSettings::Get('tours_and_attractions', 'is_active') == 'yes'){
+                        echo Tours::DrawSearchAvailabilityBlock();
+                    }
+                    ?>
+				</div>
             </div>
         </div>
         <?php
             // 1 'top'
-            Hotels::DrawHotelsByGroup(1);
+            Hotels::DrawHotelsByGroup(1, false, true, ['col-md'=>$right_css, 'max'=>$max_blocks]);
         ?>
       </div>
     </div>
@@ -215,6 +271,7 @@ if($total_hotels[1] > 1){
 						// Prepare properties array
 						$property_types = Application::Get('property_types');
 						foreach($property_types as $key => $val){
+                            if (!$val['show_on_menu']) continue;
 							if(!$properties_count++) $first_property = $val['id'];
 							$arr_property_types[$val['id']] = $val['name'];
 							echo '<li onclick="mySelectUpdate('.$val['id'].')" class="'.(!$count ? 'active' : '').'"><a data-toggle="tab" href="#property"><span class="'.$val['property_code'].'"></span> &nbsp;'.$val['name'].'</a></li>';

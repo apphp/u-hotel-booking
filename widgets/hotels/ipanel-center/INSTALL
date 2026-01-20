@@ -1,0 +1,30 @@
+///////////////////////////////////////////////////////////////////////////////////
+// 
+// uHotelBooking
+// ---------------------
+// http://hotel-booking-script.com
+// 
+// Reservation WIDGET for uHotelBooking
+// Version: 1.3.0
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+Thank you for using our software!
+-----------------------------------------------------------------------------------
+
+INSTALLATION:
+-------------
+
+1. Copy "ipanel-center/" directory into "widgets/hotels/" in your current installation of uHotelBooking script.
+2. Go to Hotels Management > Settings > Integration page and check if you see Center Panel textarea with generated code.
+
+That's all!
+
+
+To start testing this widget do following:
+
+1. Go to Hotels Management > Settings > Integration page.
+2. Copy code generated in "Center Panel" section.
+3. Create test.html file and paste the code coied on previous step into this file, save it. 
+4. Run test.html file by opening it in web browser.
+5. Follow instructions to make test reservation.

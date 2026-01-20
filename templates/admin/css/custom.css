@@ -453,7 +453,7 @@ input[type=button].mgrid_button_cancel:hover{
 }
 
 /* RESPONSIVE TABLES */
-.table-responsive { width: 100%; min-height:300px !important; }
+.table-responsive { width: 100%; min-height:400px !important; }
 .table-responsive FORM { min-width:900px; }
 .table-responsive.add-mode FORM,
 .table-responsive.edit-mode { min-width:600px; }
