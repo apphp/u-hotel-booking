@@ -1,4 +1,16 @@
 ======================================================================================
+- Version 2.9.x
+======================================================================================
+1. Feature: [added] show on menu for the property types.
+1. Feature: [improved] added database port in installation module
+2. Feature: [improved] Remember Me functionality
+3. Feature: [improved] automatic tabs adjustment on home page
+1. Bug: [fixed] in social login feature
+2. Bug: [fixed] set first day of week in calendar on Room description page
+3. Bug: [fixed] on Truncate of tables when uninstall module
+
+
+======================================================================================
 - Version 2.8.9	 [25.02.2019]
 ======================================================================================
 1. Feature: [added] possibility to manage min/max adults and children in discount campaigns
@@ -8,12 +20,12 @@
 5. Feature: [added] possibility for hotel owners to register
 6. Feature: [added] possibility to send copy to admin or/and hotel owner
 7. Feature: [added] possibilities to use module shortcodes on homepage also
-8. Feature: [added] possibility to add video links in hotels (properties).
-9. Feature: [added] new module - Accounts.
-10. Feature: [added] standard registration type for hotel owner.
-11. Feature: [added] social login for customers.
-12. Feature: [added] new account type hotel manager.
-13. Feature: [added] New search feature: Allow relocation to other room and allow relocation to other hotel.
+8. Feature: [added] possibility to add video links in hotels (properties)
+9. Feature: [added] new module - Accounts
+10. Feature: [added] standard registration type for hotel owner
+11. Feature: [added] social login for customers
+12. Feature: [added] new account type hotel manager
+13. Feature: [added] New search feature: Allow relocation to other room and allow relocation to other hotel
 
 1. Feature: [improved] added new settings COUNT_MEAL_FOR_CHILDREN
 2. Feature: [improved] added new settings ALLOW_ADULTS_SELECTING and ALLOW_CHILDREN_SELECTING that allows to change number of guests
